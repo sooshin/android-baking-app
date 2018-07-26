@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BakingApp</string>
+
+    <string name="step">Step\u0020</string>
 </resources>
