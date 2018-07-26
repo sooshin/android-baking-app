@@ -3,6 +3,7 @@ package com.example.android.bakingapp;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -26,7 +27,8 @@ import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
 /**
  * The MainActivity displays the list of recipes
  */
-public class MainActivity extends AppCompatActivity implements RecipeAdapter.RecipeAdapterOnClickHandler {
+public class MainActivity extends AppCompatActivity implements RecipeAdapter.RecipeAdapterOnClickHandler,
+        ConnectivityReceiver.ConnectivityReceiverListener {
 
     /** Tag for logging */
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         mMainBinding.rv.setAdapter(mRecipeAdapter);
 
         callRecipeResponse();
+
+        // Check internet connection
+        checkConnection();
     }
 
     private void callRecipeResponse() {
@@ -82,5 +87,43 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
         intent.putExtra(EXTRA_RECIPE, b);
         startActivity(intent);
+    }
+
+    private void checkConnection() {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        showSnack(isConnected);
+    }
+
+    /**
+     * Shows the network status in Snackbar
+     * @param isConnected
+     */
+    private void showSnack(boolean isConnected) {
+        String message;
+        if (isConnected) {
+            message = "Connected to the Internet";
+        } else {
+            message = "No Internet Connection!";
+        }
+
+        Snackbar snackbar = Snackbar.make(mMainBinding.rv, message, Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Register connection status listener
+        MyApp.getInstance().setConnectivityListener(this);
+    }
+
+    /**
+     * Callback will be triggered when there is change in the network connection.
+     * @param isConnected
+     */
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        showSnack(isConnected);
     }
 }
