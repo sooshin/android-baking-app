@@ -37,4 +37,13 @@ public class ConnectionStateMonitor extends ConnectivityManager.NetworkCallback 
             ConnectivityReceiver.sReceiverListener.onNetworkConnectionChanged(true);
         }
     }
+
+    @Override
+    public void onLost(Network network) {
+        super.onLost(network);
+
+        if (ConnectivityReceiver.sReceiverListener != null) {
+            ConnectivityReceiver.sReceiverListener.onNetworkConnectionChanged(false);
+        }
+    }
 }
