@@ -3,7 +3,9 @@ package com.example.android.bakingapp.adapter;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.bakingapp.R;
@@ -20,13 +22,28 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
     /** Member variable for the list of {@link Step}s */
     private List<Step> mSteps;
 
+    /** An on-click handler that we've defined to make it easy for a Fragment to interface with
+     * our RecyclerView
+     */
+    private final StepsAdapterOnClickHandler mOnClickHandler;
+
+    /**
+     * The interface that receives onClick messages.
+     */
+    public interface StepsAdapterOnClickHandler {
+        void onItemClick(Step step);
+    }
+
     /**
      * Constructor for StepsAdapter that accepts a list of steps to display
      *
      * @param steps The list of {@link Step}s
+     * @param onClickHandler The on-click handler for this adapter. This single handler is called
+     *                       when an item is clicked.
      */
-    public StepsAdapter(List<Step> steps) {
+    public StepsAdapter(List<Step> steps, StepsAdapterOnClickHandler onClickHandler) {
         mSteps = steps;
+        mOnClickHandler = onClickHandler;
     }
 
     /**
@@ -87,7 +104,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
     /**
      * Cache of the children views for a step list item.
      */
-    public class StepsViewHolder extends RecyclerView.ViewHolder {
+    public class StepsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         /** This field is used for data binding */
         private StepsListItemBinding mStepsItemBinding;
 
@@ -100,6 +117,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         public StepsViewHolder(StepsListItemBinding stepsItemBinding) {
             super(stepsItemBinding.getRoot());
             mStepsItemBinding = stepsItemBinding;
+            // Call setOnClickListener on the View
+            itemView.setOnClickListener(this);
         }
 
         /**
@@ -112,6 +131,18 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
             String stepId = itemView.getContext().getString(R.string.step) + step.getStepId();
             mStepsItemBinding.tvStepId.setText(stepId);
             mStepsItemBinding.tvStepShortDescription.setText(step.getShortDescription());
+        }
+
+        /**
+         * Called by the child views during a click.
+         *
+         * @param v The View that was clicked
+         */
+        @Override
+        public void onClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            Step step = mSteps.get(adapterPosition);
+            mOnClickHandler.onItemClick(step);
         }
     }
 }

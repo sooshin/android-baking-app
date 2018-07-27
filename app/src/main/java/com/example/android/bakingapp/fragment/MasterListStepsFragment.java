@@ -1,5 +1,6 @@
 package com.example.android.bakingapp.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
 /**
  * The MasterListStepsFragment displays the list of steps for the recipe.
  */
-public class MasterListStepsFragment extends Fragment {
+public class MasterListStepsFragment extends Fragment implements StepsAdapter.StepsAdapterOnClickHandler {
 
     /** Member variable for the recipe */
     private Recipe mRecipe;
@@ -34,6 +35,18 @@ public class MasterListStepsFragment extends Fragment {
 
     /** This field is used for data binding */
     private FragmentMasterListStepsBinding mStepsBinding;
+
+    /**
+     * Define a new interface OnStepClickListener that triggers a callback in the host activity,
+     * DetailActivity.
+     */
+    OnStepClickListener mCallback;
+
+    /** OnStepClickListener interface, calls a method in the host activity named onStepSelected */
+    public interface OnStepClickListener {
+        void onStepSelected(Step step);
+    }
+
 
     /**
      * Mandatory empty constructor
@@ -56,7 +69,7 @@ public class MasterListStepsFragment extends Fragment {
         List<Step> steps = new ArrayList<>();
 
         // The StepsAdapter is responsible for displaying each step in the list
-        mStepsAdapter = new StepsAdapter(steps);
+        mStepsAdapter = new StepsAdapter(steps, this);
 
         // A LinearLayoutManager is responsible for measuring and positioning item views within a
         // RecyclerView into a linear list.
@@ -104,5 +117,33 @@ public class MasterListStepsFragment extends Fragment {
         // Exclude zero step
         int numSteps = mRecipe.getSteps().size() - 1;
         mStepsBinding.numSteps.setText(String.valueOf(numSteps));
+    }
+
+    /**
+     * Override onAttach to make sure that the container activity has implemented the callback
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        // This makes sure that the host activity has implemented the callback interface
+        // If not, it throws an exception
+        try {
+            mCallback = (OnStepClickListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnStepClickListener");
+        }
+    }
+
+    /**
+     * Handles RecyclerView item clicks
+     *
+     * @param step The Step object
+     */
+    @Override
+    public void onItemClick(Step step) {
+        // Trigger the callback method and pass in the step that was clicked
+        mCallback.onStepSelected(step);
     }
 }

@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
+import com.example.android.bakingapp.fragment.MasterListStepsFragment;
 import com.example.android.bakingapp.model.Recipe;
+import com.example.android.bakingapp.model.Step;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
 
@@ -13,7 +16,7 @@ import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
  * The DetailActivity is responsible for displaying the ingredients and steps for a selected
  * {@link Recipe}.
  */
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements MasterListStepsFragment.OnStepClickListener {
 
     /** Member variable for the recipe */
     private Recipe mRecipe;
@@ -46,5 +49,11 @@ public class DetailActivity extends AppCompatActivity {
             }
         }
         return mRecipe;
+    }
+
+    @Override
+    public void onStepSelected(Step step) {
+        // Handle the single-pane phone case
+        Toast.makeText(this, "stepId: " + step.getStepId(), Toast.LENGTH_SHORT).show();
     }
 }
