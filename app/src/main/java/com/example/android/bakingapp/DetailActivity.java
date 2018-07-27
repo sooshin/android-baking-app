@@ -9,8 +9,13 @@ import com.example.android.bakingapp.model.Recipe;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
 
+/**
+ * The DetailActivity is responsible for displaying the ingredients and steps for a selected
+ * {@link Recipe}.
+ */
 public class DetailActivity extends AppCompatActivity {
 
+    /** Member variable for the recipe */
     private Recipe mRecipe;
 
     @Override
@@ -18,15 +23,24 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        // Get the recipe data from the MainActivity
         mRecipe = getRecipeData();
-        setTitle(mRecipe.getName());
 
+        // Set the title for a selected recipe
+        setTitle(mRecipe.getName());
     }
 
+    /**
+     * Gets recipe data from the MainActivity
+     *
+     * @return The Recipe data
+     */
     private Recipe getRecipeData() {
         Intent intent = getIntent();
         if (intent != null) {
             if (intent.hasExtra(EXTRA_RECIPE)) {
+                // Receive the Recipe object which contains ID, name, ingredients, steps, servings,
+                // and image of the recipe
                 Bundle b = intent.getBundleExtra(EXTRA_RECIPE);
                 mRecipe = b.getParcelable(EXTRA_RECIPE);
             }

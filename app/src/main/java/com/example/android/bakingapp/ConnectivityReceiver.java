@@ -6,10 +6,19 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+/**
+ * Use BroadcastReceiver when checking the network connectivity status
+ *
+ * Reference @see "https://www.androidhive.info/2012/07/android-detect-internet-connection-status/"
+ */
 public class ConnectivityReceiver extends BroadcastReceiver {
 
     public static ConnectivityReceiverListener sReceiverListener;
 
+    /**
+     * ConnectivityReceiverListener interface, calls a method in the MainActivity named
+     * onNetworkConnectionChanged
+     */
     public interface ConnectivityReceiverListener {
         void onNetworkConnectionChanged(boolean isConnected);
     }

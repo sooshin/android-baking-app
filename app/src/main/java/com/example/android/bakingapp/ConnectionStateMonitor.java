@@ -9,7 +9,12 @@ import android.net.NetworkRequest;
 import android.os.Build;
 
 /**
- * refrenece: @see "https://stackoverflow.com/questions/36421930/connectivitymanager-connectivity-action-deprecated/36447866#36447866"
+ * Use NetworkCallback because the ability for a backgrounded application to receive network
+ * connection state changes, android.net.conn.CONNECTIVITY_CHANGE, is deprecated for apps
+ * targeting Android N or higher.
+ *
+ * Reference: @see "https://stackoverflow.com/questions/36421930/connectivitymanager-connectivity-
+ * action-deprecated/36447866#36447866"
  */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class ConnectionStateMonitor extends ConnectivityManager.NetworkCallback {

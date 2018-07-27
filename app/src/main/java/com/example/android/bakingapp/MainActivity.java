@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     /** Tag for logging */
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    /** Member variable for RecipeAdapter */
     private RecipeAdapter mRecipeAdapter;
 
+    /** Member variable for the list of recipes */
     private List<Recipe> mRecipeList;
 
     /** This field is used for data binding **/
@@ -45,12 +47,21 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         super.onCreate(savedInstanceState);
         mMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        // A LinearLayoutManager is responsible for measuring and positioning item views within a
+        // RecyclerView into a linear list.
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        // Set the layout manager to the RecyclerView
         mMainBinding.rv.setLayoutManager(layoutManager);
+        // Use this setting to improve performance if you know that changes in content do not
+        // change the child layout size in the RecyclerView
         mMainBinding.rv.setHasFixedSize(true);
+
+        // Create an empty ArrayList
         mRecipeList = new ArrayList<>();
 
+        // The RecipeAdapter is responsible for displaying each recipe in the list.
         mRecipeAdapter = new RecipeAdapter(mRecipeList, this);
+        // Set adapter to the RecyclerView
         mMainBinding.rv.setAdapter(mRecipeAdapter);
 
         callRecipeResponse();
@@ -86,16 +97,30 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         Bundle b = new Bundle();
         b.putParcelable(EXTRA_RECIPE, recipe);
 
+        // Create the Intent the will start the DetailActivity
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        // Pass the bundle through Intent
         intent.putExtra(EXTRA_RECIPE, b);
+        // Once the Intent has been created, start the DetailActivity
         startActivity(intent);
     }
 
+    /**
+     * Use BroadcastReceiver when checking the network connectivity status
+     */
     private void checkConnection() {
         boolean isConnected = ConnectivityReceiver.isConnected();
         showSnack(isConnected);
     }
 
+    /**
+     * Use NetworkCallback because the ability for a backgrounded application to receive network
+     * connection state changes, android.net.conn.CONNECTIVITY_CHANGE, is deprecated for apps
+     * targeting Android N or higher.
+     *
+     * Reference: @see "https://stackoverflow.com/questions/36421930/connectivitymanager-connectivity
+     * -action-deprecated#36447866"
+     */
     private void checkConnectionStateMonitor() {
         ConnectionStateMonitor connectionStateMonitor = new ConnectionStateMonitor();
         connectionStateMonitor.enable(this);
@@ -103,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
     /**
      * Shows the network status in Snackbar
-     * @param isConnected
+     * @param isConnected True if connected to the network
      */
     private void showSnack(boolean isConnected) {
         String message;
@@ -127,7 +152,8 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
     /**
      * Callback will be triggered when there is change in the network connection.
-     * @param isConnected
+     * Show snackbar message.
+     * @param isConnected True if connected to the network
      */
     @Override
     public void onNetworkConnectionChanged(boolean isConnected) {

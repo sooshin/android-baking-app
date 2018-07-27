@@ -12,14 +12,32 @@ import com.example.android.bakingapp.model.Step;
 
 import java.util.List;
 
+/**
+ * {@link StepsAdapter} exposes a list of steps to a {@link RecyclerView}
+ */
 public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHolder> {
 
+    /** Member variable for the list of {@link Step}s */
     private List<Step> mSteps;
 
+    /**
+     * Constructor for StepsAdapter that accepts a list of steps to display
+     *
+     * @param steps The list of {@link Step}s
+     */
     public StepsAdapter(List<Step> steps) {
         mSteps = steps;
     }
 
+    /**
+     * This gets called when each new ViewHolder is created. This happens when the RecyclerView
+     * is laid out. Enough ViewHolders will be created to fill the screen and allow for scrolling.
+     *
+     * @param parent The ViewGroup that these ViewHolders are contained within.
+     * @param viewType If your RecyclerView has more than one type of item (which ours doesn't) you
+     *                  can use this viewType integer to provide a different layout.
+     * @return A new StepsViewHolder that holds the StepsListItemBinding
+     */
     @NonNull
     @Override
     public StepsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -29,33 +47,67 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         return new StepsViewHolder(stepsItemBinding);
     }
 
+    /**
+     * OnBindViewHolder is called by the RecyclerView to display the data at the specified
+     * position.
+     *
+     * @param holder The ViewHolder which should be updated to represent the contents of the
+     *                 item at the given position in the data set.
+     * @param position The position of the item within the adapter's data set.
+     */
     @Override
     public void onBindViewHolder(@NonNull StepsViewHolder holder, int position) {
         Step step = mSteps.get(position);
         holder.bind(step);
     }
 
+    /**
+     * This method simply return the number of items to display. It is used behind the scenes
+     * to help layout our Views and for animations.
+     *
+     * @return The number of steps
+     */
     @Override
     public int getItemCount() {
         if (null == mSteps) return 0;
         return mSteps.size();
     }
 
+    /**
+     * This method is to add a list of {@link Step}s
+     *
+     * @param steps Steps is the the data source of the adapter
+     */
     public void addAll(List<Step> steps) {
         mSteps.clear();
         mSteps.addAll(steps);
         notifyDataSetChanged();
     }
 
+    /**
+     * Cache of the children views for a step list item.
+     */
     public class StepsViewHolder extends RecyclerView.ViewHolder {
-
+        /** This field is used for data binding */
         private StepsListItemBinding mStepsItemBinding;
 
+
+        /**
+         * Constructor for our ViewHolder
+         *
+         * @param stepsItemBinding Used to access the layout's variables and views
+         */
         public StepsViewHolder(StepsListItemBinding stepsItemBinding) {
             super(stepsItemBinding.getRoot());
             mStepsItemBinding = stepsItemBinding;
         }
 
+        /**
+         * This method will take a Step object as input and use that Step to display the short description
+         * within a list item
+         *
+         * @param step The step object
+         */
         void bind(Step step) {
             String stepId = itemView.getContext().getString(R.string.step) + step.getStepId();
             mStepsItemBinding.tvStepId.setText(stepId);
