@@ -54,6 +54,9 @@ public class MasterListStepsFragment extends Fragment {
 
         mStepsAdapter.addAll(mRecipe.getSteps());
 
+        // Display the number of steps
+        setNumSteps();
+
         return rootView;
     }
 
@@ -66,5 +69,14 @@ public class MasterListStepsFragment extends Fragment {
             }
         }
         return mRecipe;
+    }
+
+    /**
+     * Displays the number of steps
+     */
+    private void setNumSteps() {
+        // Exclude zero step
+        int numSteps = mRecipe.getSteps().size() - 1;
+        mStepsBinding.numSteps.setText(String.valueOf(numSteps));
     }
 }

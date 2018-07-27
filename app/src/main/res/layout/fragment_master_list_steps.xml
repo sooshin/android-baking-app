@@ -1,21 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v7.widget.CardView
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/card_corner_radius"
-        app:cardElevation="@dimen/card_elevation"
-        app:cardMaxElevation="@dimen/card_max_elevation"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true"
-        app:contentPadding="@dimen/card_content_padding_zero">
+        android:layout_height="wrap_content">
 
+        <!-- The number of steps -->
+        <TextView
+            android:id="@+id/num_steps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="8dp"
+            android:textStyle="bold"
+            tools:text="10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Steps label -->
+        <TextView
+            android:id="@+id/steps_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/steps_label"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toRightOf="@+id/num_steps"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Steps" />
+
+        <!-- Horizontal divider -->
+        <View
+            android:id="@+id/steps_view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/num_steps" />
+
+        <!-- Display the list of steps -->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_steps"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </android.support.v7.widget.CardView>
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/steps_view" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </layout>
