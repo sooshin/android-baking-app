@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
         // Check internet connection
         checkConnection();
+
+        checkConnectionStateMonitor();
     }
 
     private void callRecipeResponse() {
@@ -92,6 +94,11 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     private void checkConnection() {
         boolean isConnected = ConnectivityReceiver.isConnected();
         showSnack(isConnected);
+    }
+
+    private void checkConnectionStateMonitor() {
+        ConnectionStateMonitor connectionStateMonitor = new ConnectionStateMonitor();
+        connectionStateMonitor.enable(this);
     }
 
     /**
