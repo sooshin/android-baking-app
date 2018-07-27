@@ -33,6 +33,8 @@ public class ConnectionStateMonitor extends ConnectivityManager.NetworkCallback 
     public void onAvailable(Network network) {
         super.onAvailable(network);
 
-        ConnectivityReceiver.sReceiverListener.onNetworkConnectionChanged(true);
+        if (ConnectivityReceiver.sReceiverListener != null) {
+            ConnectivityReceiver.sReceiverListener.onNetworkConnectionChanged(true);
+        }
     }
 }
