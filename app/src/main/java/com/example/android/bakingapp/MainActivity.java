@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 
 import com.example.android.bakingapp.adapter.RecipeAdapter;
 import com.example.android.bakingapp.databinding.ActivityMainBinding;
@@ -21,6 +20,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import timber.log.Timber;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
 
@@ -29,9 +29,6 @@ import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
  */
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.RecipeAdapterOnClickHandler,
         ConnectivityReceiver.ConnectivityReceiverListener {
-
-    /** Tag for logging */
-    private static final String TAG = MainActivity.class.getSimpleName();
 
     /** Member variable for RecipeAdapter */
     private RecipeAdapter mRecipeAdapter;
@@ -46,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        // Set up Timber
+        Timber.plant(new Timber.DebugTree());
 
         // A LinearLayoutManager is responsible for measuring and positioning item views within a
         // RecyclerView into a linear list.
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
             @Override
             public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                Log.e(TAG, "onFailure: " + t.getMessage());
+                Timber.e("onFailure: " + t.getMessage());
             }
         });
     }

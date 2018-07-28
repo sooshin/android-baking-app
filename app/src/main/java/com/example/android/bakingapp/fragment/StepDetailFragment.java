@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +12,12 @@ import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.FragmentStepDetailBinding;
 import com.example.android.bakingapp.model.Step;
 
+import timber.log.Timber;
+
 /**
  * The StepDetailFragment displays a selected recipe step that includes a video and step instruction.
  */
 public class StepDetailFragment extends Fragment {
-
-    /** Tag for logging */
-    private static final String TAG = StepDetailFragment.class.getSimpleName();
 
     /** This field is used for data binding */
     private FragmentStepDetailBinding mStepDetailBinding;
@@ -45,7 +43,7 @@ public class StepDetailFragment extends Fragment {
         if(mStep != null) {
             mStepDetailBinding.tvDescription.setText(mStep.getDescription());
         } else {
-            Log.v(TAG, "This fragment has a null step");
+            Timber.v("This fragment has a null step");
         }
 
         // Return the rootView
