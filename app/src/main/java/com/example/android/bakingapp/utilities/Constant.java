@@ -11,4 +11,7 @@ public final class Constant {
 
     /** Extra for the recipe to be received in the intent */
     public static final String EXTRA_RECIPE = "recipe";
+
+    /** Extra for the step to be received in the intent */
+    public static final String EXTRA_STEP = "step";
 }

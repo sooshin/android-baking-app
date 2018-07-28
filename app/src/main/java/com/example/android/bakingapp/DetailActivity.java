@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.example.android.bakingapp.fragment.MasterListStepsFragment;
 import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.model.Step;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
+import static com.example.android.bakingapp.utilities.Constant.EXTRA_STEP;
 
 /**
  * The DetailActivity is responsible for displaying the ingredients and steps for a selected
@@ -51,9 +51,23 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
         return mRecipe;
     }
 
+    /**
+     * Define the behavior for onStepSelected
+     *
+     * @param step The Step object which contains a step ID, short description, description, video URL,
+     *             and thumbnail URL of the step
+     */
     @Override
     public void onStepSelected(Step step) {
         // Handle the single-pane phone case
-        Toast.makeText(this, "stepId: " + step.getStepId(), Toast.LENGTH_SHORT).show();
+        // Wrap the parcelable into a bundle and attach it to an Intent that will launch an PlayerActivity
+        Bundle b = new Bundle();
+        b.putParcelable(EXTRA_STEP, step);
+
+        // Attach the Bundle to an intent
+        Intent intent = new Intent(this, PlayerActivity.class);
+        intent.putExtra(EXTRA_STEP, b);
+        // Launch a new PlayerActivity
+        startActivity(intent);
     }
 }

@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".DetailActivity" />
+        <activity android:name=".PlayerActivity" />
 
         <receiver
             android:name=".ConnectivityReceiver"
