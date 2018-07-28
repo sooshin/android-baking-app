@@ -48,7 +48,11 @@ public class StepDetailFragment extends Fragment {
         // If the Step exists, set the description to the TextView
         // Otherwise, create a Log statement that indicates that the step was not found
         if(mStep != null) {
-            mStepDetailBinding.tvDescription.setText(mStep.getDescription());
+            String description = mStep.getDescription();
+            // The Step 1 description of Brownies recipe contains a question mark, so replace it
+            // with the degree sign.
+            description = replaceString(description, rootView);
+            mStepDetailBinding.tvDescription.setText(description);
         } else {
             Timber.v("This fragment has a null step");
         }
@@ -62,6 +66,18 @@ public class StepDetailFragment extends Fragment {
      */
     public void setStep(Step step) {
         mStep = step;
+    }
+
+    /**
+     * Replace a question mark "�" with the degree "°".
+     * The Step 1 description of Brownies recipe contains a question mark, so replace it with the degree sign.
+     */
+    private String replaceString(String target, View v) {
+        if (target.contains(v.getContext().getString(R.string.question_mark))) {
+            target = target.replace(v.getContext().getString(R.string.question_mark),
+                    v.getContext().getString(R.string.degree));
+        }
+        return target;
     }
 
     /**
