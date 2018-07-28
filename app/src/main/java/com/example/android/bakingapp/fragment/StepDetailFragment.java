@@ -14,6 +14,8 @@ import com.example.android.bakingapp.model.Step;
 
 import timber.log.Timber;
 
+import static com.example.android.bakingapp.utilities.Constant.SAVE_STEP;
+
 /**
  * The StepDetailFragment displays a selected recipe step that includes a video and step instruction.
  */
@@ -38,6 +40,11 @@ public class StepDetailFragment extends Fragment {
                 inflater, R.layout.fragment_step_detail, container, false);
         View rootView = mStepDetailBinding.getRoot();
 
+        // Load the saved state (the step) if there is one
+        if (savedInstanceState != null) {
+            mStep = savedInstanceState.getParcelable(SAVE_STEP);
+        }
+
         // If the Step exists, set the description to the TextView
         // Otherwise, create a Log statement that indicates that the step was not found
         if(mStep != null) {
@@ -55,5 +62,14 @@ public class StepDetailFragment extends Fragment {
      */
     public void setStep(Step step) {
         mStep = step;
+    }
+
+    /**
+     * Save the current state of this fragment
+     */
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(SAVE_STEP, mStep);
     }
 }

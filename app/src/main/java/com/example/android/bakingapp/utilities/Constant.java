@@ -14,4 +14,7 @@ public final class Constant {
 
     /** Extra for the step to be received in the intent */
     public static final String EXTRA_STEP = "step";
+
+    /** Constant string for saving the current state of StepDetailFragment */
+    public static final String SAVE_STEP = "save_step";
 }
