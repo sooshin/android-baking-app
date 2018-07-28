@@ -1,4 +1,4 @@
-package com.example.android.bakingapp;
+package com.example.android.bakingapp.ui.main;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -7,7 +7,11 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.example.android.bakingapp.adapter.RecipeAdapter;
+import com.example.android.bakingapp.ConnectionStateMonitor;
+import com.example.android.bakingapp.ConnectivityReceiver;
+import com.example.android.bakingapp.ui.detail.DetailActivity;
+import com.example.android.bakingapp.MyApp;
+import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.ActivityMainBinding;
 import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.utilities.BakingInterface;

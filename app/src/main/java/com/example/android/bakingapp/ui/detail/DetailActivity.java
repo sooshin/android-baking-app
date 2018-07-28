@@ -1,11 +1,12 @@
-package com.example.android.bakingapp;
+package com.example.android.bakingapp.ui.detail;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.android.bakingapp.fragment.MasterListStepsFragment;
+import com.example.android.bakingapp.ui.player.PlayerActivity;
+import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.model.Step;
 

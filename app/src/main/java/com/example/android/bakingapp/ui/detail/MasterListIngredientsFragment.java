@@ -1,4 +1,4 @@
-package com.example.android.bakingapp.fragment;
+package com.example.android.bakingapp.ui.detail;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.bakingapp.R;
-import com.example.android.bakingapp.adapter.IngredientsAdapter;
 import com.example.android.bakingapp.databinding.FragmentMasterListIngredientsBinding;
 import com.example.android.bakingapp.model.Ingredient;
 import com.example.android.bakingapp.model.Recipe;

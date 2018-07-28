@@ -11,14 +11,14 @@
         <!-- Ingredients fragment -->
         <fragment xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/master_list_ingredients_fragment"
-            android:name="com.example.android.bakingapp.fragment.MasterListIngredientsFragment"
+            android:name="com.example.android.bakingapp.ui.detail.MasterListIngredientsFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <!-- Steps fragment-->
         <fragment
             android:id="@+id/master_list_steps_fragment"
-            android:name="com.example.android.bakingapp.fragment.MasterListStepsFragment"
+            android:name="com.example.android.bakingapp.ui.detail.MasterListStepsFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

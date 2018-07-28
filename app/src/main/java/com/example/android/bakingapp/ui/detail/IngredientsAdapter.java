@@ -1,4 +1,4 @@
-package com.example.android.bakingapp.adapter;
+package com.example.android.bakingapp.ui.detail;
 
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;

@@ -1,4 +1,4 @@
-package com.example.android.bakingapp.fragment;
+package com.example.android.bakingapp.ui.detail;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.bakingapp.R;
-import com.example.android.bakingapp.adapter.StepsAdapter;
 import com.example.android.bakingapp.databinding.FragmentMasterListStepsBinding;
 import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.model.Step;

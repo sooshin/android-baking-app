@@ -1,4 +1,4 @@
-package com.example.android.bakingapp.fragment;
+package com.example.android.bakingapp.ui.player;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
