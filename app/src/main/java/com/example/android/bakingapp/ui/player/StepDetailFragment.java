@@ -32,6 +32,8 @@ import static com.example.android.bakingapp.utilities.Constant.SAVE_STEP;
 
 /**
  * The StepDetailFragment displays a selected recipe step that includes a video and step instruction.
+ *
+ * Reference: @see "https://codelabs.developers.google.com/codelabs/exoplayer-intro"
  */
 public class StepDetailFragment extends Fragment {
 
@@ -47,7 +49,7 @@ public class StepDetailFragment extends Fragment {
     /** Initialize with 0 to start from the beginning of the window */
     private long mPlaybackPosition;
 
-    /** Initialize with 0 to start from the beginning of the window */
+    /** Initialize with 0 to start from the first item in the TimeLine */
     private int mCurrentWindow;
 
     private boolean mPlayWhenReady = true;
@@ -131,6 +133,8 @@ public class StepDetailFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        // Starting with API level 24 Android supports multiple windows. As our app can be visible
+        // but not active in split window mode, we need to initialize the player in onStart().
         if (Util.SDK_INT > Build.VERSION_CODES.M) {
             // Initialize the player
             initializePlayer();
@@ -141,12 +145,17 @@ public class StepDetailFragment extends Fragment {
     public void onResume() {
         super.onResume();
         hideSystemUi();
+        // Before API level 24 we wait as long as possible until we grab resources, so we wait until
+        // onResume() before initializing the player.
         if (Util.SDK_INT <= Build.VERSION_CODES.M || mExoPlayer == null) {
             // Initialize the player
             initializePlayer();
         }
     }
 
+    /**
+     * Enables the user to have a pure full screen experience
+     */
     @SuppressLint("InlinedApi")
     private void hideSystemUi() {
         mStepDetailBinding.playerView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
@@ -160,6 +169,8 @@ public class StepDetailFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        // Before API level 24 there is no guarantee of onStop() being called. So we have to release
+        // the player as early as possible in onPause().
         if (Util.SDK_INT <= Build.VERSION_CODES.M) {
             releasePlayer();
         }
@@ -168,6 +179,8 @@ public class StepDetailFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
+        // Starting with API level 24 onStop() is guaranteed to be called and in the paused mode
+        // our activity is eventually still visible. Hence we need to wait releasing until onStop().
         if (Util.SDK_INT > Build.VERSION_CODES.M) {
             releasePlayer();
         }
