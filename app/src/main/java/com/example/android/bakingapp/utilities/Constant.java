@@ -17,4 +17,7 @@ public final class Constant {
 
     /** Constant string for saving the current state of StepDetailFragment */
     public static final String SAVE_STEP = "save_step";
+    public static final String STATE_PLAYBACK_POSITION = "state_playback_position";
+    public static final String STATE_CURRENT_WINDOW = "state_current_window";
+    public static final String STATE_PLAY_WHEN_READY = "state_play_when_ready";
 }

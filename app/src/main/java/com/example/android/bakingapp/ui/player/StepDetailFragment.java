@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.FragmentStepDetailBinding;
 import com.example.android.bakingapp.model.Step;
+import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
 import com.google.android.exoplayer2.ExoPlayerFactory;
@@ -29,6 +30,9 @@ import com.google.android.exoplayer2.util.Util;
 import timber.log.Timber;
 
 import static com.example.android.bakingapp.utilities.Constant.SAVE_STEP;
+import static com.example.android.bakingapp.utilities.Constant.STATE_CURRENT_WINDOW;
+import static com.example.android.bakingapp.utilities.Constant.STATE_PLAYBACK_POSITION;
+import static com.example.android.bakingapp.utilities.Constant.STATE_PLAY_WHEN_READY;
 
 /**
  * The StepDetailFragment displays a selected recipe step that includes a video and step instruction.
@@ -52,7 +56,7 @@ public class StepDetailFragment extends Fragment {
     /** Initialize with 0 to start from the first item in the TimeLine */
     private int mCurrentWindow;
 
-    private boolean mPlayWhenReady = true;
+    private boolean mPlayWhenReady;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the fragment
@@ -67,9 +71,17 @@ public class StepDetailFragment extends Fragment {
                 inflater, R.layout.fragment_step_detail, container, false);
         View rootView = mStepDetailBinding.getRoot();
 
-        // Load the saved state (the step) if there is one
+        // Load the saved state (the step, playback position, current window, play when ready) if there is one
         if (savedInstanceState != null) {
             mStep = savedInstanceState.getParcelable(SAVE_STEP);
+            mPlaybackPosition = savedInstanceState.getLong(STATE_PLAYBACK_POSITION);
+            mCurrentWindow = savedInstanceState.getInt(STATE_CURRENT_WINDOW);
+            mPlayWhenReady = savedInstanceState.getBoolean(STATE_PLAY_WHEN_READY);
+        } else {
+            // Clear the start position
+            mCurrentWindow = C.INDEX_UNSET;
+            mPlaybackPosition = C.TIME_UNSET;
+            mPlayWhenReady = true;
         }
 
         // If the Step exists, set the description to the TextView
@@ -111,12 +123,18 @@ public class StepDetailFragment extends Fragment {
             mStepDetailBinding.playerView.setPlayer(mExoPlayer);
 
             mExoPlayer.setPlayWhenReady(mPlayWhenReady);
-            mExoPlayer.seekTo(mCurrentWindow, mPlaybackPosition);
         }
         // Prepare the MediaSource
         Uri mediaUri = Uri.parse(mStep.getVideoUrl());
         MediaSource mediaSource = buildMediaSource(mediaUri);
-        mExoPlayer.prepare(mediaSource);
+
+        // Restore the playback position
+        boolean haveStartPosition = mCurrentWindow != C.INDEX_UNSET;
+        if (haveStartPosition) {
+            mExoPlayer.seekTo(mCurrentWindow, mPlaybackPosition);
+        }
+        // The boolean flags indicate whether to reset position and state of the player
+        mExoPlayer.prepare(mediaSource, !haveStartPosition, false);
     }
 
     /**
@@ -191,11 +209,20 @@ public class StepDetailFragment extends Fragment {
      */
     private void releasePlayer() {
         if (mExoPlayer != null) {
+            updateCurrentPosition();
+            mExoPlayer.release();
+            mExoPlayer = null;
+        }
+    }
+
+    /**
+     * Updates the current state of the player
+     */
+    private void updateCurrentPosition() {
+        if (mExoPlayer != null) {
             mPlaybackPosition = mExoPlayer.getCurrentPosition();
             mCurrentWindow = mExoPlayer.getCurrentWindowIndex();
             mPlayWhenReady = mExoPlayer.getPlayWhenReady();
-            mExoPlayer.release();
-            mExoPlayer = null;
         }
     }
 
@@ -218,5 +245,11 @@ public class StepDetailFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putParcelable(SAVE_STEP, mStep);
+        // Update the current state of the player
+        updateCurrentPosition();
+        // Store the playback position to our bundle
+        outState.putLong(STATE_PLAYBACK_POSITION, mPlaybackPosition);
+        outState.putInt(STATE_CURRENT_WINDOW, mCurrentWindow);
+        outState.putBoolean(STATE_PLAY_WHEN_READY, mPlayWhenReady);
     }
 }
