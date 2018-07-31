@@ -17,15 +17,22 @@ import com.example.android.bakingapp.model.Step;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.DefaultRenderersFactory;
+import com.google.android.exoplayer2.ExoPlaybackException;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
+import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
+import com.squareup.picasso.Picasso;
 
 import timber.log.Timber;
 
@@ -39,13 +46,20 @@ import static com.example.android.bakingapp.utilities.Constant.STATE_PLAY_WHEN_R
  *
  * Reference: @see "https://codelabs.developers.google.com/codelabs/exoplayer-intro"
  */
-public class StepDetailFragment extends Fragment {
+public class StepDetailFragment extends Fragment implements Player.EventListener {
 
     /** This field is used for data binding */
     private FragmentStepDetailBinding mStepDetailBinding;
 
     /** Member variable for Step that this fragment displays */
     private Step mStep;
+
+    /** Member variable for a video URL */
+    private String mVideoUrl;
+    /** Member variable for a thumbnail URL */
+    private String mThumbnailUrl;
+    /** Indicate whether the step of the recipe has a video URL */
+    private boolean mHasVideoUrl = false;
 
     /** Member variable for the ExoPlayer */
     private SimpleExoPlayer mExoPlayer;
@@ -84,7 +98,7 @@ public class StepDetailFragment extends Fragment {
             mPlayWhenReady = true;
         }
 
-        // If the Step exists, set the description to the TextView
+        // If the Step exists, set the description to the TextView and handle media URL.
         // Otherwise, create a Log statement that indicates that the step was not found
         if(mStep != null) {
             String description = mStep.getDescription();
@@ -92,12 +106,48 @@ public class StepDetailFragment extends Fragment {
             // with the degree sign.
             description = replaceString(description, rootView);
             mStepDetailBinding.tvDescription.setText(description);
+
+            // Handles video URL and thumbnail URL
+            handleMediaUrl();
+
         } else {
             Timber.v("This fragment has a null step");
         }
 
         // Return the rootView
         return rootView;
+    }
+
+    /**
+     * Handles video URL and thumbnail URL
+     */
+    private void handleMediaUrl() {
+        // Get video URL and thumbnail URL from the step of the recipe
+        mVideoUrl = mStep.getVideoUrl();
+        mThumbnailUrl = mStep.getThumbnailUrl();
+
+        // Check if the thumbnail URL contains an "mp4" file
+        // Step 5 of the Nutella Pie has an mp4 file in the thumbnail URL
+        if (mThumbnailUrl.contains(getResources().getString(R.string.mp4))) {
+            mVideoUrl = mThumbnailUrl;
+        }
+
+        if (!mVideoUrl.isEmpty()) {
+            // If the video URL exists, set the boolean variable to true
+            mHasVideoUrl = true;
+        } else if (!mThumbnailUrl.isEmpty()) {
+            // If the thumbnail URL exists, load thumbnail with Picasso
+            mStepDetailBinding.playerView.setVisibility(View.GONE);
+            Picasso.with(getContext())
+                    .load(mThumbnailUrl)
+                    .error(R.drawable.woman_with_dish)
+                    .placeholder(R.drawable.woman_with_dish)
+                    .into(mStepDetailBinding.ivEmpty);
+        } else {
+            // If the step of the recipe has no visual media, load chef image
+            mStepDetailBinding.playerView.setVisibility(View.GONE);
+            mStepDetailBinding.ivEmpty.setImageResource(R.drawable.woman_with_dish);
+        }
     }
 
     /**
@@ -109,32 +159,37 @@ public class StepDetailFragment extends Fragment {
 
     /**
      * Initialize ExoPlayer.
+     *
+     * @param hasVideoUrl True if the step of the recipe has a video
      */
-    private void initializePlayer() {
-        if (mExoPlayer == null) {
-            // Create an instance of the ExoPlayer
-            DefaultRenderersFactory defaultRenderersFactory = new DefaultRenderersFactory(getContext());
-            TrackSelector trackSelector = new DefaultTrackSelector();
-            LoadControl loadControl = new DefaultLoadControl();
-            mExoPlayer = ExoPlayerFactory.newSimpleInstance(
-                    defaultRenderersFactory, trackSelector, loadControl);
+    private void initializePlayer(boolean hasVideoUrl) {
+        // Check if the step of the recipe has a video
+        if (hasVideoUrl) {
+            if (mExoPlayer == null) {
+                // Create an instance of the ExoPlayer
+                DefaultRenderersFactory defaultRenderersFactory = new DefaultRenderersFactory(getContext());
+                TrackSelector trackSelector = new DefaultTrackSelector();
+                LoadControl loadControl = new DefaultLoadControl();
+                mExoPlayer = ExoPlayerFactory.newSimpleInstance(
+                        defaultRenderersFactory, trackSelector, loadControl);
 
-            // Set the ExoPlayer to the playerView
-            mStepDetailBinding.playerView.setPlayer(mExoPlayer);
+                // Set the ExoPlayer to the playerView
+                mStepDetailBinding.playerView.setPlayer(mExoPlayer);
 
-            mExoPlayer.setPlayWhenReady(mPlayWhenReady);
+                mExoPlayer.setPlayWhenReady(mPlayWhenReady);
+            }
+            // Prepare the MediaSource
+            Uri mediaUri = Uri.parse(mVideoUrl);
+            MediaSource mediaSource = buildMediaSource(mediaUri);
+
+            // Restore the playback position
+            boolean haveStartPosition = mCurrentWindow != C.INDEX_UNSET;
+            if (haveStartPosition) {
+                mExoPlayer.seekTo(mCurrentWindow, mPlaybackPosition);
+            }
+            // The boolean flags indicate whether to reset position and state of the player
+            mExoPlayer.prepare(mediaSource, !haveStartPosition, false);
         }
-        // Prepare the MediaSource
-        Uri mediaUri = Uri.parse(mStep.getVideoUrl());
-        MediaSource mediaSource = buildMediaSource(mediaUri);
-
-        // Restore the playback position
-        boolean haveStartPosition = mCurrentWindow != C.INDEX_UNSET;
-        if (haveStartPosition) {
-            mExoPlayer.seekTo(mCurrentWindow, mPlaybackPosition);
-        }
-        // The boolean flags indicate whether to reset position and state of the player
-        mExoPlayer.prepare(mediaSource, !haveStartPosition, false);
     }
 
     /**
@@ -154,8 +209,8 @@ public class StepDetailFragment extends Fragment {
         // Starting with API level 24 Android supports multiple windows. As our app can be visible
         // but not active in split window mode, we need to initialize the player in onStart().
         if (Util.SDK_INT > Build.VERSION_CODES.M) {
-            // Initialize the player
-            initializePlayer();
+            // Initialize the player if the step of the recipe has a video URL
+            initializePlayer(mHasVideoUrl);
         }
     }
 
@@ -166,8 +221,8 @@ public class StepDetailFragment extends Fragment {
         // Before API level 24 we wait as long as possible until we grab resources, so we wait until
         // onResume() before initializing the player.
         if (Util.SDK_INT <= Build.VERSION_CODES.M || mExoPlayer == null) {
-            // Initialize the player
-            initializePlayer();
+            // Initialize the player if the step of the recipe has a video URL
+            initializePlayer(mHasVideoUrl);
         }
     }
 
@@ -251,5 +306,55 @@ public class StepDetailFragment extends Fragment {
         outState.putLong(STATE_PLAYBACK_POSITION, mPlaybackPosition);
         outState.putInt(STATE_CURRENT_WINDOW, mCurrentWindow);
         outState.putBoolean(STATE_PLAY_WHEN_READY, mPlayWhenReady);
+    }
+
+    @Override
+    public void onTimelineChanged(Timeline timeline, Object manifest, int reason) {
+
+    }
+
+    @Override
+    public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
+
+    }
+
+    @Override
+    public void onLoadingChanged(boolean isLoading) {
+
+    }
+
+    @Override
+    public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
+
+    }
+
+    @Override
+    public void onRepeatModeChanged(int repeatMode) {
+
+    }
+
+    @Override
+    public void onShuffleModeEnabledChanged(boolean shuffleModeEnabled) {
+
+    }
+
+    @Override
+    public void onPlayerError(ExoPlaybackException error) {
+
+    }
+
+    @Override
+    public void onPositionDiscontinuity(int reason) {
+
+    }
+
+    @Override
+    public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
+
+    }
+
+    @Override
+    public void onSeekProcessed() {
+
     }
 }

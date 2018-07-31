@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.android.bakingapp.R;
-import com.example.android.bakingapp.ui.player.StepDetailFragment;
 import com.example.android.bakingapp.model.Step;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_STEP;
