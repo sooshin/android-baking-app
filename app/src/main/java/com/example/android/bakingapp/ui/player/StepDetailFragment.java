@@ -179,6 +179,10 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
 
                 mExoPlayer.setPlayWhenReady(mPlayWhenReady);
             }
+
+            // Set the Player.EventListener to this fragment
+            mExoPlayer.addListener(this);
+
             // Prepare the MediaSource
             Uri mediaUri = Uri.parse(mVideoUrl);
             MediaSource mediaSource = buildMediaSource(mediaUri);
