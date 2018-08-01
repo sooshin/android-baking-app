@@ -27,4 +27,11 @@ public final class Constant {
     public static final int BAKING_PENDING_INTENT_ID = 0;
     /** The notification ID is used to access our notification after we've displayed it */
     public static final int BAKING_NOTIFICATION_ID = 20;
+
+    /** Constants for ExoPlayer */
+    public static final float PLAYER_PLAYBACK_SPEED = 1f;
+    public static final int REWIND_INCREMENT = 3000;
+    public static final int FAST_FORWARD_INCREMENT = 3000;
+    public static final int START_POSITION = 0;
+
 }

@@ -50,7 +50,11 @@ import timber.log.Timber;
 import static com.example.android.bakingapp.utilities.Constant.BAKING_NOTIFICATION_CHANNEL_ID;
 import static com.example.android.bakingapp.utilities.Constant.BAKING_NOTIFICATION_ID;
 import static com.example.android.bakingapp.utilities.Constant.BAKING_PENDING_INTENT_ID;
+import static com.example.android.bakingapp.utilities.Constant.FAST_FORWARD_INCREMENT;
+import static com.example.android.bakingapp.utilities.Constant.PLAYER_PLAYBACK_SPEED;
+import static com.example.android.bakingapp.utilities.Constant.REWIND_INCREMENT;
 import static com.example.android.bakingapp.utilities.Constant.SAVE_STEP;
+import static com.example.android.bakingapp.utilities.Constant.START_POSITION;
 import static com.example.android.bakingapp.utilities.Constant.STATE_CURRENT_WINDOW;
 import static com.example.android.bakingapp.utilities.Constant.STATE_PLAYBACK_POSITION;
 import static com.example.android.bakingapp.utilities.Constant.STATE_PLAY_WHEN_READY;
@@ -412,11 +416,11 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
         if (playbackState == Player.STATE_READY && playWhenReady) {
             // When ExoPlayer is playing, update the PlayBackState
             mStateBuilder.setState(PlaybackStateCompat.STATE_PLAYING,
-                    mExoPlayer.getCurrentPosition(), 1f);
+                    mExoPlayer.getCurrentPosition(), PLAYER_PLAYBACK_SPEED);
         } else if (playbackState == Player.STATE_READY) {
             // When ExoPlayer is paused, update the PlayBackState
             mStateBuilder.setState(PlaybackStateCompat.STATE_PAUSED,
-                    mExoPlayer.getCurrentPosition(), 1f);
+                    mExoPlayer.getCurrentPosition(), PLAYER_PLAYBACK_SPEED);
         }
         sMediaSession.setPlaybackState(mStateBuilder.build());
 
@@ -496,7 +500,7 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
                 getContext(),
                 BAKING_PENDING_INTENT_ID,
                 new Intent(getContext(), PlayerActivity.class),
-                0);
+                PendingIntent.FLAG_UPDATE_CURRENT);
 
         builder.setContentTitle(getString(R.string.notification_title))
                 .setContentText(getString(R.string.notification_text))
@@ -549,13 +553,15 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
 
         @Override
         public void onRewind() {
-            mExoPlayer.seekTo(Math.max(mExoPlayer.getCurrentPosition() - 3000, 0));
+            mExoPlayer.seekTo(Math.max(mExoPlayer.getCurrentPosition()
+                    - REWIND_INCREMENT, START_POSITION));
         }
 
         @Override
         public void onFastForward() {
             long duration = mExoPlayer.getDuration();
-            mExoPlayer.seekTo(Math.min(mExoPlayer.getCurrentPosition() + 3000, duration));
+            mExoPlayer.seekTo(Math.min(mExoPlayer.getCurrentPosition()
+                    + FAST_FORWARD_INCREMENT, duration));
         }
     }
 
