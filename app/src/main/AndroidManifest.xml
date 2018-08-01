@@ -21,7 +21,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.detail.DetailActivity" />
-        <activity android:name=".ui.player.PlayerActivity" />
+        <activity
+            android:name=".ui.player.PlayerActivity"
+            android:launchMode="singleTop" />
+        <receiver android:name=".ui.player.StepDetailFragment$MediaReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
 
         <receiver
             android:name=".ConnectivityReceiver"

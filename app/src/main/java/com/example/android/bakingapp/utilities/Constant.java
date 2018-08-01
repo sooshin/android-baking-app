@@ -20,4 +20,11 @@ public final class Constant {
     public static final String STATE_PLAYBACK_POSITION = "state_playback_position";
     public static final String STATE_CURRENT_WINDOW = "state_current_window";
     public static final String STATE_PLAY_WHEN_READY = "state_play_when_ready";
+
+    /** The notification channel ID is used to link notifications to this channel */
+    public static final String BAKING_NOTIFICATION_CHANNEL_ID = "baking_notification_channel_id";
+    /** The pending intent ID is used to uniquely reference the pending intent */
+    public static final int BAKING_PENDING_INTENT_ID = 0;
+    /** The notification ID is used to access our notification after we've displayed it */
+    public static final int BAKING_NOTIFICATION_ID = 20;
 }

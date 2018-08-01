@@ -12,4 +12,13 @@
 
     <!-- Content description for the ImageView -->
     <string name="empty_content_description">The image displayed when there are no visual media</string>
+
+    <!-- Strings for Notifications -->
+    <string name="pause">pause</string>
+    <string name="play">play</string>
+    <string name="rewind">rewind</string>
+    <string name="fast_forward">fast forward</string>
+    <string name="notification_title">What\'s your cooking style?</string>
+    <string name="notification_text">Check out our recipes.</string>
+    <string name="baking_notification_channel_name">Primary</string>
 </resources>
