@@ -36,6 +36,26 @@
 
         </FrameLayout>
 
+        <ImageButton
+            android:id="@+id/bt_previous"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/bt_previous_content_description"
+            android:src="@drawable/navigate_previous"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/bt_next"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/bt_next_content_description"
+            android:src="@drawable/navigate_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <android.support.constraint.Guideline
             android:id="@+id/horizontal_guideline"
             android:layout_width="wrap_content"

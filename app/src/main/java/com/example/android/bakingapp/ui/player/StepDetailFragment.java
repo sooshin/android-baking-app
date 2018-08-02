@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
@@ -21,9 +22,11 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.FragmentStepDetailBinding;
+import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.model.Step;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -50,6 +53,7 @@ import timber.log.Timber;
 import static com.example.android.bakingapp.utilities.Constant.BAKING_NOTIFICATION_CHANNEL_ID;
 import static com.example.android.bakingapp.utilities.Constant.BAKING_NOTIFICATION_ID;
 import static com.example.android.bakingapp.utilities.Constant.BAKING_PENDING_INTENT_ID;
+import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
 import static com.example.android.bakingapp.utilities.Constant.FAST_FORWARD_INCREMENT;
 import static com.example.android.bakingapp.utilities.Constant.PLAYER_PLAYBACK_SPEED;
 import static com.example.android.bakingapp.utilities.Constant.REWIND_INCREMENT;
@@ -58,6 +62,7 @@ import static com.example.android.bakingapp.utilities.Constant.START_POSITION;
 import static com.example.android.bakingapp.utilities.Constant.STATE_CURRENT_WINDOW;
 import static com.example.android.bakingapp.utilities.Constant.STATE_PLAYBACK_POSITION;
 import static com.example.android.bakingapp.utilities.Constant.STATE_PLAY_WHEN_READY;
+import static com.example.android.bakingapp.utilities.Constant.STATE_STEP_INDEX;
 
 /**
  * The StepDetailFragment displays a selected recipe step that includes a video and step instruction.
@@ -71,6 +76,10 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
 
     /** Member variable for Step that this fragment displays */
     private Step mStep;
+    /** Position of the step in the list*/
+    private int mStepIndex;
+    /** Member variable for the Recipe */
+    private Recipe mRecipe;
 
     /** Member variable for a video URL */
     private String mVideoUrl;
@@ -110,9 +119,11 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
                 inflater, R.layout.fragment_step_detail, container, false);
         View rootView = mStepDetailBinding.getRoot();
 
-        // Load the saved state (the step, playback position, current window, play when ready) if there is one
+        // Load the saved state (the step, step index, playback position, current window,
+        // play when ready) if there is one
         if (savedInstanceState != null) {
             mStep = savedInstanceState.getParcelable(SAVE_STEP);
+            mStepIndex = savedInstanceState.getInt(STATE_STEP_INDEX);
             mPlaybackPosition = savedInstanceState.getLong(STATE_PLAYBACK_POSITION);
             mCurrentWindow = savedInstanceState.getInt(STATE_CURRENT_WINDOW);
             mPlayWhenReady = savedInstanceState.getBoolean(STATE_PLAY_WHEN_READY);
@@ -142,8 +153,67 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
         // Initialize the Media Session
         initializeMediaSession();
 
+        // Get the recipe data from the intent
+        getRecipeData();
+
+        // Set a click listener on the next button
+        mStepDetailBinding.btNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StepDetailFragment stepDetailFragment = new StepDetailFragment();
+                // Increment position as long as the index remains <= the size of the step list
+                if (mStepIndex < mRecipe.getSteps().size() - 1) {
+                    mStepIndex++;
+                    stepDetailFragment.setStep(mRecipe.getSteps().get(mStepIndex));
+                    stepDetailFragment.setStepIndex(mStepIndex);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.step_detail_container, stepDetailFragment)
+                            .commit();
+
+                } else {
+                    Toast.makeText(getContext(), "This is the last page", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        // Set a click listener on the previous button
+        mStepDetailBinding.btPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StepDetailFragment stepDetailFragment = new StepDetailFragment();
+                // Decrement position
+                if (mStepIndex > 0) {
+                    mStepIndex--;
+                    stepDetailFragment.setStep(mRecipe.getSteps().get(mStepIndex));
+                    stepDetailFragment.setStepIndex(mStepIndex);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.step_detail_container, stepDetailFragment)
+                            .commit();
+
+                } else {
+                    Toast.makeText(getContext(), "This is the first page", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         // Return the rootView
         return rootView;
+    }
+
+    /**
+     * Get the recipe data from the intent.
+     */
+    private void getRecipeData() {
+        Intent intent = getActivity().getIntent();
+        if (intent != null) {
+            if (intent.hasExtra(EXTRA_RECIPE)) {
+                // Get the recipe from the intent
+                Bundle b = intent.getBundleExtra(EXTRA_RECIPE);
+                mRecipe = b.getParcelable(EXTRA_RECIPE);
+            }
+        }
     }
 
     /**
@@ -218,6 +288,15 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
      */
     public void setStep(Step step) {
         mStep = step;
+    }
+
+    /**
+     * Setter method for displaying which step in the list is currently displayed.
+     *
+     * @param stepIndex Position of the step in the list
+     */
+    public void setStepIndex(int stepIndex) {
+        mStepIndex = stepIndex;
     }
 
     /**
@@ -377,7 +456,10 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        // Store the step and step index to our bundle
         outState.putParcelable(SAVE_STEP, mStep);
+        outState.putInt(STATE_STEP_INDEX, mStepIndex);
+
         // Update the current state of the player
         updateCurrentPosition();
         // Store the playback position to our bundle

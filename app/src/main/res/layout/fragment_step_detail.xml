@@ -11,20 +11,27 @@
             android:id="@+id/bt_previous"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:onClick="onPreviousClick"
-            android:src="@drawable/navigate_previous"
             android:contentDescription="@string/bt_previous_content_description"
+            android:src="@drawable/navigate_previous"
             app:layout_constraintBottom_toTopOf="@+id/frame"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_step_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/bt_next"
+            app:layout_constraintStart_toEndOf="@+id/bt_previous"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Step 3" />
 
         <ImageButton
             android:id="@+id/bt_next"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:onClick="onNextClick"
-            android:src="@drawable/navigate_next"
             android:contentDescription="@string/bt_next_content_description"
+            android:src="@drawable/navigate_next"
             app:layout_constraintBottom_toTopOf="@+id/frame"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

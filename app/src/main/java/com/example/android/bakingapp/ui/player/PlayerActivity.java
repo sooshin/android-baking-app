@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.ActivityPlayerBinding;
@@ -58,45 +56,17 @@ public class PlayerActivity extends AppCompatActivity {
 
             // Create a new StepDetailFragment
             StepDetailFragment stepDetailFragment = new StepDetailFragment();
-            // Set the step
+            // Get the step
             mStep = mRecipe.getSteps().get(mStepIndex);
+            // Set the step and step index
             stepDetailFragment.setStep(mStep);
+            stepDetailFragment.setStepIndex(mStepIndex);
 
             // Add the fragment to its container using a FragmentManager and a Transaction
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .add(R.id.step_detail_container, stepDetailFragment)
                     .commit();
-        }
-    }
-
-    public void onPreviousClick(View view) {
-        StepDetailFragment stepDetailFragment = new StepDetailFragment();
-        if (mStepIndex > 0) {
-            mStepIndex--;
-            stepDetailFragment.setStep(mRecipe.getSteps().get(mStepIndex));
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.step_detail_container, stepDetailFragment)
-                    .commit();
-
-        } else {
-            Toast.makeText(this, "This is the first page", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void onNextClick(View view) {
-        StepDetailFragment stepDetailFragment = new StepDetailFragment();
-        if (mStepIndex < mRecipe.getSteps().size() - 1) {
-            mStepIndex++;
-            stepDetailFragment.setStep(mRecipe.getSteps().get(mStepIndex));
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.step_detail_container, stepDetailFragment)
-                    .commit();
-
-        } else {
-            Toast.makeText(this, "This is the last page", Toast.LENGTH_SHORT).show();
         }
     }
 }
