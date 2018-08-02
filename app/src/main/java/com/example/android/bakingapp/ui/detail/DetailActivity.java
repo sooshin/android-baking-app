@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.android.bakingapp.ui.player.PlayerActivity;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.model.Recipe;
-import com.example.android.bakingapp.model.Step;
+import com.example.android.bakingapp.ui.player.PlayerActivity;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
-import static com.example.android.bakingapp.utilities.Constant.EXTRA_STEP;
+import static com.example.android.bakingapp.utilities.Constant.EXTRA_STEP_INDEX;
 
 /**
  * The DetailActivity is responsible for displaying the ingredients and steps for a selected
@@ -55,19 +54,20 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
     /**
      * Define the behavior for onStepSelected
      *
-     * @param step The Step object which contains a step ID, short description, description, video URL,
-     *             and thumbnail URL of the step
+     * @param stepIndex Position of the step in the list
      */
     @Override
-    public void onStepSelected(Step step) {
+    public void onStepSelected(int stepIndex) {
         // Handle the single-pane phone case
-        // Wrap the parcelable into a bundle and attach it to an Intent that will launch an PlayerActivity
+        // Wrap the int and the parcelable into a bundle and attach it to an Intent that will launch an PlayerActivity
         Bundle b = new Bundle();
-        b.putParcelable(EXTRA_STEP, step);
+        b.putInt(EXTRA_STEP_INDEX, stepIndex);
+        b.putParcelable(EXTRA_RECIPE, mRecipe);
 
         // Attach the Bundle to an intent
         Intent intent = new Intent(this, PlayerActivity.class);
-        intent.putExtra(EXTRA_STEP, b);
+        intent.putExtra(EXTRA_STEP_INDEX, b);
+        intent.putExtra(EXTRA_RECIPE, b);
         // Launch a new PlayerActivity
         startActivity(intent);
     }

@@ -7,6 +7,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageButton
+            android:id="@+id/bt_previous"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:onClick="onPreviousClick"
+            android:src="@drawable/navigate_previous"
+            android:contentDescription="@string/bt_previous_content_description"
+            app:layout_constraintBottom_toTopOf="@+id/frame"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/bt_next"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:onClick="onNextClick"
+            android:src="@drawable/navigate_next"
+            android:contentDescription="@string/bt_next_content_description"
+            app:layout_constraintBottom_toTopOf="@+id/frame"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <FrameLayout
             android:id="@+id/frame"
             android:layout_width="0dp"
@@ -14,7 +36,7 @@
             app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/bt_previous">
 
             <com.google.android.exoplayer2.ui.PlayerView
                 android:id="@+id/player_view"

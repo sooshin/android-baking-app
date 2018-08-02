@@ -30,7 +30,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
      * The interface that receives onClick messages.
      */
     public interface StepsAdapterOnClickHandler {
-        void onItemClick(Step step);
+        void onItemClick(int stepIndex);
     }
 
     /**
@@ -140,8 +140,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         @Override
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
-            Step step = mSteps.get(adapterPosition);
-            mOnClickHandler.onItemClick(step);
+            mOnClickHandler.onItemClick(adapterPosition);
         }
     }
 }

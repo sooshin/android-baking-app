@@ -43,7 +43,7 @@ public class MasterListStepsFragment extends Fragment implements StepsAdapter.St
 
     /** OnStepClickListener interface, calls a method in the host activity named onStepSelected */
     public interface OnStepClickListener {
-        void onStepSelected(Step step);
+        void onStepSelected(int stepIndex);
     }
 
 
@@ -138,11 +138,11 @@ public class MasterListStepsFragment extends Fragment implements StepsAdapter.St
     /**
      * Handles RecyclerView item clicks
      *
-     * @param step The Step object
+     * @param stepIndex Position of the step in the list
      */
     @Override
-    public void onItemClick(Step step) {
-        // Trigger the callback method and pass in the step that was clicked
-        mCallback.onStepSelected(step);
+    public void onItemClick(int stepIndex) {
+        // Trigger the callback method and pass in the step index that was clicked
+        mCallback.onStepSelected(stepIndex);
     }
 }

@@ -10,8 +10,10 @@
     <!-- String for the type of the media file -->
     <string name="mp4">mp4</string>
 
-    <!-- Content description for the ImageView -->
+    <!-- Content description for the ImageView and ImageButtion -->
     <string name="empty_content_description">The image displayed when there are no visual media</string>
+    <string name="bt_previous_content_description">Previous button</string>
+    <string name="bt_next_content_description">Next button</string>
 
     <!-- Strings for Notifications -->
     <string name="pause">pause</string>

@@ -13,7 +13,7 @@ public final class Constant {
     public static final String EXTRA_RECIPE = "recipe";
 
     /** Extra for the step to be received in the intent */
-    public static final String EXTRA_STEP = "step";
+    public static final String EXTRA_STEP_INDEX = "step_index";
 
     /** Constant string for saving the current state of StepDetailFragment */
     public static final String SAVE_STEP = "save_step";
