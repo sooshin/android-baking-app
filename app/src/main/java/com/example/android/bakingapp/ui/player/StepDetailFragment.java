@@ -505,7 +505,7 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
         builder.setContentTitle(getString(R.string.notification_title))
                 .setContentText(getString(R.string.notification_text))
                 .setContentIntent(contentPendingIntent)
-                .setSmallIcon(R.drawable.woman_with_dish)
+                .setSmallIcon(R.drawable.chef_cooker_hat)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .addAction(rewindAction)
                 .addAction(playPauseAction)
