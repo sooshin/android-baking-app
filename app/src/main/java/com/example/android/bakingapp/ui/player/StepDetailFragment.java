@@ -182,7 +182,7 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
             @Override
             public void onClick(View v) {
                 StepDetailFragment stepDetailFragment = new StepDetailFragment();
-                // Decrement position
+                // Decrement position by one if the index is greater than zero
                 if (mStepIndex > 0) {
                     mStepIndex--;
                     stepDetailFragment.setStep(mRecipe.getSteps().get(mStepIndex));
@@ -385,6 +385,7 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
 
+            // Enable full-screen mode on PlayerView, empty ImageView
             mStepDetailBinding.playerView.setSystemUiVisibility(flagFullScreen);
             mStepDetailBinding.ivEmpty.setSystemUiVisibility(flagFullScreen);
         }
