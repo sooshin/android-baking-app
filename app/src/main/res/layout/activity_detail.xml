@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <!-- Ingredients fragment -->
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/master_list_ingredients_fragment"
-            android:name="com.example.android.bakingapp.ui.detail.MasterListIngredientsFragment"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <!-- Steps fragment-->
-        <fragment
-            android:id="@+id/master_list_steps_fragment"
-            android:name="com.example.android.bakingapp.ui.detail.MasterListStepsFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            <!-- Ingredients fragment -->
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/master_list_ingredients_fragment"
+                android:name="com.example.android.bakingapp.ui.detail.MasterListIngredientsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    </LinearLayout>
+            <!-- Steps fragment-->
+            <fragment
+                android:id="@+id/master_list_steps_fragment"
+                android:name="com.example.android.bakingapp.ui.detail.MasterListStepsFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-</ScrollView>
+        </LinearLayout>
+
+    </ScrollView>
+</layout>
