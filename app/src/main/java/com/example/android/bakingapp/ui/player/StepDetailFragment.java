@@ -22,7 +22,6 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.FragmentStepDetailBinding;
@@ -170,9 +169,6 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
                     fragmentManager.beginTransaction()
                             .replace(R.id.step_detail_container, stepDetailFragment)
                             .commit();
-
-                } else {
-                    Toast.makeText(getContext(), "This is the last page", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -191,15 +187,28 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
                     fragmentManager.beginTransaction()
                             .replace(R.id.step_detail_container, stepDetailFragment)
                             .commit();
-
-                } else {
-                    Toast.makeText(getContext(), "This is the first page", Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
+        // Hide next button at the end of the step and the previous button at the beginning of
+        // the step
+        hideButton();
+
         // Return the rootView
         return rootView;
+    }
+
+    /**
+     * Hide next button at the end of the step and the previous button at the beginning of the step
+     */
+    private void hideButton() {
+        int lastStep = mRecipe.getSteps().size() -1;
+        if (mStepIndex == lastStep) {
+            mStepDetailBinding.btNext.setVisibility(View.INVISIBLE);
+        } else if (mStepIndex == 0) {
+            mStepDetailBinding.btPrevious.setVisibility(View.INVISIBLE);
+        }
     }
 
     /**
