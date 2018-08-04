@@ -69,8 +69,9 @@ public class MasterListIngredientsFragment extends Fragment{
         // Add a list of ingredients to the IngredientsAdapter
         mIngredientsAdapter.addAll(mRecipe.getIngredients());
 
-        // Display the number of ingredients
+        // Display the number of ingredients and servings
         setNumIngredients();
+        setNumServings();
 
         return rootView;
     }
@@ -99,5 +100,13 @@ public class MasterListIngredientsFragment extends Fragment{
     private void setNumIngredients() {
         int numIngredients = mRecipe.getIngredients().size();
         mMasterListBinding.numIngredients.setText(String.valueOf(numIngredients));
+    }
+
+    /**
+     * Display the number of servings
+     */
+    private void setNumServings() {
+        int numServings = mRecipe.getServings();
+        mMasterListBinding.tvServings.setText(String.valueOf(numServings));
     }
 }
