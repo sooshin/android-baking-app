@@ -28,6 +28,16 @@ public class Recipe implements Parcelable {
     @SerializedName("image")
     private String mImage;
 
+    public Recipe(int recipeId, String name, List<Ingredient> ingredients, List<Step> steps,
+                  int servings, String image) {
+        mId = recipeId;
+        mName = name;
+        mIngredients = ingredients;
+        mSteps = steps;
+        mServings = servings;
+        mImage = image;
+    }
+
     private Recipe(Parcel in) {
         mId = in.readInt();
         mName = in.readString();

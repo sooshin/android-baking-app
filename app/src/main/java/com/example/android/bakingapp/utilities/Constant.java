@@ -35,4 +35,10 @@ public final class Constant {
     public static final int FAST_FORWARD_INCREMENT = 3000;
     public static final int START_POSITION = 0;
 
+    /** Database name */
+    public static final String DATABASE_NAME = "recipe";
+
+    /** The number of threads in the pool used in AppExecutors */
+    public static final int NUMBER_OF_THREADS_THREE = 3;
+
 }
