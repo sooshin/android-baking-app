@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Common margin value used through out the app -->
+    <dimen name="margin_activity">16dp</dimen>
+    <dimen name="margin_activity_small">8dp</dimen>
+
     <!-- CardView-->
     <dimen name="card_corner_radius">4dp</dimen>
     <dimen name="card_elevation">0.7dp</dimen>

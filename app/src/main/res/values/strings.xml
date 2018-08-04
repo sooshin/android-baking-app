@@ -2,6 +2,7 @@
     <string name="app_name">BakingApp</string>
 
     <string name="step">Step\u0020</string>
+    <string name="servings_label">Servings</string>
     <string name="ingredients_label">Ingredients</string>
     <string name="steps_label">Steps</string>
     <string name="question_mark">�</string>
