@@ -1,29 +1,27 @@
 package com.example.android.bakingapp.ui.main;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 
 import com.example.android.bakingapp.ConnectionStateMonitor;
 import com.example.android.bakingapp.ConnectivityReceiver;
-import com.example.android.bakingapp.ui.detail.DetailActivity;
 import com.example.android.bakingapp.MyApp;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.ActivityMainBinding;
 import com.example.android.bakingapp.model.Recipe;
-import com.example.android.bakingapp.utilities.BakingInterface;
-import com.example.android.bakingapp.utilities.RetrofitClient;
+import com.example.android.bakingapp.ui.detail.DetailActivity;
+import com.example.android.bakingapp.utilities.InjectorUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 import timber.log.Timber;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
@@ -42,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
     /** This field is used for data binding **/
     private ActivityMainBinding mMainBinding;
+
+    /** ViewModel for MainActivity */
+    private MainActivityViewModel mMainViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         // Set adapter to the RecyclerView
         mMainBinding.rv.setAdapter(mRecipeAdapter);
 
-        callRecipeResponse();
+        // Observe data and update UI
+        setupViewModel();
 
         // Check internet connection
         checkConnection();
@@ -76,21 +78,18 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         checkConnectionStateMonitor();
     }
 
-    private void callRecipeResponse() {
-        Retrofit retrofit = RetrofitClient.getClient();
-        BakingInterface bakingInterface = retrofit.create(BakingInterface.class);
-
-        Call<List<Recipe>> callRecipeList = bakingInterface.getRecipes();
-        callRecipeList.enqueue(new Callback<List<Recipe>>() {
+    /**
+     * Every time the recipe data is updated, the onChanged callback will be invoked and update the UI
+     */
+    private void setupViewModel() {
+        // Get the MainActivityViewModel from the factory
+        MainViewModelFactory factory = InjectorUtils.provideMainViewModelFactory(this);
+        mMainViewModel = ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
+        // Retrieve live data object using getRecipes() method from the ViewModel
+        mMainViewModel.getRecipes().observe(this, new Observer<List<Recipe>>() {
             @Override
-            public void onResponse(Call<List<Recipe>> call, Response<List<Recipe>> response) {
-                List<Recipe> recipeList = response.body();
-                mRecipeAdapter.addAll(recipeList);
-            }
-
-            @Override
-            public void onFailure(Call<List<Recipe>> call, Throwable t) {
-                Timber.e("onFailure: " + t.getMessage());
+            public void onChanged(@Nullable List<Recipe> recipe) {
+                    mRecipeAdapter.addAll(recipe);
             }
         });
     }

@@ -3,8 +3,8 @@ package com.example.android.bakingapp.ui.main;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.example.android.bakingapp.data.RecipeEntry;
 import com.example.android.bakingapp.data.RecipeRepository;
+import com.example.android.bakingapp.model.Recipe;
 
 import java.util.List;
 
@@ -14,17 +14,17 @@ import java.util.List;
 public class MainActivityViewModel extends ViewModel {
 
     private final RecipeRepository mRepository;
-    private final LiveData<List<RecipeEntry>> mRecipes;
+    private final LiveData<List<Recipe>> mRecipes;
 
     public MainActivityViewModel(RecipeRepository repository) {
         mRepository = repository;
-        mRecipes = mRepository.getAllRecipes();
+        mRecipes = mRepository.getRecipeListFromNetwork();
     }
 
     /**
-     * Returns LiveData of the list of RecipeEntries
+     * Returns LiveData of the list of Recipes
      */
-    public LiveData<List<RecipeEntry>> getRecipes() {
+    public LiveData<List<Recipe>> getRecipes() {
         return mRecipes;
     }
 }

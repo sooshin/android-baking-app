@@ -50,7 +50,7 @@ public class RecipeRepository {
     /**
      * Make a network request by calling enqueue and provide a LiveData of recipe lists for ViewModel
      */
-    public LiveData<List<Recipe>> getRecipeList() {
+    public LiveData<List<Recipe>> getRecipeListFromNetwork() {
         final MutableLiveData<List<Recipe>> recipeListData = new MutableLiveData<>();
 
         mBakingInterface.getRecipes()
