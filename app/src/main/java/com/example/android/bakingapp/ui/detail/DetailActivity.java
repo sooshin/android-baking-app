@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -43,6 +44,9 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
         // Set the title for a selected recipe
         setTitle(mRecipe.getName());
 
+        // Setup the UI
+        setupUI();
+
         // Determine if you're creating a two-pane or single-pane display
         if (mDetailBinding.stepDetailContainer != null) {
             // This stepDetailContainer will only initially exist in the two-pane table case
@@ -69,6 +73,26 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
             // We're in single-pane mode and displaying fragments on a phone in separate activities
             mTwoPane = false;
         }
+    }
+
+    /**
+     * This method is called from onCreate to setup UI
+     */
+    private void setupUI() {
+        mRecipe = getRecipeData();
+        int numIngredients = mRecipe.getIngredients().size();
+        int numSteps = mRecipe.getSteps().size() - 1;
+
+        // Give the TabLayout the ViewPager
+        mDetailBinding.tabLayout.setupWithViewPager(mDetailBinding.viewpager);
+        // Set gravity for the TabLayout
+        mDetailBinding.tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        // Create an adapter that knows which fragment should be shown on each page
+        DetailPagerAdapter detailPagerAdapter = new DetailPagerAdapter(this,
+                getSupportFragmentManager(), numIngredients, numSteps);
+        // Set the adapter onto the ViewPager
+        mDetailBinding.viewpager.setAdapter(detailPagerAdapter);
     }
 
     /**

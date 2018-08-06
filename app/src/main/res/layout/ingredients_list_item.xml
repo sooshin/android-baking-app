@@ -7,18 +7,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/iv_add"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Display quantity of the ingredient-->
         <TextView
             android:id="@+id/tv_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="4dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/iv_add"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="2" />
 
+        <!-- Display measure of the ingredient-->
         <TextView
             android:id="@+id/tv_measure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/tv_quantity"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="CUP" />
@@ -29,12 +45,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.25" />
+            app:layout_constraintGuide_percent="0.35" />
 
+        <!-- Display ingredient -->
         <TextView
             android:id="@+id/tv_ingredient"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Graham Cracker crumbs" />

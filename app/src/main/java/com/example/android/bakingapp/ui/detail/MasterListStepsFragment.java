@@ -85,9 +85,6 @@ public class MasterListStepsFragment extends Fragment implements StepsAdapter.St
         // Add a list of steps to the StepsAdapter
         mStepsAdapter.addAll(mRecipe.getSteps());
 
-        // Display the number of steps
-        setNumSteps();
-
         return rootView;
     }
 
@@ -107,15 +104,6 @@ public class MasterListStepsFragment extends Fragment implements StepsAdapter.St
             }
         }
         return mRecipe;
-    }
-
-    /**
-     * Displays the number of steps
-     */
-    private void setNumSteps() {
-        // Exclude zero step
-        int numSteps = mRecipe.getSteps().size() - 1;
-        mStepsBinding.numSteps.setText(String.valueOf(numSteps));
     }
 
     /**

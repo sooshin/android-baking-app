@@ -5,7 +5,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <!-- Servings label -->
         <TextView
@@ -38,7 +38,6 @@
             app:cardMaxElevation="@dimen/card_max_elevation"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true"
-            app:contentPadding="@dimen/card_content_padding_zero"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_servings_label">
 
@@ -46,44 +45,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <!-- The number of ingredients -->
-                <TextView
-                    android:id="@+id/num_ingredients"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingRight="8dp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="9" />
-
-                <!-- Ingredients label -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ingredients_label"
-                    android:textStyle="bold"
-                    app:layout_constraintLeft_toRightOf="@+id/num_ingredients"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Ingredients" />
-
-                <!-- Horizontal divider -->
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="@android:color/darker_gray"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/num_ingredients" />
-
                 <!-- Display the list of ingredients -->
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_ingredients"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/view" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
 

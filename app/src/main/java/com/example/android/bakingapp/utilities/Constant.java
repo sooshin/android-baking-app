@@ -41,4 +41,13 @@ public final class Constant {
     /** The number of threads in the pool used in AppExecutors */
     public static final int NUMBER_OF_THREADS_THREE = 3;
 
+    /** String array used to display the tap title */
+    public static final String[] TAP_TITLE = new String[] {"Ingredients", "Steps"};
+    /** Constant value for each fragment */
+    public static final int INGREDIENTS = 0;
+    public static final int STEPS = 1;
+    /** The number of page */
+    public static final int PAGE_COUNT = TAP_TITLE.length;
+
+
 }
