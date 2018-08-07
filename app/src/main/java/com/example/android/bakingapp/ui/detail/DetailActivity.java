@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.ActivityDetailBinding;
@@ -47,7 +49,7 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
 
         // Determine if you're creating a two-pane or single-pane display
         if (mDetailBinding.stepDetailContainer != null) {
-            // This stepDetailContainer will only initially exist in the two-pane table case
+            // This stepDetailContainer will only initially exist in the two-pane tablet case
             mTwoPane = true;
 
             if (savedInstanceState == null) {
@@ -74,10 +76,13 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
             // Setup TabLayout with ViewPager only in the single-pane mode
             setupUI();
         }
+
+        // Show back button in Toolbar
+        showBackButton(mTwoPane);
     }
 
     /**
-     * This method is called from onCreate to setup UI
+     * This method is called from onCreate to setup UI in single-pane mode
      */
     private void setupUI() {
         // Get the number of ingredients and steps
@@ -169,6 +174,45 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
             intent.putExtra(EXTRA_RECIPE, b);
             // Launch a new PlayerActivity
             startActivity(intent);
+        }
+    }
+
+    /**
+     * Show back button in Collapsing Toolbar(single-pane) or in Toolbar(two-pane)
+     *
+     * @param twoPane A single-pane display refers to phone screens, and two-pane to larger
+     *                tablet screens
+     */
+    private void showBackButton(boolean twoPane) {
+        if (!twoPane) {
+            setSupportActionBar(mDetailBinding.toolbar);
+        }
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
+    }
+
+    /**
+     * When the arrow icon in collapsing toolbar (single-pane) is clicked, finishes DetailActivity.
+     */
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
