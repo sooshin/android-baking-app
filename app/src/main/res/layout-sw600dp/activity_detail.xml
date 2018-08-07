@@ -30,7 +30,8 @@
             android:id="@+id/master_list_steps_fragment"
             android:name="com.example.android.bakingapp.ui.detail.MasterListStepsFragment"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/vertical_guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/master_list_ingredients_fragment" />
@@ -48,8 +49,8 @@
             android:id="@+id/step_detail_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            app:layout_constraintStart_toEndOf="@+id/vertical_guideline"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vertical_guideline"
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>

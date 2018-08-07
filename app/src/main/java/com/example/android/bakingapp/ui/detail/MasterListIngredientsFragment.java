@@ -70,7 +70,7 @@ public class MasterListIngredientsFragment extends Fragment{
         mIngredientsAdapter.addAll(mRecipe.getIngredients());
 
         // Display the number of servings
-        setNumServings();
+//        setNumServings();
 
         return rootView;
     }
@@ -96,8 +96,8 @@ public class MasterListIngredientsFragment extends Fragment{
     /**
      * Display the number of servings
      */
-    private void setNumServings() {
-        int numServings = mRecipe.getServings();
-        mMasterListBinding.tvServings.setText(String.valueOf(numServings));
-    }
+//    private void setNumServings() {
+//        int numServings = mRecipe.getServings();
+//        mMasterListBinding.tvServings.setText(String.valueOf(numServings));
+//    }
 }

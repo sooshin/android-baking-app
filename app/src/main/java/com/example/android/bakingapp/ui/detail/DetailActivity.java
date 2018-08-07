@@ -14,6 +14,7 @@ import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.model.Step;
 import com.example.android.bakingapp.ui.player.PlayerActivity;
 import com.example.android.bakingapp.ui.player.StepDetailFragment;
+import com.squareup.picasso.Picasso;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_STEP_INDEX;
@@ -83,6 +84,9 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
         int numIngredients = mRecipe.getIngredients().size();
         int numSteps = mRecipe.getSteps().size() - 1;
 
+        // Display the image of recipe
+        displayImage();
+
         // Give the TabLayout the ViewPager
         mDetailBinding.tabLayout.setupWithViewPager(mDetailBinding.viewpager);
         // Set gravity for the TabLayout
@@ -93,6 +97,23 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
                 getSupportFragmentManager(), numIngredients, numSteps);
         // Set the adapter onto the ViewPager
         mDetailBinding.viewpager.setAdapter(detailPagerAdapter);
+    }
+
+    /**
+     * Check if the image of recipe exists. If so, load the image with Picasso
+     * otherwise displays baking_ingredients image.
+     */
+    private void displayImage() {
+        String imageUrl = mRecipe.getImage();
+        if (imageUrl.isEmpty()) {
+            mDetailBinding.ivDetail.setImageResource(R.drawable.baking_ingredients);
+        } else {
+            Picasso.with(this)
+                    .load(imageUrl)
+                    .error(R.drawable.baking_ingredients)
+                    .placeholder(R.drawable.baking_ingredients)
+                    .into(mDetailBinding.ivDetail);
+        }
     }
 
     /**

@@ -9,11 +9,14 @@
 
         <ImageView
             android:id="@+id/iv_add"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_margin="4dp"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/checked"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,8 +25,9 @@
             android:id="@+id/tv_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:padding="8dp"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_add"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="2" />
@@ -33,29 +37,37 @@
             android:id="@+id/tv_measure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_quantity"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="CUP" />
 
-        <!-- Vertical guide line -->
-        <android.support.constraint.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.35" />
+        <!--&lt;!&ndash; Vertical guide line &ndash;&gt;-->
+        <!--<android.support.constraint.Guideline-->
+        <!--android:id="@+id/guideline"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintGuide_percent="0.35" />-->
 
         <!-- Display ingredient -->
         <TextView
             android:id="@+id/tv_ingredient"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="4dp"
+            android:paddingBottom="8dp"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toEndOf="@+id/tv_measure"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Graham Cracker crumbs" />
 

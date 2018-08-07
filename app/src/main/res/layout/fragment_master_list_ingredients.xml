@@ -1,61 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <!-- Servings label -->
-        <TextView
-            android:id="@+id/tv_servings_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_activity"
-            android:text="@string/servings_label"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/tv_servings"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- The number of servings -->
-        <TextView
-            android:id="@+id/tv_servings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_activity"
-            app:layout_constraintBaseline_toBaselineOf="@+id/tv_servings_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="8" />
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cv_ingredients"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_ingredients"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/card_corner_radius"
-            app:cardElevation="@dimen/card_elevation"
-            app:cardMaxElevation="@dimen/card_max_elevation"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_servings_label">
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <!-- Display the list of ingredients -->
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_ingredients"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </android.support.constraint.ConstraintLayout>
-
-        </android.support.v7.widget.CardView>
-
-    </android.support.constraint.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/tv_servings_label"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 </layout>
