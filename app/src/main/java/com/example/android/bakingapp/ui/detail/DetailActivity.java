@@ -44,9 +44,6 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
         // Set the title for a selected recipe
         setTitle(mRecipe.getName());
 
-        // Setup the UI
-        setupUI();
-
         // Determine if you're creating a two-pane or single-pane display
         if (mDetailBinding.stepDetailContainer != null) {
             // This stepDetailContainer will only initially exist in the two-pane table case
@@ -72,6 +69,9 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
         } else {
             // We're in single-pane mode and displaying fragments on a phone in separate activities
             mTwoPane = false;
+
+            // Setup TabLayout with ViewPager only in the single-pane mode
+            setupUI();
         }
     }
 
@@ -79,7 +79,7 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
      * This method is called from onCreate to setup UI
      */
     private void setupUI() {
-        mRecipe = getRecipeData();
+        // Get the number of ingredients and steps
         int numIngredients = mRecipe.getIngredients().size();
         int numSteps = mRecipe.getSteps().size() - 1;
 
