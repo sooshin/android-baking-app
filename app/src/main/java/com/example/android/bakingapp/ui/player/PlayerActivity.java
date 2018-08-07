@@ -5,7 +5,9 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.ActivityPlayerBinding;
@@ -37,22 +39,16 @@ public class PlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mPlayerBinding = DataBindingUtil.setContentView(this, R.layout.activity_player);
 
+        // Get recipe and step index from intent
+        getRecipeAndStepIndex();
+
+        // Set the title for a selected recipe
+        setTitle(mRecipe.getName());
+        // Show back arrow button in the actionbar
+        showUpButton();
+
         // Only create a new fragment when there is no previously saved state
         if (savedInstanceState == null) {
-
-            Intent intent = getIntent();
-            if (intent != null) {
-                if (intent.hasExtra(EXTRA_STEP_INDEX)) {
-                    // Get the correct step index from the intent
-                    Bundle b = intent.getBundleExtra(EXTRA_STEP_INDEX);
-                    mStepIndex = b.getInt(EXTRA_STEP_INDEX);
-                }
-                if (intent.hasExtra(EXTRA_RECIPE)) {
-                    // Get the recipe from the intent
-                    Bundle b = intent.getBundleExtra(EXTRA_RECIPE);
-                    mRecipe = b.getParcelable(EXTRA_RECIPE);
-                }
-            }
 
             // Create a new StepDetailFragment
             StepDetailFragment stepDetailFragment = new StepDetailFragment();
@@ -67,6 +63,49 @@ public class PlayerActivity extends AppCompatActivity {
             fragmentManager.beginTransaction()
                     .add(R.id.step_detail_container, stepDetailFragment)
                     .commit();
+        }
+    }
+
+    /**
+     * Get recipe and step index from intent.
+     */
+    private void getRecipeAndStepIndex() {
+        Intent intent = getIntent();
+        if (intent != null) {
+            if (intent.hasExtra(EXTRA_STEP_INDEX)) {
+                // Get the correct step index from the intent
+                Bundle b = intent.getBundleExtra(EXTRA_STEP_INDEX);
+                mStepIndex = b.getInt(EXTRA_STEP_INDEX);
+            }
+            if (intent.hasExtra(EXTRA_RECIPE)) {
+                // Get the recipe from the intent
+                Bundle b = intent.getBundleExtra(EXTRA_RECIPE);
+                mRecipe = b.getParcelable(EXTRA_RECIPE);
+            }
+        }
+    }
+
+    /**
+     * Display the up button in the actionbar.
+     */
+    private void showUpButton() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        switch (itemId) {
+            case R.id.home:
+                // Navigate back to DetailActivity when the up button pressed
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
