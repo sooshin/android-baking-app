@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">BakingApp</string>
 
+    <!-- Label of ShoppingActivity -->
+    <string name="shopping_list">Shopping List</string>
+
     <string name="step">Step\u0020</string>
     <string name="servings_label">Servings</string>
     <string name="ingredients_label">Ingredients</string>
@@ -24,4 +27,7 @@
     <string name="notification_title">What\'s your cooking style?</string>
     <string name="notification_text">Check out our recipes.</string>
     <string name="baking_notification_channel_name">Primary</string>
+
+    <!-- Strings for menu -->
+    <string name="action_shopping">Shopping</string>
 </resources>

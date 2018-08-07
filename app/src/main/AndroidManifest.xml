@@ -22,8 +22,8 @@
         </activity>
         <activity
             android:name=".ui.detail.DetailActivity"
-            android:parentActivityName=".ui.main.MainActivity"
             android:launchMode="singleTop"
+            android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/DetailTheme">
 
             <meta-data
@@ -38,6 +38,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.detail.DetailActivity" />
         </activity>
+        <activity
+            android:name=".ui.shopping.ShoppingActivity"
+            android:label="@string/shopping_list" />
 
         <receiver android:name=".ui.player.StepDetailFragment$MediaReceiver">
             <intent-filter>

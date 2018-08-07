@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.android.bakingapp.R;
@@ -16,6 +17,7 @@ import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.model.Step;
 import com.example.android.bakingapp.ui.player.PlayerActivity;
 import com.example.android.bakingapp.ui.player.StepDetailFragment;
+import com.example.android.bakingapp.ui.shopping.ShoppingActivity;
 import com.squareup.picasso.Picasso;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
@@ -205,14 +207,33 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.detail, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         switch (itemId) {
             case R.id.home:
                 onBackPressed();
                 return true;
+            case R.id.action_shopping:
+                // Launch ShoppingActivity to display shopping list
+                startShoppingActivity();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * When the user clicks shopping cart icon in the menu, launch ShoppingActivity to display
+     * shopping list.
+     */
+    private void startShoppingActivity() {
+        Intent intent = new Intent(this, ShoppingActivity.class);
+        startActivity(intent);
     }
 }
