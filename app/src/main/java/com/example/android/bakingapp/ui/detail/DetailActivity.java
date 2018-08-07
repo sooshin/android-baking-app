@@ -77,8 +77,8 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
             setupUI();
         }
 
-        // Show back button in Toolbar
-        showBackButton(mTwoPane);
+        // Show the up button in the actionbar
+        showUpButton(mTwoPane);
     }
 
     /**
@@ -178,12 +178,12 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
     }
 
     /**
-     * Show back button in Collapsing Toolbar(single-pane) or in Toolbar(two-pane)
+     * Show the up button in Collapsing Toolbar(single-pane) or in the action bar(two-pane)
      *
      * @param twoPane A single-pane display refers to phone screens, and two-pane to larger
      *                tablet screens
      */
-    private void showBackButton(boolean twoPane) {
+    private void showUpButton(boolean twoPane) {
         if (!twoPane) {
             setSupportActionBar(mDetailBinding.toolbar);
         }
