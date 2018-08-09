@@ -30,4 +30,6 @@
 
     <!-- Strings for menu -->
     <string name="action_shopping">Shopping</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
