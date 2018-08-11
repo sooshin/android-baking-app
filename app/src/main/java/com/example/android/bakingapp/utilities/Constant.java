@@ -51,4 +51,12 @@ public final class Constant {
 
     /** Constant used in GridSpacingItemDecoration */
     public static final int ONE = 1;
+
+    /** Constant for the span count in the grid layout manager */
+    public static final int GRID_SPAN_COUNT = 2;
+    /** Constant for the grid spacing (px)*/
+    public static final int GRID_SPACING = 8;
+    /** True when including edge */
+    public static final boolean GRID_INCLUDE_EDGE = true;
+
 }

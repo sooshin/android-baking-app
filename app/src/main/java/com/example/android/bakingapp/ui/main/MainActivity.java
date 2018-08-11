@@ -12,18 +12,19 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 
 import com.example.android.bakingapp.ConnectionStateMonitor;
 import com.example.android.bakingapp.ConnectivityReceiver;
+import com.example.android.bakingapp.GridSpacingItemDecoration;
 import com.example.android.bakingapp.MyApp;
 import com.example.android.bakingapp.R;
-import com.example.android.bakingapp.widget.RecipeWidgetProvider;
 import com.example.android.bakingapp.databinding.ActivityMainBinding;
 import com.example.android.bakingapp.model.Ingredient;
 import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.ui.detail.DetailActivity;
 import com.example.android.bakingapp.utilities.InjectorUtils;
+import com.example.android.bakingapp.widget.RecipeWidgetProvider;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,6 +35,9 @@ import java.util.List;
 import timber.log.Timber;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
+import static com.example.android.bakingapp.utilities.Constant.GRID_INCLUDE_EDGE;
+import static com.example.android.bakingapp.utilities.Constant.GRID_SPACING;
+import static com.example.android.bakingapp.utilities.Constant.GRID_SPAN_COUNT;
 
 /**
  * The MainActivity displays the list of recipes
@@ -64,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         // Create a LayoutManager and RecipeAdapter and set them to the RecyclerView
         initAdapter();
 
+        //
+        setColumnSpacing();
+
         // Observe data and update UI
         setupViewModel();
 
@@ -77,9 +84,9 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
      * Creates a LayoutManager and RecipeAdapter and set them to the RecyclerView
      */
     private void initAdapter() {
-        // A LinearLayoutManager is responsible for measuring and positioning item views within a
-        // RecyclerView into a linear list.
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        // A GridLayoutManager is responsible for measuring and positioning item views within a
+        // RecyclerView into a grid layout.
+        GridLayoutManager layoutManager = new GridLayoutManager(this, GRID_SPAN_COUNT);
         // Set the layout manager to the RecyclerView
         mMainBinding.rv.setLayoutManager(layoutManager);
 
@@ -94,6 +101,15 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         mRecipeAdapter = new RecipeAdapter(mRecipeList, this);
         // Set adapter to the RecyclerView
         mMainBinding.rv.setAdapter(mRecipeAdapter);
+    }
+
+    /**
+     * Set column spacing to make each column have the same spacing.
+     */
+    private void setColumnSpacing() {
+        GridSpacingItemDecoration decoration = new GridSpacingItemDecoration(
+                GRID_SPAN_COUNT, GRID_SPACING, GRID_INCLUDE_EDGE);
+        mMainBinding.rv.addItemDecoration(decoration);
     }
 
     /**
