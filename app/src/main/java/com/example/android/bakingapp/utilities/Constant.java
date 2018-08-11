@@ -49,5 +49,6 @@ public final class Constant {
     /** The number of page */
     public static final int PAGE_COUNT = TAP_TITLE.length;
 
-
+    /** Constant used in GridSpacingItemDecoration */
+    public static final int ONE = 1;
 }
