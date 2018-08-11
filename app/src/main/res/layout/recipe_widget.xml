@@ -1,14 +1,47 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="horizontal"
     android:padding="@dimen/widget_margin">
 
-    <ImageView
-        android:id="@+id/widget_recipe_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/chef_cooker_hat"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"/>
+    <!-- Display quantity of the ingredient-->
+    <TextView
+        android:id="@+id/widget_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/margin_activity_small"
+        android:layout_marginStart="@dimen/margin_activity_small"
+        android:padding="8dp"
+        android:textSize="16sp"
+        tools:text="2" />
 
-</RelativeLayout>
+    <!-- Display measure of the ingredient-->
+    <TextView
+        android:id="@+id/widget_measure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:textSize="16sp"
+        tools:text="CUP" />
+
+    <!-- Display ingredient -->
+    <TextView
+        android:id="@+id/widget_ingredient"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:textSize="16sp"
+        tools:text="Graham Cracker crumbs" />
+
+</LinearLayout>

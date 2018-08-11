@@ -1,10 +1,14 @@
 package com.example.android.bakingapp.ui.main;
 
+import android.appwidget.AppWidgetManager;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +18,16 @@ import com.example.android.bakingapp.ConnectionStateMonitor;
 import com.example.android.bakingapp.ConnectivityReceiver;
 import com.example.android.bakingapp.MyApp;
 import com.example.android.bakingapp.R;
+import com.example.android.bakingapp.RecipeWidgetProvider;
 import com.example.android.bakingapp.databinding.ActivityMainBinding;
+import com.example.android.bakingapp.model.Ingredient;
 import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.ui.detail.DetailActivity;
 import com.example.android.bakingapp.utilities.InjectorUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,12 +109,46 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         Bundle b = new Bundle();
         b.putParcelable(EXTRA_RECIPE, recipe);
 
+        // Get a instance of SharedPreferences
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        // Get the editor object
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Retrieve the ingredient list and convert the list to string
+        List<Ingredient> ingredientList = recipe.getIngredients();
+        Gson gson = new Gson();
+        Type listType = new TypeToken<List<Ingredient>>() {}.getType();
+        String ingredientString = gson.toJson(ingredientList, listType);
+
+        // Save the string
+        editor.putString(getString(R.string.pref_ingredient_list_key), ingredientString);
+        editor.apply();
+
+        // Send the update broadcast to the app widget
+        sendBroadcastToWidget();
+
         // Create the Intent the will start the DetailActivity
         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
         // Pass the bundle through Intent
         intent.putExtra(EXTRA_RECIPE, b);
         // Once the Intent has been created, start the DetailActivity
         startActivity(intent);
+    }
+
+    /**
+     * Sends the update broadcast message to the app widget.
+     *
+     * Reference: @see "https://stackoverflow.com/questions/10663800/sending-an-update-broadcast
+     * -to-an-app-widget"
+     */
+    private void sendBroadcastToWidget() {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this, RecipeWidgetProvider.class));
+
+        Intent updateAppWidgetIntent = new Intent();
+        updateAppWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        updateAppWidgetIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+        sendBroadcast(updateAppWidgetIntent);
     }
 
     /**

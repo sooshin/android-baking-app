@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Display the recipe name -->
+    <TextView
+        android:id="@+id/widget_recipe_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="@dimen/margin_activity_small"
+        android:paddingEnd="@dimen/margin_activity"
+        android:paddingLeft="@dimen/margin_activity"
+        android:paddingRight="@dimen/margin_activity"
+        android:paddingStart="@dimen/margin_activity"
+        android:paddingTop="@dimen/margin_activity_small"
+        android:textSize="18sp"
+        tools:text="Cheesecake" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Display the ingredient list -->
+        <ListView
+            android:id="@+id/widget_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center" />
+
+        <!-- When the desired recipe is empty, display an empty state -->
+        <RelativeLayout
+            android:id="@+id/widget_empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/widget_empty_view_text"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.3"
+                android:contentDescription="@string/widget_empty_content_description"
+                android:src="@drawable/chef_cooker_hat" />
+        </RelativeLayout>
+
+    </FrameLayout>
+</LinearLayout>

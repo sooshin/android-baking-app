@@ -18,6 +18,8 @@
     <string name="empty_content_description">The image displayed when there are no visual media</string>
     <string name="bt_previous_content_description">Previous button</string>
     <string name="bt_next_content_description">Next button</string>
+    <string name="widget_empty_content_description">The chef hat image displayed when the
+        desired recipe is empty</string>
 
     <!-- Strings for Notifications -->
     <string name="pause">pause</string>
@@ -30,6 +32,12 @@
 
     <!-- Strings for menu -->
     <string name="action_shopping">Shopping</string>
+    <!-- Strings for widget -->
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="widget_empty_view_text">Choose your desired recipe to display ingredients!</string>
+
+    <!-- Key name for storing the list of ingredients in SharedPreferences -->
+    <string name="pref_ingredient_list_key">pref_ingredient_list</string>
+
 </resources>
