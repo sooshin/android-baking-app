@@ -61,11 +61,28 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         // Set up Timber
         Timber.plant(new Timber.DebugTree());
 
+        // Create a LayoutManager and RecipeAdapter and set them to the RecyclerView
+        initAdapter();
+
+        // Observe data and update UI
+        setupViewModel();
+
+        // Check internet connection
+        checkConnection();
+
+        checkConnectionStateMonitor();
+    }
+
+    /**
+     * Creates a LayoutManager and RecipeAdapter and set them to the RecyclerView
+     */
+    private void initAdapter() {
         // A LinearLayoutManager is responsible for measuring and positioning item views within a
         // RecyclerView into a linear list.
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         // Set the layout manager to the RecyclerView
         mMainBinding.rv.setLayoutManager(layoutManager);
+
         // Use this setting to improve performance if you know that changes in content do not
         // change the child layout size in the RecyclerView
         mMainBinding.rv.setHasFixedSize(true);
@@ -77,14 +94,6 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         mRecipeAdapter = new RecipeAdapter(mRecipeList, this);
         // Set adapter to the RecyclerView
         mMainBinding.rv.setAdapter(mRecipeAdapter);
-
-        // Observe data and update UI
-        setupViewModel();
-
-        // Check internet connection
-        checkConnection();
-
-        checkConnectionStateMonitor();
     }
 
     /**
@@ -109,6 +118,27 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         Bundle b = new Bundle();
         b.putParcelable(EXTRA_RECIPE, recipe);
 
+        // Update the list of ingredients using SharedPreferences each time the user selects the
+        // recipe
+        updateSharedPreference(recipe);
+
+        // Send the update broadcast to the app widget
+        sendBroadcastToWidget();
+
+        // Create the Intent the will start the DetailActivity
+        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        // Pass the bundle through Intent
+        intent.putExtra(EXTRA_RECIPE, b);
+        // Once the Intent has been created, start the DetailActivity
+        startActivity(intent);
+    }
+
+    /**
+     * Updates the list of ingredients using SharedPreferences each time the user selects the recipe.
+     *
+     * Reference @see "https://discussions.udacity.com/t/not-sure-how-to-approach-widget-building/728592"
+     */
+    private void updateSharedPreference(Recipe recipe) {
         // Get a instance of SharedPreferences
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         // Get the editor object
@@ -123,16 +153,6 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         // Save the string
         editor.putString(getString(R.string.pref_ingredient_list_key), ingredientString);
         editor.apply();
-
-        // Send the update broadcast to the app widget
-        sendBroadcastToWidget();
-
-        // Create the Intent the will start the DetailActivity
-        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-        // Pass the bundle through Intent
-        intent.putExtra(EXTRA_RECIPE, b);
-        // Once the Intent has been created, start the DetailActivity
-        startActivity(intent);
     }
 
     /**
