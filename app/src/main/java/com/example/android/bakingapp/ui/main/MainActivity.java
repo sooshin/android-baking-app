@@ -18,7 +18,7 @@ import com.example.android.bakingapp.ConnectionStateMonitor;
 import com.example.android.bakingapp.ConnectivityReceiver;
 import com.example.android.bakingapp.MyApp;
 import com.example.android.bakingapp.R;
-import com.example.android.bakingapp.RecipeWidgetProvider;
+import com.example.android.bakingapp.widget.RecipeWidgetProvider;
 import com.example.android.bakingapp.databinding.ActivityMainBinding;
 import com.example.android.bakingapp.model.Ingredient;
 import com.example.android.bakingapp.model.Recipe;

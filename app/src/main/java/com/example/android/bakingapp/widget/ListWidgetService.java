@@ -1,4 +1,4 @@
-package com.example.android.bakingapp;
+package com.example.android.bakingapp.widget;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.preference.PreferenceManager;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.model.Ingredient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -74,7 +75,6 @@ public class ListWidgetService extends RemoteViewsService {
             if (mIngredientList == null || mIngredientList.size() == 0) return null;
 
             Ingredient ingredient = mIngredientList.get(position);
-
             // Extract the ingredient details
             double quantity = ingredient.getQuantity();
             String measure = ingredient.getMeasure();
@@ -85,7 +85,6 @@ public class ListWidgetService extends RemoteViewsService {
             views.setTextViewText(R.id.widget_quantity, String.valueOf(quantity));
             views.setTextViewText(R.id.widget_measure, measure);
             views.setTextViewText(R.id.widget_ingredient, ingredientName);
-
             return views;
         }
 
