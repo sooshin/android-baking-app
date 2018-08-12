@@ -3,4 +3,21 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- Colors for the recipe list in the MainActivity -->
+    <color name="image_mint">#46D1AA</color>
+    <color name="text_mint">#3CBD9E</color>
+
+    <color name="image_light_green">#9BD66B</color>
+    <color name="text_light_green">#95BF60</color>
+
+    <color name="image_yellow">#FAD35F</color>
+    <color name="text_yellow">#FDAD53</color>
+
+    <color name="image_pink">#ED85BD</color>
+    <color name="text_pink">#D470AA</color>
+
+    <color name="image_light_blue">#4DC6EB</color>
+    <color name="text_light_blue">#38B3DB</color>
+
 </resources>

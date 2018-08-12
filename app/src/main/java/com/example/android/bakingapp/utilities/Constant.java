@@ -59,4 +59,11 @@ public final class Constant {
     /** True when including edge */
     public static final boolean GRID_INCLUDE_EDGE = true;
 
+    /** Constants for position number */
+    static final int POSITION_ZERO = 0;
+    static final int POSITION_ONE = 1;
+    static final int POSITION_TWO = 2;
+    static final int POSITION_THREE = 3;
+    static final int NUM_POSITION_FOUR = 4;
+
 }

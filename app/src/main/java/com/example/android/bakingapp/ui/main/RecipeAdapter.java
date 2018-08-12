@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.RecipeListItemBinding;
 import com.example.android.bakingapp.model.Recipe;
+import com.example.android.bakingapp.utilities.BakingUtils;
 
 import java.util.List;
 
@@ -75,7 +76,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @Override
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
         Recipe recipe = mRecipeList.get(position);
-        holder.bind(recipe);
+        holder.bind(recipe, position);
     }
 
 
@@ -129,9 +130,26 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
          *
          * @param recipe The recipe object
          */
-        void bind(Recipe recipe) {
+        void bind(Recipe recipe, int position) {
             // Set the name of the recipe
             mRecipeItemBinding.tvName.setText(recipe.getName());
+
+            String imageUrl = recipe.getImage();
+            if (imageUrl.isEmpty()) {
+                int imageColorResourceId = BakingUtils.getImageBackGroundColor(itemView.getContext(), position);
+                mRecipeItemBinding.ivImage.setBackgroundColor(imageColorResourceId);
+
+                int imageResourceId = BakingUtils.getImageResource(itemView.getContext(), position);
+                mRecipeItemBinding.ivImage.setImageResource(imageResourceId);
+                mRecipeItemBinding.ivImage.setPadding(140,140,140,140);
+
+            } else {
+                // Picasso
+            }
+
+            int textColorResourceId = BakingUtils.getTextBackGroundColor(itemView.getContext(), position);
+            mRecipeItemBinding.tvName.setBackgroundColor(textColorResourceId);
+
         }
 
         /**
