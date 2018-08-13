@@ -16,7 +16,7 @@ import timber.log.Timber;
  */
 
 // List of the entry class and associated TypeConverters
-@Database(entities = {RecipeEntry.class}, version = 1, exportSchema = false)
+@Database(entities = {RecipeEntry.class, ShoppingListEntry.class}, version = 1, exportSchema = false)
 @TypeConverters({IngredientsConverter.class, StepsConverter.class})
 public abstract class RecipeDatabase extends RoomDatabase {
 

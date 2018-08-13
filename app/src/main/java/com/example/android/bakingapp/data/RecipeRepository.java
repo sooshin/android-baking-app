@@ -78,5 +78,22 @@ public class RecipeRepository {
     public LiveData<List<RecipeEntry>> getAllRecipes() {
         return mRecipeDao.getAllRecipes();
     }
+
+    /**
+     * Returns {@link LiveData} with the list of ShoppingEntries directly from the database
+     */
+    public LiveData<List<ShoppingListEntry>> getAllShoppingList() {
+        return mRecipeDao.getAllShoppingList();
+    }
+
+    /**
+     * Returns {@link LiveData} with the list of ingredient indices which exist in
+     * the shopping list database.
+     *
+     * @param recipeName The recipe name
+     */
+    public LiveData<List<Integer>> getIndices(String recipeName) {
+        return mRecipeDao.getIndices(recipeName);
+    }
 }
 
