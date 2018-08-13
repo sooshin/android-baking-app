@@ -1,22 +1,117 @@
 package com.example.android.bakingapp.ui.shopping;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
 
+import com.example.android.bakingapp.AppExecutors;
 import com.example.android.bakingapp.R;
+import com.example.android.bakingapp.data.RecipeDatabase;
+import com.example.android.bakingapp.data.ShoppingListEntry;
+import com.example.android.bakingapp.databinding.ActivityShoppingBinding;
+import com.example.android.bakingapp.utilities.InjectorUtils;
+
+import java.util.List;
 
 public class ShoppingActivity extends AppCompatActivity {
+
+    /** Member variable for the RecipeDatabase */
+    private RecipeDatabase mDb;
+
+    /** Member variable for ShoppingAdapter */
+    private ShoppingAdapter mShoppingAdapter;
+
+    /** This field is used for data binding */
+    private ActivityShoppingBinding mShoppingBinding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopping);
+        mShoppingBinding = DataBindingUtil.setContentView(this, R.layout.activity_shopping);
+
+        // Initialize the ShoppingAdapter
+        initAdapter();
+
+        // Get the RecipeDatabase instance
+        mDb = RecipeDatabase.getInstance(getApplicationContext());
+
+        // Setup shopping view model
+        setupViewModel();
+
+        // Setup Item touch helper to recognize when a user swipes to delete an item
+        setupItemTouchHelper();
 
         // Display the up button in the actionbar
         showUpButton();
+    }
+
+    /**
+     * Creates a LayoutManager and ShoppingAdapter and set them to the RecyclerView
+     */
+    private void initAdapter() {
+        // Set the layout manager to the RecyclerView
+        mShoppingBinding.rvShopping.setLayoutManager(new LinearLayoutManager(this));
+        mShoppingBinding.rvShopping.setHasFixedSize(true);
+        // The ShoppingAdapter is responsible for displaying each shopping list item in the list.
+        mShoppingAdapter = new ShoppingAdapter(this);
+        // // Set adapter to the RecyclerView
+        mShoppingBinding.rvShopping.setAdapter(mShoppingAdapter);
+    }
+
+    /**
+     * Every time the user data is updated, update UI.
+     */
+    private void setupViewModel() {
+        // Get the ViewModel from the factory
+        ShoppingViewModelFactory factory = InjectorUtils.provideListViewModelFactory(this);
+        ShoppingViewModel shoppingViewModel = ViewModelProviders.of(this, factory).get(ShoppingViewModel.class);
+
+        // Update the list of ShoppingListEntries
+        shoppingViewModel.getList().observe(this, new Observer<List<ShoppingListEntry>>() {
+            @Override
+            public void onChanged(@Nullable List<ShoppingListEntry> shoppingListEntries) {
+                mShoppingAdapter.setShoppingList(shoppingListEntries);
+            }
+        });
+    }
+
+    /**
+     *  Add a touch helper to the RecyclerView to recognize when a user swipes to delete an item.
+     *  An ItemTouchHelper enables touch behavior (like swipe and move) on each ViewHolder,
+     *  and uses callbacks to signal when a user is performing these actions.
+     */
+    private void setupItemTouchHelper() {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+                                  RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            // Called when a user swipes left or right on a ViewHolder
+            @Override
+            public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction) {
+                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        // Delete shoppingListEntry at the adapter position
+                        int adapterPosition = viewHolder.getAdapterPosition();
+                        List<ShoppingListEntry> shoppingListEntries =
+                                mShoppingAdapter.getShoppingListEntries();
+                        mDb.recipeDao().deleteIngredient(shoppingListEntries.get(adapterPosition));
+                    }
+                });
+            }
+        }).attachToRecyclerView(mShoppingBinding.rvShopping);
     }
 
     /**

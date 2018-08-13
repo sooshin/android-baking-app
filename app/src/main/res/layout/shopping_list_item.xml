@@ -5,63 +5,55 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_activity">
 
-        <ImageView
-            android:id="@+id/iv_add"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <!-- Display recipe name -->
+        <TextView
+            android:id="@+id/tv_recipe_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Yellow Cake" />
 
-        <!-- Display quantity of the ingredient-->
+        <!-- Display quantity of the ingredient -->
         <TextView
             android:id="@+id/tv_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_add"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="2" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_recipe_name"
+            tools:text="400.0" />
 
-        <!-- Display measure of the ingredient-->
+        <!--Display measure of the ingredient -->
         <TextView
             android:id="@+id/tv_measure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
+            android:paddingRight="8dp"
+            android:paddingLeft="4dp"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_quantity"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="CUP" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_recipe_name"
+            tools:text="G" />
 
-        <!-- Display ingredient -->
+        <!-- Display the ingredient -->
         <TextView
             android:id="@+id/tv_ingredient"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingEnd="16dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:paddingStart="16dp"
-            android:paddingTop="8dp"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_measure"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Graham Cracker crumbs" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_recipe_name"
+            tools:text="sifted cake flour" />
 
     </android.support.constraint.ConstraintLayout>
-
 </layout>
