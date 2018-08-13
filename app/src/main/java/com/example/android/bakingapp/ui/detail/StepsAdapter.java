@@ -127,8 +127,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
          * @param step The step object
          */
         void bind(Step step) {
-            String stepId = itemView.getContext().getString(R.string.step) + step.getStepId();
-            mStepsItemBinding.tvStepId.setText(stepId);
+            mStepsItemBinding.tvStepId.setText(String.valueOf(step.getStepId()));
             mStepsItemBinding.tvStepShortDescription.setText(step.getShortDescription());
         }
 
