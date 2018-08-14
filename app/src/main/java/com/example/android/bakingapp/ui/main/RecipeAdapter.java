@@ -11,6 +11,7 @@ import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.RecipeListItemBinding;
 import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.utilities.BakingUtils;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -144,7 +145,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 mRecipeItemBinding.ivImage.setPadding(140,140,140,140);
 
             } else {
-                // Picasso
+                // If the image URL exists, use the Picasso library to upload the image
+                Picasso.with(itemView.getContext())
+                        .load(imageUrl)
+                        .error(R.drawable.recipe_error_image)
+                        .placeholder(R.drawable.recipe_error_image)
+                        .into(mRecipeItemBinding.ivImage);
             }
 
             int textColorResourceId = BakingUtils.getTextBackGroundColor(itemView.getContext(), position);
