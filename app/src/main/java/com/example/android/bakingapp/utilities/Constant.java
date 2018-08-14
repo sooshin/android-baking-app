@@ -63,4 +63,6 @@ public final class Constant {
     static final int POSITION_THREE = 3;
     static final int NUM_POSITION_FOUR = 4;
 
+    /** Constant for setting padding (px) of the recipe image */
+    public static final int RECIPE_IMAGE_PADDING = 140;
 }

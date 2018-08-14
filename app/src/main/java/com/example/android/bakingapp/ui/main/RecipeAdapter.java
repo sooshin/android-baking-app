@@ -15,6 +15,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import static com.example.android.bakingapp.utilities.Constant.RECIPE_IMAGE_PADDING;
+
 /**
  * {@link RecipeAdapter} exposes a list of recipes to a {@link RecyclerView}
  */
@@ -142,7 +144,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
                 int imageResourceId = BakingUtils.getImageResource(itemView.getContext(), position);
                 mRecipeItemBinding.ivImage.setImageResource(imageResourceId);
-                mRecipeItemBinding.ivImage.setPadding(140,140,140,140);
+                // Set padding for resizing image
+                mRecipeItemBinding.ivImage.setPadding(RECIPE_IMAGE_PADDING,
+                        RECIPE_IMAGE_PADDING, RECIPE_IMAGE_PADDING, RECIPE_IMAGE_PADDING);
 
             } else {
                 // If the image URL exists, use the Picasso library to upload the image
