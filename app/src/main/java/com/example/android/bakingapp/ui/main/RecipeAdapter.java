@@ -139,11 +139,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
             String imageUrl = recipe.getImage();
             if (imageUrl.isEmpty()) {
+                // If the image URL does not exist, set background color of the ImageView differently
+                // depending on the position.
                 int imageColorResourceId = BakingUtils.getImageBackGroundColor(itemView.getContext(), position);
                 mRecipeItemBinding.ivImage.setBackgroundColor(imageColorResourceId);
 
+                // Set image resource differently depending on the position
                 int imageResourceId = BakingUtils.getImageResource(itemView.getContext(), position);
                 mRecipeItemBinding.ivImage.setImageResource(imageResourceId);
+
                 // Set padding for resizing image
                 mRecipeItemBinding.ivImage.setPadding(RECIPE_IMAGE_PADDING,
                         RECIPE_IMAGE_PADDING, RECIPE_IMAGE_PADDING, RECIPE_IMAGE_PADDING);
@@ -157,6 +161,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                         .into(mRecipeItemBinding.ivImage);
             }
 
+            // Set the background color of the TextView displaying the recipe name
             int textColorResourceId = BakingUtils.getTextBackGroundColor(itemView.getContext(), position);
             mRecipeItemBinding.tvName.setBackgroundColor(textColorResourceId);
 

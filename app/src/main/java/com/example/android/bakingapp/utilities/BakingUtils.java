@@ -13,6 +13,14 @@ import static com.example.android.bakingapp.utilities.Constant.POSITION_ZERO;
 
 public class BakingUtils {
 
+    /**
+     *  If the image URL of the recipe does not exist, set the background color of the ImageView
+     *  differently depending on the position.
+     *
+     * @param context The context of the app
+     * @param position The position of the recipe item
+     * @return The background color of the ImageView
+     */
     public static int getImageBackGroundColor(Context context, int position) {
         int imageColorResourceId;
 
@@ -36,6 +44,14 @@ public class BakingUtils {
         return ContextCompat.getColor(context, imageColorResourceId);
     }
 
+    /**
+     * If the image URL of the recipe does not exist, set the background color of the TextView
+     * displaying the recipe name differently depending on the position.
+     *
+     * @param context The context of the app
+     * @param position The position of the recipe item
+     * @return The background color of the TextView displaying the recipe name
+     */
     public static int getTextBackGroundColor(Context context, int position) {
         int textColorResourceId;
         switch (position % NUM_POSITION_FOUR) {
@@ -58,6 +74,11 @@ public class BakingUtils {
         return ContextCompat.getColor(context, textColorResourceId);
     }
 
+    /**
+     * Returns the image resource used when the image URL of the recipe does not exist.
+     *
+     * @param position The position of the recipe item
+     */
     public static int getImageResource(Context context, int position) {
         int imageResourceId;
         switch (position % NUM_POSITION_FOUR) {
