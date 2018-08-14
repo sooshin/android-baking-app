@@ -12,11 +12,10 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 
 import com.example.android.bakingapp.ConnectionStateMonitor;
 import com.example.android.bakingapp.ConnectivityReceiver;
-import com.example.android.bakingapp.GridSpacingItemDecoration;
+import com.example.android.bakingapp.GridAutofitLayoutManager;
 import com.example.android.bakingapp.MyApp;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.ActivityMainBinding;
@@ -35,9 +34,7 @@ import java.util.List;
 import timber.log.Timber;
 
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
-import static com.example.android.bakingapp.utilities.Constant.GRID_INCLUDE_EDGE;
-import static com.example.android.bakingapp.utilities.Constant.GRID_SPACING;
-import static com.example.android.bakingapp.utilities.Constant.GRID_SPAN_COUNT;
+import static com.example.android.bakingapp.utilities.Constant.GRID_COLUMN_WIDTH;
 
 /**
  * The MainActivity displays the list of recipes
@@ -68,9 +65,6 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         // Create a LayoutManager and RecipeAdapter and set them to the RecyclerView
         initAdapter();
 
-        //
-        setColumnSpacing();
-
         // Observe data and update UI
         setupViewModel();
 
@@ -84,9 +78,11 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
      * Creates a LayoutManager and RecipeAdapter and set them to the RecyclerView
      */
     private void initAdapter() {
-        // A GridLayoutManager is responsible for measuring and positioning item views within a
-        // RecyclerView into a grid layout.
-        GridLayoutManager layoutManager = new GridLayoutManager(this, GRID_SPAN_COUNT);
+        // A GridAutofitLayoutManager is responsible for calculating the amount of GridView columns
+        // based on screen size and positioning item views within a RecyclerView into a grid layout.
+        // Reference: @see "https://codentrick.com/part-4-android-recyclerview-grid/"
+        GridAutofitLayoutManager layoutManager = new GridAutofitLayoutManager(
+                this, GRID_COLUMN_WIDTH);
         // Set the layout manager to the RecyclerView
         mMainBinding.rv.setLayoutManager(layoutManager);
 
@@ -101,15 +97,6 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         mRecipeAdapter = new RecipeAdapter(mRecipeList, this);
         // Set adapter to the RecyclerView
         mMainBinding.rv.setAdapter(mRecipeAdapter);
-    }
-
-    /**
-     * Set column spacing to make each column have the same spacing.
-     */
-    private void setColumnSpacing() {
-        GridSpacingItemDecoration decoration = new GridSpacingItemDecoration(
-                GRID_SPAN_COUNT, GRID_SPACING, GRID_INCLUDE_EDGE);
-        mMainBinding.rv.addItemDecoration(decoration);
     }
 
     /**

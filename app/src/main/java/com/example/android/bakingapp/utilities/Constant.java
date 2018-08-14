@@ -49,15 +49,12 @@ public final class Constant {
     /** The number of page */
     public static final int PAGE_COUNT = TAP_TITLE.length;
 
-    /** Constant used in GridSpacingItemDecoration */
-    public static final int ONE = 1;
-
-    /** Constant for the span count in the grid layout manager */
-    public static final int GRID_SPAN_COUNT = 2;
-    /** Constant for the grid spacing (px)*/
-    public static final int GRID_SPACING = 8;
-    /** True when including edge */
-    public static final boolean GRID_INCLUDE_EDGE = true;
+    /** Constant for the column width in the GridAutofitLayoutManager */
+    public static final int GRID_COLUMN_WIDTH = 520;
+    /** Default value for column width in the GridAutofitLayoutManager */
+    public static final int GRID_COLUMN_WIDTH_DEFAULT = 48;
+    /** Initial span count for the GridAutofitLayoutManager */
+    public static final int GRID_SPAN_COUNT = 1;
 
     /** Constants for position number */
     static final int POSITION_ZERO = 0;
