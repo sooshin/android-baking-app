@@ -145,7 +145,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 mRecipeItemBinding.ivImage.setBackgroundColor(imageColorResourceId);
 
                 // Set image resource differently depending on the position
-                int imageResourceId = BakingUtils.getImageResource(itemView.getContext(), position);
+                int imageResourceId = BakingUtils.getImageResource(position);
                 mRecipeItemBinding.ivImage.setImageResource(imageResourceId);
 
                 // Set padding for resizing image

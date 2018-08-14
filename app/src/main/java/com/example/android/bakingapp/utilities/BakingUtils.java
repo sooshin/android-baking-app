@@ -79,7 +79,7 @@ public class BakingUtils {
      *
      * @param position The position of the recipe item
      */
-    public static int getImageResource(Context context, int position) {
+    public static int getImageResource(int position) {
         int imageResourceId;
         switch (position % NUM_POSITION_FOUR) {
             case POSITION_ZERO:
