@@ -8,12 +8,12 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.android.bakingapp.AppExecutors;
 import com.example.android.bakingapp.R;
@@ -168,7 +168,11 @@ public class MasterListIngredientsFragment extends Fragment implements
                     mDb.recipeDao().insertIngredient(currentShoppingListEntry);
                 }
             });
-            Toast.makeText(this.getActivity(), "Added to a Shopping List", Toast.LENGTH_SHORT).show();
+
+            // Show a snack bar message when a user adds an ingredient to a shopping list
+            Snackbar.make(mMasterListBinding.getRoot(), R.string.snackbar_added,
+                    Snackbar.LENGTH_SHORT).show();
+
         } else {
 
         }

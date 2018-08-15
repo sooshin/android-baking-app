@@ -40,4 +40,7 @@
     <!-- Key name for storing the list of ingredients in SharedPreferences -->
     <string name="pref_ingredient_list_key">pref_ingredient_list</string>
 
+    <!-- Snack bar message displayed when a user adds an ingredient to a shopping list -->
+    <string name="snackbar_added">Added to your shopping list</string>
+
 </resources>
