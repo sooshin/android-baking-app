@@ -42,7 +42,7 @@ public class MasterListIngredientsFragment extends Fragment implements
     private IngredientsAdapter mIngredientsAdapter;
 
     /** This field is used for data binding */
-    private FragmentMasterListIngredientsBinding mMasterListBinding;
+    private FragmentMasterListIngredientsBinding mIngredientBinding;
 
     /** ViewModel for MasterListIngredientsFragment */
     private IndicesViewModel mIndicesViewModel;
@@ -62,9 +62,9 @@ public class MasterListIngredientsFragment extends Fragment implements
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Instantiate FragmentMasterListIngredientsBinding using DataBindingUtil
-        mMasterListBinding = DataBindingUtil.inflate(
+        mIngredientBinding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_master_list_ingredients, container, false);
-        View rootView = mMasterListBinding.getRoot();
+        View rootView = mIngredientBinding.getRoot();
 
         // Get the recipe data from the MainActivity
         mRecipe = getRecipeData();
@@ -81,13 +81,13 @@ public class MasterListIngredientsFragment extends Fragment implements
         // RecyclerView into a linear list.
         LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
         // Set the layout manager to the RecyclerView
-        mMasterListBinding.rvIngredients.setLayoutManager(layoutManager);
+        mIngredientBinding.rvIngredients.setLayoutManager(layoutManager);
         // Use this setting to improve performance if you know that changes in content do not
         // change the child layout size in the RecyclerView
-        mMasterListBinding.rvIngredients.setHasFixedSize(true);
+        mIngredientBinding.rvIngredients.setHasFixedSize(true);
 
         // Set the IngredientsAdapter to the RecyclerView
-        mMasterListBinding.rvIngredients.setAdapter(mIngredientsAdapter);
+        mIngredientBinding.rvIngredients.setAdapter(mIngredientsAdapter);
 
         // Add a list of ingredients to the IngredientsAdapter
         mIngredientsAdapter.addAll(mRecipe.getIngredients());
@@ -170,7 +170,7 @@ public class MasterListIngredientsFragment extends Fragment implements
             });
 
             // Show a snack bar message when a user adds an ingredient to a shopping list
-            Snackbar.make(mMasterListBinding.getRoot(), R.string.snackbar_added,
+            Snackbar.make(mIngredientBinding.getRoot(), R.string.snackbar_added,
                     Snackbar.LENGTH_SHORT).show();
 
         } else {
