@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.android.bakingapp.ConnectionStateMonitor;
@@ -68,6 +69,9 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         // Observe data and update UI
         setupViewModel();
 
+        // Set the SwipeRefreshLayout triggered by a swipe gesture
+        setRefreshLayout();
+
         // Check internet connection
         checkConnection();
 
@@ -106,11 +110,49 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         // Get the MainActivityViewModel from the factory
         MainViewModelFactory factory = InjectorUtils.provideMainViewModelFactory(this);
         mMainViewModel = ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
+
+        // Update the list of recipes
+        updateUI();
+    }
+
+    /**
+     * Update the list of recipes
+     */
+    private void updateUI() {
         // Retrieve live data object using getRecipes() method from the ViewModel
-        mMainViewModel.getRecipes().observe(this, new Observer<List<Recipe>>() {
+        mMainViewModel.getRecipes().observe(MainActivity.this, new Observer<List<Recipe>>() {
             @Override
             public void onChanged(@Nullable List<Recipe> recipe) {
+                if (recipe != null) {
                     mRecipeAdapter.addAll(recipe);
+                }
+            }
+        });
+    }
+
+    /**
+     * Sets the SwipeRefreshLayout triggered by a swipe gesture.
+     */
+    private void setRefreshLayout() {
+        // Set the colors used in the progress animation
+        mMainBinding.swipeRefresh.setColorSchemeColors(
+                getResources().getColor(R.color.image_mint),
+                getResources().getColor(R.color.image_light_green),
+                getResources().getColor(R.color.image_yellow),
+                getResources().getColor(R.color.image_pink));
+
+        // Set the listener to be notified when a refresh is triggered
+        mMainBinding.swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            // Called when a swipe gesture triggers a refresh
+            @Override
+            public void onRefresh() {
+                // Set a new value for the list of recipes
+                mMainViewModel.setRecipes();
+                // When refreshing, observe data and update UI
+                updateUI();
+
+                // Hide refresh progress
+                mMainBinding.swipeRefresh.setRefreshing(false);
             }
         });
     }
