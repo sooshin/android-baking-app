@@ -39,7 +39,8 @@
         </activity>
         <activity
             android:name=".ui.shopping.ShoppingActivity"
-            android:label="@string/shopping_list" />
+            android:label="@string/shopping_list"
+            android:theme="@style/ShoppingTheme"/>
 
         <receiver android:name=".ui.player.StepDetailFragment$MediaReceiver">
             <intent-filter>

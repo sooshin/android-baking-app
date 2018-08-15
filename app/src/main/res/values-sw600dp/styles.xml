@@ -14,4 +14,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
+    <!-- Shopping Activity theme -->
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    </style>
 </resources>
