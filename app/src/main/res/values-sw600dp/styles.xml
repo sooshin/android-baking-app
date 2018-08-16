@@ -6,14 +6,29 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- The color of action bar title -->
+        <item name="titleTextColor">@color/colorPrimaryDark</item>
+
+        <!-- Set actionBarTheme attribute (with colorControlNormal) to change the color of
+        up button in action bar
+        Reference: @see "https://stackoverflow.com/questions/26788464/how-to-change-color-of-
+        the-back-arrow-in-the-new-material-theme"
+        -->
+        <item name="actionBarTheme">@style/ActionBarTheme</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="ActionBarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- The color of up button -->
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
     </style>
 
     <!-- Detail activity theme -->
-    <style name="DetailTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="DetailTheme" parent="DetailBaseTheme">
     </style>
+
+    <style name="DetailBaseTheme" parent="AppTheme"/>
 
     <!-- Shopping Activity theme -->
     <style name="BaseTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
