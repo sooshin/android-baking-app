@@ -1,32 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/selectableItemBackground"
-        android:orientation="horizontal">
+        android:background="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/tv_step_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:layout_margin="@dimen/margin_activity"
             android:background="@drawable/step_circle"
             android:gravity="center"
-            android:layout_margin="@dimen/margin_activity_small"
             android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="7" />
 
         <TextView
             android:id="@+id/tv_step_short_description"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
             android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/margin_activity_small"
+            android:layout_marginStart="@dimen/margin_activity_small"
+            android:textSize="16sp"
+            android:textColor="@color/indigo_900_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_play_arrow"
+            app:layout_constraintStart_toEndOf="@+id/tv_step_id"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Add heavy cream and vanilla." />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_play_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_activity"
+            android:layout_marginRight="@dimen/margin_activity"
+            android:src="@drawable/play_arrow"
+            android:tint="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

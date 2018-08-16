@@ -5,12 +5,15 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_background">
 
         <ImageButton
             android:id="@+id/bt_previous"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_margin="@dimen/margin_activity"
+            android:background="@drawable/step_circle"
             android:contentDescription="@string/bt_previous_content_description"
             android:src="@drawable/navigate_previous"
             app:layout_constraintBottom_toTopOf="@+id/frame"
@@ -21,6 +24,7 @@
             android:id="@+id/tv_step_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/frame"
             app:layout_constraintEnd_toStartOf="@+id/bt_next"
             app:layout_constraintStart_toEndOf="@+id/bt_previous"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,6 +34,8 @@
             android:id="@+id/bt_next"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_margin="@dimen/margin_activity"
+            android:background="@drawable/step_circle"
             android:contentDescription="@string/bt_next_content_description"
             android:src="@drawable/navigate_next"
             app:layout_constraintBottom_toTopOf="@+id/frame"
@@ -40,7 +46,8 @@
             android:id="@+id/frame"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline"
+            app:layout_constraintBottom_toTopOf="@+id/cv_description"
+            app:layout_constraintDimensionRatio="H,3:2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_previous">
@@ -65,14 +72,8 @@
 
         </FrameLayout>
 
-        <android.support.constraint.Guideline
-            android:id="@+id/horizontal_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.6" />
-
         <android.support.v7.widget.CardView
+            android:id="@+id/cv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/card_corner_radius"
@@ -81,12 +82,14 @@
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/horizontal_guideline">
+            app:layout_constraintTop_toBottomOf="@+id/frame">
 
             <TextView
                 android:id="@+id/tv_description"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/margin_activity"
+                android:textSize="16sp"
                 tools:text="description" />
 
         </android.support.v7.widget.CardView>

@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- The color of action bar title -->
+        <item name="titleTextColor">@color/colorPrimaryDark</item>
     </style>
 
     <!-- Detail activity theme -->
@@ -13,11 +16,34 @@
         <item name="colorPrimary">@android:color/white</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- The color of action bar title -->
+        <item name="titleTextColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <!-- The color of up button in the action bar.
+     Reference: @see "https://stackoverflow.com/questions/33339043/how-to-change-color-of
+     -toolbar-back-button-in-android" -->
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <!-- Customize color of back arrow -->
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
     </style>
 
     <!-- ShoppingActivity theme -->
     <style name="ShoppingTheme" parent="BaseTheme">
     </style>
     <style name="BaseTheme" parent="AppTheme" />
+
+    <!-- Style for TabLayout -->
+    <style name="CategoryTab" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/color_tab_indicator</item>
+        <item name="tabSelectedTextColor">@color/color_tab_selected_text</item>
+        <item name="tabTextAppearance">@style/CategoryTabTextAppearance</item>
+    </style>
+
+    <!-- Style for Tab -->
+    <style name="CategoryTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/color_tab_text</item>
+    </style>
 
 </resources>

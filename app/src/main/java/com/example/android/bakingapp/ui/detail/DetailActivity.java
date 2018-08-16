@@ -77,6 +77,10 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
 
             // Setup TabLayout with ViewPager only in the single-pane mode
             setupUI();
+            // Display the number of servings
+            setNumServings();
+            //
+            setCollapsingToolbarTextColor();
         }
 
         // Show the up button in the actionbar
@@ -121,6 +125,14 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
                     .placeholder(R.drawable.baking_ingredients)
                     .into(mDetailBinding.ivDetail);
         }
+    }
+
+    /**
+     * Display the number of servings
+     */
+    private void setNumServings() {
+        int numServings = mRecipe.getServings();
+        mDetailBinding.tvServings.setText(String.valueOf(numServings));
     }
 
     /**
@@ -236,4 +248,18 @@ public class DetailActivity extends AppCompatActivity implements MasterListSteps
         Intent intent = new Intent(this, ShoppingActivity.class);
         startActivity(intent);
     }
+
+    /**
+     * Sets the text color to white for the expanded title and sets the text color to primary dark
+     * for the collapsed title.
+     *
+     * Reference: @see "https://stackoverflow.com/questions/43874025/toolbar-title-text-color"
+     */
+    private void setCollapsingToolbarTextColor() {
+        mDetailBinding.collapsingToolbarLayout.setExpandedTitleColor(
+                getResources().getColor(R.color.white));
+        mDetailBinding.collapsingToolbarLayout.setCollapsedTitleTextColor(
+                getResources().getColor(R.color.colorPrimaryDark));
+    }
+
 }

@@ -10,7 +10,7 @@
         android:id="@+id/widget_recipe_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:paddingBottom="@dimen/margin_activity_small"
         android:paddingEnd="@dimen/margin_activity"
         android:paddingLeft="@dimen/margin_activity"

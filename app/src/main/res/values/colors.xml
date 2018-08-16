@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/white</color>
+    <color name="colorPrimaryDark">#D9A3FA</color>
+    <color name="colorAccent">#69F0AE</color>
 
     <!-- Colors for the recipe list in the MainActivity -->
     <color name="image_mint">#46D1AA</color>
@@ -20,4 +20,20 @@
     <color name="image_light_blue">#4DC6EB</color>
     <color name="text_light_blue">#38B3DB</color>
 
+    <color name="white">#FFFFFF</color>
+
+    <!-- Background color -->
+    <color name="color_background">#F6F5FF</color>
+
+    <!-- Text color -->
+    <color name="indigo_900_dark">#000051</color>
+    <color name="purple">#AF57E4</color>
+
+    <!-- TabLayout -->
+    <color name="color_tab_indicator">@color/colorPrimaryDark</color>
+    <color name="color_tab_selected_text">@color/colorPrimaryDark</color>
+    <color name="color_tab_text">#9E9E9E</color>
+
+    <!-- The background color of custom playback control (70% opaque black)-->
+    <color name="color_playback_control_bg">#B3000000</color>
 </resources>

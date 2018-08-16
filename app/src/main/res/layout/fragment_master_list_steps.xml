@@ -11,6 +11,7 @@
             android:id="@+id/rv_steps"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/color_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent" />
 

@@ -92,9 +92,6 @@ public class MasterListIngredientsFragment extends Fragment implements
         // Add a list of ingredients to the IngredientsAdapter
         mIngredientsAdapter.addAll(mRecipe.getIngredients());
 
-        // Display the number of servings
-//        setNumServings();
-
         // Get the RecipeDatabase instance
         mDb = RecipeDatabase.getInstance(this.getContext());
 
@@ -191,11 +188,4 @@ public class MasterListIngredientsFragment extends Fragment implements
                 ingredient.getMeasure(), ingredient.getIngredient(), ingredientIndex);
     }
 
-    /**
-     * Display the number of servings
-     */
-//    private void setNumServings() {
-//        int numServings = mRecipe.getServings();
-//        mMasterListBinding.tvServings.setText(String.valueOf(numServings));
-//    }
 }
