@@ -69,6 +69,19 @@ public class MasterListIngredientsFragment extends Fragment implements
         // Get the recipe data from the MainActivity
         mRecipe = getRecipeData();
 
+        // Initialize a IngredientAdapter
+        initAdapter();
+
+        // Get the RecipeDatabase instance
+        mDb = RecipeDatabase.getInstance(this.getContext());
+
+        return rootView;
+    }
+
+    /**
+     * Create a IngredientsAdapter and set it to the RecyclerView
+     */
+    private void initAdapter() {
         // Create a new list of the ingredient and indices
         List<Ingredient> ingredients = new ArrayList<>();
         mIndices = new ArrayList<>();
@@ -91,11 +104,6 @@ public class MasterListIngredientsFragment extends Fragment implements
 
         // Add a list of ingredients to the IngredientsAdapter
         mIngredientsAdapter.addAll(mRecipe.getIngredients());
-
-        // Get the RecipeDatabase instance
-        mDb = RecipeDatabase.getInstance(this.getContext());
-
-        return rootView;
     }
 
     @Override

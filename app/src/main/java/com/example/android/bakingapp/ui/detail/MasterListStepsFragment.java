@@ -64,6 +64,16 @@ public class MasterListStepsFragment extends Fragment implements StepsAdapter.St
         // Get the recipe data from the MainActivity
         mRecipe = getRecipeData();
 
+        // Initialize a StepsAdapter
+        initAdapter();
+
+        return rootView;
+    }
+
+    /**
+     * Create a StepsAdapter and set it to the RecyclerView
+     */
+    private void initAdapter() {
         // Create an empty ArrayList
         List<Step> steps = new ArrayList<>();
 
@@ -84,8 +94,6 @@ public class MasterListStepsFragment extends Fragment implements StepsAdapter.St
 
         // Add a list of steps to the StepsAdapter
         mStepsAdapter.addAll(mRecipe.getSteps());
-
-        return rootView;
     }
 
     /**
