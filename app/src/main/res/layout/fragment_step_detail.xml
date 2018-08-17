@@ -26,11 +26,13 @@
             android:id="@+id/tv_step_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/frame_player"
             app:layout_constraintEnd_toStartOf="@+id/bt_next"
             app:layout_constraintStart_toEndOf="@+id/bt_previous"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Step 3" />
+            tools:text="Step 3 of 9" />
 
         <!-- Next button -->
         <ImageButton

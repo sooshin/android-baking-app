@@ -159,6 +159,8 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
         onNextButtonClick();
         // When the user clicks the previous button, it navigates to the previous step
         onPreviousButtonClick();
+        // Display the current step in a single-pane phone case (e.g. "Step 5 of 12")
+        setStepId();
 
         // Hide next button at the end of the step and the previous button at the beginning of
         // the step
@@ -223,6 +225,18 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
             mStepDetailBinding.btNext.setVisibility(View.INVISIBLE);
         } else if (mStepIndex == 0) {
             mStepDetailBinding.btPrevious.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * Display the current step in a single-pane phone case (e.g. "Step 5 of 12")
+     */
+    private void setStepId() {
+        if (!isTwoPane()) {
+            int lastStep = mRecipe.getSteps().size() - 1;
+            String currentStepOfLast = getString(R.string.step) + String.valueOf(mStepIndex)
+                    + getString(R.string.of) + String.valueOf(lastStep);
+            mStepDetailBinding.tvStepId.setText(currentStepOfLast);
         }
     }
 
