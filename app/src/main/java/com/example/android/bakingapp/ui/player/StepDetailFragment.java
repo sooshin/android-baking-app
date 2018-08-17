@@ -397,11 +397,21 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     }
 
     /**
-     * Enables the user to have a pure full-screen experience in landscape mode.
+     * Determine if you're creating a two-pane or single-pane display.
+     * A single-pane display refers to phone screens, and two-pane to larger tablet screens.
+     */
+    private boolean isTwoPane() {
+        // The TextView that displays the step ID will only initially exist in a single-pane phone case.
+       return mStepDetailBinding.tvStepId == null;
+    }
+
+    /**
+     * Enables the user to have a pure full-screen experience in a single-pane landscape mode.
      */
     @SuppressLint("InlinedApi")
     private void hideSystemUi() {
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
+                && !isTwoPane()) {
             int flagFullScreen = View.SYSTEM_UI_FLAG_LOW_PROFILE
                     | View.SYSTEM_UI_FLAG_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE

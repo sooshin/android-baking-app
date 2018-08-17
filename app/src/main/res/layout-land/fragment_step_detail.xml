@@ -8,7 +8,7 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/frame"
+            android:id="@+id/frame_player"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline"
@@ -16,6 +16,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <!-- Displays a video -->
             <com.google.android.exoplayer2.ui.PlayerView
                 android:id="@+id/player_view"
                 android:layout_width="match_parent"
@@ -25,6 +26,7 @@
                 app:rewind_increment="3000"
                 app:show_timeout="2000" />
 
+            <!-- The image displayed when there are no visual media -->
             <ImageView
                 android:id="@+id/iv_empty"
                 android:layout_width="match_parent"
@@ -36,6 +38,7 @@
 
         </FrameLayout>
 
+        <!-- Previous button -->
         <ImageButton
             android:id="@+id/bt_previous"
             android:layout_width="48dp"
@@ -46,6 +49,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Displays recipe step ID (Set visibility gone) -->
+        <TextView
+            android:id="@+id/tv_step_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/bt_next"
+            app:layout_constraintStart_toEndOf="@+id/bt_previous"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Step 3" />
+
+        <!-- Next button -->
         <ImageButton
             android:id="@+id/bt_next"
             android:layout_width="48dp"
@@ -63,26 +78,24 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="1" />
 
-        <android.support.v7.widget.CardView
+        <!-- The border of TextView (Set visibility gone) -->
+        <FrameLayout
+            android:id="@+id/frame_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_activity_small"
+            android:background="@drawable/card_border"
             android:visibility="gone"
-            app:cardCornerRadius="@dimen/card_corner_radius"
-            app:cardElevation="@dimen/card_elevation"
-            app:cardMaxElevation="@dimen/card_max_elevation"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/horizontal_guideline">
 
             <TextView
                 android:id="@+id/tv_description"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 tools:text="description" />
-
-        </android.support.v7.widget.CardView>
+        </FrameLayout>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

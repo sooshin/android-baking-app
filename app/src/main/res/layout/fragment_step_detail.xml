@@ -8,6 +8,7 @@
         android:layout_height="match_parent"
         android:background="@color/color_background">
 
+        <!-- Previous button -->
         <ImageButton
             android:id="@+id/bt_previous"
             android:layout_width="@dimen/size_button"
@@ -20,6 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- Displays the recipe step ID -->
         <TextView
             android:id="@+id/tv_step_id"
             android:layout_width="wrap_content"
@@ -30,6 +32,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Step 3" />
 
+        <!-- Next button -->
         <ImageButton
             android:id="@+id/bt_next"
             android:layout_width="@dimen/size_button"
@@ -53,6 +56,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/bt_previous">
 
+            <!-- Displays a video -->
             <com.google.android.exoplayer2.ui.PlayerView
                 android:id="@+id/player_view"
                 android:layout_width="match_parent"
@@ -62,6 +66,7 @@
                 app:rewind_increment="3000"
                 app:show_timeout="2000" />
 
+            <!-- The image displayed when there are no visual media -->
             <ImageView
                 android:id="@+id/iv_empty"
                 android:layout_width="match_parent"
@@ -83,6 +88,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frame_player">
 
+            <!-- Displays the recipe step instruction -->
             <TextView
                 android:id="@+id/tv_description"
                 android:layout_width="match_parent"
