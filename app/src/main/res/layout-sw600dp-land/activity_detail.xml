@@ -19,7 +19,7 @@
             android:id="@+id/master_list_ingredients_fragment"
             android:name="com.example.android.bakingapp.ui.detail.MasterListIngredientsFragment"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/master_list_steps_fragment"
             app:layout_constraintEnd_toEndOf="@+id/vertical_guideline"
             app:layout_constraintStart_toStartOf="parent"
