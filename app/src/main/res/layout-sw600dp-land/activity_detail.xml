@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.android.bakingapp.ui.detail.DetailActivity">
+
+        <!--
+        This layout is a two-pane layout for the master/detail flow.
+        -->
+
+        <!-- The static MasterListFragment -->
+
+        <!-- Ingredients fragment -->
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/master_list_ingredients_fragment"
+            android:name="com.example.android.bakingapp.ui.detail.MasterListIngredientsFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/master_list_steps_fragment"
+            app:layout_constraintEnd_toEndOf="@+id/vertical_guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Steps fragment-->
+        <fragment
+            android:id="@+id/master_list_steps_fragment"
+            android:name="com.example.android.bakingapp.ui.detail.MasterListStepsFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/vertical_guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/master_list_ingredients_fragment" />
+
+        <!-- Vertical guideline -->
+        <android.support.constraint.Guideline
+            android:id="@+id/vertical_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <!-- The frame layout is container -->
+        <FrameLayout
+            android:id="@+id/step_detail_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vertical_guideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
