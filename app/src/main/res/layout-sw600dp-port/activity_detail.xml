@@ -33,6 +33,16 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5"/>
 
+        <!-- Vertical divider -->
+        <View
+            android:layout_width="@dimen/width_divider"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline"
+            app:layout_constraintStart_toStartOf="@+id/vertical_guideline"
+            app:layout_constraintEnd_toEndOf="@+id/vertical_guideline"
+            android:background="@color/color_frame_player_bg"/>
+
         <!-- Steps fragment-->
         <fragment
             android:id="@+id/master_list_steps_fragment"
