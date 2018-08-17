@@ -155,6 +155,23 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
         // Get the recipe data from the intent
         getRecipeData();
 
+        // When the user clicks the next button, it navigates to the next step
+        onNextButtonClick();
+        // When the user clicks the previous button, it navigates to the previous step
+        onPreviousButtonClick();
+
+        // Hide next button at the end of the step and the previous button at the beginning of
+        // the step
+        hideButton();
+
+        // Return the rootView
+        return rootView;
+    }
+
+    /**
+     * When the user clicks the next button, it navigates to the next step.
+     */
+    private void onNextButtonClick() {
         // Set a click listener on the next button
         mStepDetailBinding.btNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +189,12 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
                 }
             }
         });
+    }
 
+    /**
+     * When the user clicks the previous button, it navigates to the previous step.
+     */
+    private void onPreviousButtonClick() {
         // Set a click listener on the previous button
         mStepDetailBinding.btPrevious.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,13 +212,6 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
                 }
             }
         });
-
-        // Hide next button at the end of the step and the previous button at the beginning of
-        // the step
-        hideButton();
-
-        // Return the rootView
-        return rootView;
     }
 
     /**
