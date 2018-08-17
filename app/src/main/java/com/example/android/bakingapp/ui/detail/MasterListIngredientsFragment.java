@@ -72,10 +72,25 @@ public class MasterListIngredientsFragment extends Fragment implements
         // Initialize a IngredientAdapter
         initAdapter();
 
+        // Display the number of servings in the two-pane tablet case
+        setNumServingsTwoPane(mRecipe);
+
         // Get the RecipeDatabase instance
         mDb = RecipeDatabase.getInstance(this.getContext());
 
         return rootView;
+    }
+
+    /**
+     * Display the number of servings in the two-pane tablet case
+     */
+    private void setNumServingsTwoPane(Recipe recipe) {
+        // This tvServings will only initially exist in the two-pane tablet case
+        if (mIngredientBinding.tvServings != null) {
+            String numServings = getString(R.string.servings_label) + getString(R.string.space)
+                    + String.valueOf(recipe.getServings());
+            mIngredientBinding.tvServings.setText(numServings);
+        }
     }
 
     /**
