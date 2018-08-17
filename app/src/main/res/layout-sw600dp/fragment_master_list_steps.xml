@@ -14,7 +14,8 @@
             android:gravity="center"
             android:padding="@dimen/margin_activity_small"
             android:text="@string/steps_label"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
         <!-- Display the list of steps -->
         <android.support.v7.widget.RecyclerView

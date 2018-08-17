@@ -60,6 +60,7 @@
                 android:id="@+id/player_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_activity"
                 app:controller_layout_id="@layout/custom_playback_control"
                 app:fastforward_increment="3000"
                 app:rewind_increment="3000"
