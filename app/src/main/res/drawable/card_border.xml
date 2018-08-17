@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><!-- The border of TexView that displays the recipe step
+ instructions.
+ Reference: @see "https://stackoverflow.com/questions/36575069/how-to-set-colored-border-on-
+ cardview?noredirect=1&lq=1" -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" />
+    <stroke
+        android:width="3dp"
+        android:color="#D9A3FA" />
+    <corners android:radius="5dp" />
+    <padding
+        android:bottom="0dp"
+        android:left="0dp"
+        android:right="0dp"
+        android:top="0dp" />
+</shape>

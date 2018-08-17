@@ -24,6 +24,7 @@
 
     <!-- Background color -->
     <color name="color_background">#F6F5FF</color>
+    <color name="color_frame_player_bg">#F6E6FA</color>
 
     <!-- Text color -->
     <color name="indigo_900_dark">#000051</color>

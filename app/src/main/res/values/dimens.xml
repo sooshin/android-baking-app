@@ -14,6 +14,12 @@
     <!-- A margin for TextView servings in activity_detail -->
     <dimen name="margin_servings">64dp</dimen>
 
+    <!-- Size of a previous and next button -->
+    <dimen name="size_button">48dp</dimen>
+
+    <!-- A margin for ImageView in fragment_step_detail -->
+    <dimen name="margin_empty_image">48dp</dimen>
+
     <!--
 Refer to App Widget Documentation for margin information
 http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
