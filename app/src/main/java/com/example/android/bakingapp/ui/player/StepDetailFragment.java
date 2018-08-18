@@ -234,7 +234,8 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
         if (!isTwoPane()) {
             int lastStep = mRecipe.getSteps().size() - 1;
             String currentStepOfLast = getString(R.string.step) + String.valueOf(mStepIndex)
-                    + getString(R.string.of) + String.valueOf(lastStep);
+                    + getString(R.string.space) + getString(R.string.of)
+                    + getString(R.string.space) + String.valueOf(lastStep);
             mStepDetailBinding.tvStepId.setText(currentStepOfLast);
         }
     }
