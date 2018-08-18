@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Background circle for the previous and next button.
+ Reference: @see "https://stackoverflow.com/questions/2470072/circular-gradient-in-android"-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <gradient android:type="radial" android:gradientRadius="250"
+        android:startColor="#80707070" android:endColor="#80707070" />
+</shape>
