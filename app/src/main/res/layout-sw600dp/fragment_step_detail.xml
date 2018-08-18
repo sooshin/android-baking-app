@@ -8,36 +8,6 @@
         android:layout_height="match_parent"
         android:background="@color/color_background">
 
-        <!-- Previous button -->
-        <ImageButton
-            android:id="@+id/bt_previous"
-            android:layout_width="@dimen/size_button"
-            android:layout_height="@dimen/size_button"
-            android:layout_margin="@dimen/margin_activity"
-            android:background="@drawable/step_circle"
-            android:contentDescription="@string/bt_previous_content_description"
-            android:src="@drawable/navigate_previous"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/frame_player"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- TextView that displays step ID does not exist in the two-pane tablet case -->
-
-        <!-- Next button -->
-        <ImageButton
-            android:id="@+id/bt_next"
-            android:layout_width="@dimen/size_button"
-            android:layout_height="@dimen/size_button"
-            android:layout_margin="@dimen/margin_activity"
-            android:background="@drawable/step_circle"
-            android:contentDescription="@string/bt_next_content_description"
-            android:src="@drawable/navigate_next"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/frame_player"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <FrameLayout
             android:id="@+id/frame_player"
             android:layout_width="0dp"
@@ -47,7 +17,7 @@
             app:layout_constraintDimensionRatio="H,3:1.8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_previous">
+            app:layout_constraintTop_toTopOf="parent">
 
             <!-- Displays a video -->
             <com.google.android.exoplayer2.ui.PlayerView
@@ -71,6 +41,34 @@
                 android:scaleType="centerInside" />
 
         </FrameLayout>
+
+        <!-- Previous button -->
+        <ImageButton
+            android:id="@+id/bt_previous"
+            android:layout_width="@dimen/size_button"
+            android:layout_height="@dimen/size_button"
+            android:layout_margin="@dimen/margin_button_tablet"
+            android:background="@drawable/step_circle_gradient"
+            android:contentDescription="@string/bt_previous_content_description"
+            android:src="@drawable/navigate_previous"
+            app:layout_constraintBottom_toBottomOf="@+id/frame_player"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/frame_player" />
+
+        <!-- TextView that displays step ID does not exist in the two-pane tablet case -->
+
+        <!-- Next button -->
+        <ImageButton
+            android:id="@+id/bt_next"
+            android:layout_width="@dimen/size_button"
+            android:layout_height="@dimen/size_button"
+            android:layout_margin="@dimen/margin_button_tablet"
+            android:background="@drawable/step_circle_gradient"
+            android:contentDescription="@string/bt_next_content_description"
+            android:src="@drawable/navigate_next"
+            app:layout_constraintBottom_toBottomOf="@+id/frame_player"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/frame_player" />
 
         <!-- The border of TextView -->
         <FrameLayout

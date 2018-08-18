@@ -162,9 +162,8 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
         // Display the current step in a single-pane phone case (e.g. "Step 5 of 12")
         setStepId();
 
-        // Hide next button at the end of the step and the previous button at the beginning of
-        // the step
-        hideButton();
+        // Hide next button at the end of the step and the previous button at the beginning
+        hideButtonAtBeginningEnd();
 
         // Return the rootView
         return rootView;
@@ -217,9 +216,9 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     }
 
     /**
-     * Hide next button at the end of the step and the previous button at the beginning of the step
+     * Hide next button at the end of the step and the previous button at the beginning.
      */
-    private void hideButton() {
+    private void hideButtonAtBeginningEnd() {
         int lastStep = mRecipe.getSteps().size() -1;
         if (mStepIndex == lastStep) {
             mStepDetailBinding.btNext.setVisibility(View.INVISIBLE);
@@ -420,12 +419,19 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     }
 
     /**
+     * Returns true in a single-pane landscape mode.
+     */
+    private boolean isSinglePaneLand() {
+        return getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
+                && !isTwoPane();
+    }
+
+    /**
      * Enables the user to have a pure full-screen experience in a single-pane landscape mode.
      */
     @SuppressLint("InlinedApi")
     private void hideSystemUi() {
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
-                && !isTwoPane()) {
+        if (isSinglePaneLand()) {
             int flagFullScreen = View.SYSTEM_UI_FLAG_LOW_PROFILE
                     | View.SYSTEM_UI_FLAG_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -502,6 +508,31 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     }
 
     /**
+     * When ExoPlayer is playing, hide the previous and next button in the two-pane tablet or
+     * single-pane landscape mode.
+     */
+    private void hideButtonWhenPlaying() {
+        if (isTwoPane() | isSinglePaneLand()){
+            mStepDetailBinding.btPrevious.setVisibility(View.GONE);
+            mStepDetailBinding.btNext.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * When ExoPlayer is paused or ended, show the previous and next button in the two-pane tablet or
+     * single-pane landscape mode.
+     */
+    private void showButtonWhenPausedEnded() {
+        if (isTwoPane() | isSinglePaneLand()) {
+            mStepDetailBinding.btPrevious.setVisibility(View.VISIBLE);
+            mStepDetailBinding.btNext.setVisibility(View.VISIBLE);
+        }
+
+        // Hide next button at the end of the step and the previous button at the beginning.
+        hideButtonAtBeginningEnd();
+    }
+
+    /**
      * Save the current state of this fragment
      */
     @Override
@@ -550,10 +581,19 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
             // When ExoPlayer is playing, update the PlayBackState
             mStateBuilder.setState(PlaybackStateCompat.STATE_PLAYING,
                     mExoPlayer.getCurrentPosition(), PLAYER_PLAYBACK_SPEED);
+
+            // When ExoPlayer is playing, hide the previous and next button
+            hideButtonWhenPlaying();
         } else if (playbackState == Player.STATE_READY) {
             // When ExoPlayer is paused, update the PlayBackState
             mStateBuilder.setState(PlaybackStateCompat.STATE_PAUSED,
                     mExoPlayer.getCurrentPosition(), PLAYER_PLAYBACK_SPEED);
+
+            // When ExoPlayer is paused, show the previous and next button
+            showButtonWhenPausedEnded();
+        } else if (playbackState == Player.STATE_ENDED) {
+            // When ExoPlayer is ended, show the previous and next button
+            showButtonWhenPausedEnded();
         }
         sMediaSession.setPlaybackState(mStateBuilder.build());
 

@@ -17,6 +17,9 @@
     <!-- Size of a previous and next button -->
     <dimen name="size_button">48dp</dimen>
 
+    <!-- A margin for the previous and next button in a tablet case -->
+    <dimen name="margin_button_tablet">32dp</dimen>
+
     <!-- A margin for ImageView in fragment_step_detail -->
     <dimen name="margin_empty_image">48dp</dimen>
 
