@@ -130,7 +130,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         void bind(Step step, int position) {
             // Get the step ID that matches to the step index.
             // (e.g. Step ID of Yellow cake from  8 to 13 does not match to the position)
-            int stepId = matchStepIdStepIndex(step, position);
+            int stepId = getCorrectStepId(step, position);
             // Set the step ID
             mStepsItemBinding.tvStepId.setText(String.valueOf(stepId));
             // Set the short description
@@ -154,7 +154,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
          * @param step The step object
          * @param position The position of the item within the adapter's data set.
          */
-        private int matchStepIdStepIndex(Step step, int position) {
+        private int getCorrectStepId(Step step, int position) {
             int stepId = step.getStepId();
             // If the step ID does not correspond to the step index, replace step ID with
             // the step index.
