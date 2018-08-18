@@ -74,7 +74,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
     @Override
     public void onBindViewHolder(@NonNull StepsViewHolder holder, int position) {
         Step step = mSteps.get(position);
-        holder.bind(step);
+        holder.bind(step, position);
     }
 
     /**
@@ -121,13 +121,19 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         }
 
         /**
-         * This method will take a Step object as input and use that Step to display the short description
-         * within a list item
+         * This method will take a step object and position as input and use that step and position
+         * to display the step ID and the short description within a list item.
          *
          * @param step The step object
+         * @param position The position of the item within the adapter's data set.
          */
-        void bind(Step step) {
-            mStepsItemBinding.tvStepId.setText(String.valueOf(step.getStepId()));
+        void bind(Step step, int position) {
+            // Get the step ID that matches to the step index.
+            // (e.g. Step ID of Yellow cake from  8 to 13 does not match to the position)
+            int stepId = matchStepIdStepIndex(step, position);
+            // Set the step ID
+            mStepsItemBinding.tvStepId.setText(String.valueOf(stepId));
+            // Set the short description
             mStepsItemBinding.tvStepShortDescription.setText(step.getShortDescription());
         }
 
@@ -140,6 +146,22 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         public void onClick(View v) {
             int adapterPosition = getAdapterPosition();
             mOnClickHandler.onItemClick(adapterPosition);
+        }
+
+        /**
+         * Returns step ID that matches to the step index.
+         *
+         * @param step The step object
+         * @param position The position of the item within the adapter's data set.
+         */
+        private int matchStepIdStepIndex(Step step, int position) {
+            int stepId = step.getStepId();
+            // If the step ID does not correspond to the step index, replace step ID with
+            // the step index.
+            if (stepId != position) {
+                stepId = position;
+            }
+            return stepId;
         }
     }
 }
