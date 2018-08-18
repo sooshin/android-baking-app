@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.utilities.Constant;
 
 import static com.example.android.bakingapp.utilities.Constant.INGREDIENTS;
@@ -66,11 +67,15 @@ public class DetailPagerAdapter extends FragmentPagerAdapter {
 
             case INGREDIENTS:
                 String title = Constant.TAP_TITLE[position % Constant.PAGE_COUNT].toUpperCase();
-                title += " (" + mNumIngredients + ")";
+                title += mContext.getString(R.string.space) +
+                        mContext.getString(R.string.open_parenthesis) + mNumIngredients +
+                        mContext.getString(R.string.close_parenthesis);
                 return title;
             case STEPS:
                 title = Constant.TAP_TITLE[position % Constant.PAGE_COUNT].toUpperCase();
-                title += " (" + mNumSteps + ")";
+                title += mContext.getString(R.string.space) +
+                        mContext.getString(R.string.open_parenthesis) + mNumSteps +
+                        mContext.getString(R.string.close_parenthesis);
                 return title;
         }
         return null;

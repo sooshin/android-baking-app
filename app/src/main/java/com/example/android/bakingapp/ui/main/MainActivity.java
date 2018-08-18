@@ -244,9 +244,9 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
     private void showSnack(boolean isConnected) {
         String message;
         if (isConnected) {
-            message = "Connected to the Internet";
+            message = getString(R.string.snackbar_connected_internet);
         } else {
-            message = "No Internet Connection!";
+            message = getString(R.string.snackbar_no_internet);
         }
 
         Snackbar snackbar = Snackbar.make(mMainBinding.rv, message, Snackbar.LENGTH_LONG);

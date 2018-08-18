@@ -48,4 +48,8 @@
     <!-- Snack bar message displayed when a user adds an ingredient to a shopping list -->
     <string name="snackbar_added">Added to your shopping list</string>
 
+    <!-- Snack bar message that displays the network status -->
+    <string name="snackbar_no_internet">No Internet Connection!</string>
+    <string name="snackbar_connected_internet">Connected to the Internet</string>
+
 </resources>
