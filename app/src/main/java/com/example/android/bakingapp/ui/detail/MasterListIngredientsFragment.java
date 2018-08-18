@@ -74,6 +74,8 @@ public class MasterListIngredientsFragment extends Fragment implements
 
         // Display the number of servings in the two-pane tablet case
         setNumServingsTwoPane(mRecipe);
+        // Display the number of ingredients in the two-pane tablet case
+        setNumIngredientsTwoPane(mRecipe);
 
         // Get the RecipeDatabase instance
         mDb = RecipeDatabase.getInstance(this.getContext());
@@ -90,6 +92,19 @@ public class MasterListIngredientsFragment extends Fragment implements
             String numServings = getString(R.string.servings_label) + getString(R.string.space)
                     + String.valueOf(recipe.getServings());
             mIngredientBinding.tvServings.setText(numServings);
+        }
+    }
+
+    /**
+     * Display the number of ingredients in the two-pane tablet case
+     */
+    private void setNumIngredientsTwoPane(Recipe recipe) {
+        // The TextView tvIngredientsLabel will only initially exist in the two-pane tablet case
+        if (mIngredientBinding.tvIngredientsLabel != null) {
+            String numIngredients = getString(R.string.ingredients_label) +
+                    getString(R.string.space) + getString(R.string.open_parenthesis)
+                    + recipe.getIngredients().size() + getString(R.string.close_parenthesis);
+            mIngredientBinding.tvIngredientsLabel.setText(numIngredients);
         }
     }
 

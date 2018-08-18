@@ -64,6 +64,9 @@ public class MasterListStepsFragment extends Fragment implements StepsAdapter.St
         // Get the recipe data from the MainActivity
         mRecipe = getRecipeData();
 
+        // Display the number of steps (excluding 0 step) in the two-pane tablet case
+        setNumIngredientsTwoPane(mRecipe);
+
         // Initialize a StepsAdapter
         initAdapter();
 
@@ -94,6 +97,20 @@ public class MasterListStepsFragment extends Fragment implements StepsAdapter.St
 
         // Add a list of steps to the StepsAdapter
         mStepsAdapter.addAll(mRecipe.getSteps());
+    }
+
+    /**
+     * Display the number of steps in the two-pane tablet case
+     */
+    private void setNumIngredientsTwoPane(Recipe recipe) {
+        // The TextView tvStepsLabel will only initially exist in the two-pane tablet case
+        if (mStepsBinding.tvStepsLabel != null) {
+            // The number of steps excludes 0 step.
+            String numSteps = getString(R.string.steps_label) +
+                    getString(R.string.space) + getString(R.string.open_parenthesis)
+                    + (recipe.getSteps().size() - 1) + getString(R.string.close_parenthesis);
+            mStepsBinding.tvStepsLabel.setText(numSteps);
+        }
     }
 
     /**

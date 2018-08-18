@@ -14,9 +14,9 @@
             android:background="@color/colorPrimaryDark"
             android:gravity="center"
             android:padding="@dimen/margin_activity_small"
-            android:text="@string/ingredients_label"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="@string/ingredients_label" />
 
         <!-- Display the number of servings -->
         <TextView

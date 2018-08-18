@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,9 +14,9 @@
             android:background="@color/colorPrimaryDark"
             android:gravity="center"
             android:padding="@dimen/margin_activity_small"
-            android:text="@string/steps_label"
             android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            tools:text="@string/steps_label" />
 
         <!-- Display the list of steps -->
         <android.support.v7.widget.RecyclerView
