@@ -12,6 +12,7 @@
     <string name="degree">\u00b0</string>
     <string name="space">\u0020</string>
     <string name="of">of</string>
+    <string name="period">.</string>
 
     <!-- String for the type of the media file -->
     <string name="mp4">mp4</string>
