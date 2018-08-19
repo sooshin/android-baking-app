@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/color_frame_player_bg" android:state_pressed="true" />
+    <item android:drawable="@color/color_frame_player_bg" android:state_activated="true" />
+    <item android:drawable="@color/color_frame_player_bg" android:state_selected="true" />
+
+    <!-- This should have a default drawable color = "@color/color_background" -->
+    <item android:drawable="@color/color_background" />
+</selector>
