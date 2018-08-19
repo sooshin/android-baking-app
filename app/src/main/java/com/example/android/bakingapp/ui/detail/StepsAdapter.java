@@ -160,25 +160,9 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
             // the step index.
             if (stepId != position) {
                 stepId = position;
-                // Replace the number in the description which represents step ID with the correct ID.
-                setDescriptionWithCorrectStepId(step, stepId);
             }
             return stepId;
         }
 
-        /**
-         *  If the step ID does not correspond to the step index, replace the number in the
-         *  description which represents step ID with the correct id.
-         *  (e.g. Step ID of Yellow cake from  8 to 13)
-         */
-        private void setDescriptionWithCorrectStepId(Step step, int stepId) {
-            String description = step.getDescription();
-            // Find the position of the first occurrence of the period
-            int periodIndex = description.indexOf(itemView.getContext().getString(R.string.period));
-            // Concatenate correct step ID and the substring
-            String newDescription = String.valueOf(stepId) + description.substring(periodIndex);
-            // Set a new description of the step
-            step.setDescription(newDescription);
-        }
     }
 }

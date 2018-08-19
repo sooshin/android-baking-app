@@ -136,11 +136,9 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
         // If the Step exists, set the description to the TextView and handle media URL.
         // Otherwise, create a Log statement that indicates that the step was not found
         if(mStep != null) {
-            String description = mStep.getDescription();
-            // The Step 1 description of Brownies recipe contains a question mark, so replace it
-            // with the degree sign.
-            description = replaceString(description, rootView);
-            mStepDetailBinding.tvDescription.setText(description);
+
+            // Set correct description
+            setCorrectDescription(mStep);
 
             // Handles video URL and thumbnail URL
             handleMediaUrl();
@@ -167,6 +165,47 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
 
         // Return the rootView
         return rootView;
+    }
+
+    /**
+     *  If the step ID does not correspond to the step index, replace the number in the
+     *  description which represents step ID with the correct id.
+     *  (e.g. Step ID of Yellow cake from  8 to 13)
+     *
+     *  @return Step description with the correct step ID
+     */
+    private String getDescriptionWithCorrectStepId(Step step) {
+        // Extract step ID and description
+        int stepId = step.getStepId();
+        String description = step.getDescription();
+
+        if (stepId != mStepIndex) {
+            // If the step ID does not correspond to the step index, replace step ID with step index
+            stepId = mStepIndex;
+
+            // Find the position of the first occurrence of the period
+            int periodIndex = description.indexOf(getString(R.string.period));
+            // Concatenate correct step ID and the substring
+            description = stepId + description.substring(periodIndex);
+
+            // Set a new description of the step
+            step.setDescription(description);
+        }
+        return description;
+    }
+
+    /**
+     * Sets the correct description.
+     */
+    private void setCorrectDescription(Step step) {
+        // Replace the number in the description which represents step ID with the correct ID.
+        String descriptionWithCorrectStepId = getDescriptionWithCorrectStepId(step);
+
+        // Replace a question mark "�" with the degree "°"(e.g. step 1 description of Brownies)
+        String replacedDescription = replaceString(descriptionWithCorrectStepId);
+
+        // Display the correct description
+        mStepDetailBinding.tvDescription.setText(replacedDescription);
     }
 
     /**
@@ -500,10 +539,9 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
      * Replace a question mark "�" with the degree "°".
      * The Step 1 description of Brownies recipe contains a question mark, so replace it with the degree sign.
      */
-    private String replaceString(String target, View v) {
-        if (target.contains(v.getContext().getString(R.string.question_mark))) {
-            target = target.replace(v.getContext().getString(R.string.question_mark),
-                    v.getContext().getString(R.string.degree));
+    private String replaceString(String target) {
+        if (target.contains(getString(R.string.question_mark))) {
+            target = target.replace(getString(R.string.question_mark), getString(R.string.degree));
         }
         return target;
     }
