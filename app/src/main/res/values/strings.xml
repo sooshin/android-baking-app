@@ -52,4 +52,8 @@
     <string name="snackbar_no_internet">No Internet Connection!</string>
     <string name="snackbar_connected_internet">Connected to the Internet</string>
 
+    <!-- Text for the empty view displayed when the shopping list is empty -->
+    <string name="empty_view_shopping">You can tap a circle button in the ingredients list
+        to add to your shopping list.</string>
+
 </resources>

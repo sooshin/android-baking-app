@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.android.bakingapp.AppExecutors;
 import com.example.android.bakingapp.R;
@@ -79,6 +80,14 @@ public class ShoppingActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<ShoppingListEntry> shoppingListEntries) {
                 mShoppingAdapter.setShoppingList(shoppingListEntries);
+
+                // When the shopping list is empty, show an empty view, otherwise, make the
+                // shopping list view visible.
+                if (shoppingListEntries == null || shoppingListEntries.size() == 0) {
+                    showEmptyView();
+                } else {
+                    showShoppingView();
+                }
             }
         });
     }
@@ -136,5 +145,25 @@ public class ShoppingActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * This method will make the view for the shopping list visible.
+     */
+    private void showShoppingView() {
+        // First, hide an empty view
+        mShoppingBinding.tvEmptyShopping.setVisibility(View.GONE);
+        // Then, make sure the shopping list data is visible
+        mShoppingBinding.rvShopping.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * When the shopping list is empty, show an empty view.
+     */
+    private void showEmptyView() {
+        // First, hide the view for the shopping list
+        mShoppingBinding.rvShopping.setVisibility(View.GONE);
+        // Then, show an empty view
+        mShoppingBinding.tvEmptyShopping.setVisibility(View.VISIBLE);
     }
 }
