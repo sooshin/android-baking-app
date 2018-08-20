@@ -3,103 +3,110 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.constraint.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/color_background">
 
-        <!-- Previous button -->
-        <ImageButton
-            android:id="@+id/bt_previous"
-            android:layout_width="@dimen/size_button"
-            android:layout_height="@dimen/size_button"
-            android:layout_margin="@dimen/margin_activity"
-            android:background="@drawable/step_circle"
-            android:contentDescription="@string/bt_previous_content_description"
-            android:src="@drawable/navigate_previous"
-            app:layout_constraintBottom_toTopOf="@+id/frame_player"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- Displays the recipe step ID -->
-        <TextView
-            android:id="@+id/tv_step_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/frame_player"
-            app:layout_constraintEnd_toStartOf="@+id/bt_next"
-            app:layout_constraintStart_toEndOf="@+id/bt_previous"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Step 3 of 9" />
-
-        <!-- Next button -->
-        <ImageButton
-            android:id="@+id/bt_next"
-            android:layout_width="@dimen/size_button"
-            android:layout_height="@dimen/size_button"
-            android:layout_margin="@dimen/margin_activity"
-            android:background="@drawable/step_circle"
-            android:contentDescription="@string/bt_next_content_description"
-            android:src="@drawable/navigate_next"
-            app:layout_constraintBottom_toTopOf="@+id/frame_player"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <FrameLayout
-            android:id="@+id/frame_player"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/color_frame_player_bg"
-            app:layout_constraintBottom_toTopOf="@+id/frame_description"
-            app:layout_constraintDimensionRatio="H,3:2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/bt_previous">
-
-            <!-- Displays a video -->
-            <com.google.android.exoplayer2.ui.PlayerView
-                android:id="@+id/player_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:controller_layout_id="@layout/custom_playback_control"
-                app:fastforward_increment="3000"
-                app:rewind_increment="3000"
-                app:show_timeout="2000" />
-
-            <!-- The image displayed when there are no visual media -->
-            <ImageView
-                android:id="@+id/iv_empty"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/margin_empty_image"
-                android:layout_marginTop="@dimen/margin_empty_image"
-                android:contentDescription="@string/empty_content_description"
-                android:scaleType="centerInside" />
-
-        </FrameLayout>
-
-        <!-- The border of TextView -->
-        <FrameLayout
-            android:id="@+id/frame_description"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_activity_small"
-            android:background="@drawable/card_border"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frame_player">
+            android:layout_height="wrap_content">
 
-            <!-- Displays the recipe step instruction -->
+            <!-- Previous button -->
+            <ImageButton
+                android:id="@+id/bt_previous"
+                android:layout_width="@dimen/size_button"
+                android:layout_height="@dimen/size_button"
+                android:layout_margin="@dimen/margin_activity"
+                android:background="@drawable/step_circle"
+                android:contentDescription="@string/bt_previous_content_description"
+                android:src="@drawable/navigate_previous"
+                app:layout_constraintBottom_toTopOf="@+id/frame_player"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Displays the recipe step ID -->
             <TextView
-                android:id="@+id/tv_description"
+                android:id="@+id/tv_step_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/frame_player"
+                app:layout_constraintEnd_toStartOf="@+id/bt_next"
+                app:layout_constraintStart_toEndOf="@+id/bt_previous"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Step 3 of 9" />
+
+            <!-- Next button -->
+            <ImageButton
+                android:id="@+id/bt_next"
+                android:layout_width="@dimen/size_button"
+                android:layout_height="@dimen/size_button"
+                android:layout_margin="@dimen/margin_activity"
+                android:background="@drawable/step_circle"
+                android:contentDescription="@string/bt_next_content_description"
+                android:src="@drawable/navigate_next"
+                app:layout_constraintBottom_toTopOf="@+id/frame_player"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/frame_player"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/color_frame_player_bg"
+                app:layout_constraintBottom_toTopOf="@+id/frame_description"
+                app:layout_constraintDimensionRatio="H,3:2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bt_previous">
+
+                <!-- Displays a video -->
+                <com.google.android.exoplayer2.ui.PlayerView
+                    android:id="@+id/player_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:controller_layout_id="@layout/custom_playback_control"
+                    app:fastforward_increment="3000"
+                    app:rewind_increment="3000"
+                    app:show_timeout="2000" />
+
+                <!-- The image displayed when there are no visual media -->
+                <ImageView
+                    android:id="@+id/iv_empty"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/margin_empty_image"
+                    android:layout_marginTop="@dimen/margin_empty_image"
+                    android:contentDescription="@string/empty_content_description"
+                    android:scaleType="centerInside" />
+
+            </FrameLayout>
+
+            <!-- The border of TextView -->
+            <FrameLayout
+                android:id="@+id/frame_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/margin_activity"
-                android:textColor="@color/indigo_900_dark"
-                android:textSize="16sp"
-                tools:text="description" />
-        </FrameLayout>
+                android:layout_margin="@dimen/margin_activity_small"
+                android:background="@drawable/card_border"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frame_player">
 
-    </android.support.constraint.ConstraintLayout>
+                <!-- Displays the recipe step instruction -->
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_activity"
+                    android:textColor="@color/indigo_900_dark"
+                    android:textSize="16sp"
+                    tools:text="description" />
+            </FrameLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
 </layout>
