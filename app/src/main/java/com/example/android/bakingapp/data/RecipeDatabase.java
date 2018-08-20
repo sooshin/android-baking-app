@@ -3,7 +3,6 @@ package com.example.android.bakingapp.data;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import com.example.android.bakingapp.utilities.Constant;
@@ -11,13 +10,12 @@ import com.example.android.bakingapp.utilities.Constant;
 import timber.log.Timber;
 
 /**
- * {@link RecipeDatabase} database for the application including a table for {@link RecipeEntry}
+ * {@link RecipeDatabase} database for the application including a table for {@link ShoppingListEntry}
  * with the DAO {@link RecipeDao}
  */
 
 // List of the entry class and associated TypeConverters
-@Database(entities = {RecipeEntry.class, ShoppingListEntry.class}, version = 1, exportSchema = false)
-@TypeConverters({IngredientsConverter.class, StepsConverter.class})
+@Database(entities = {ShoppingListEntry.class}, version = 1, exportSchema = false)
 public abstract class RecipeDatabase extends RoomDatabase {
 
     // For Singleton instantiation

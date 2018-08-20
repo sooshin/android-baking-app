@@ -190,6 +190,9 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         // Retrieve the ingredient list and convert the list to string
+        // Reference: @see "https://stackoverflow.com/questions/44580702/android-room-persistent-library
+        // -how-to-insert-class-that-has-a-list-object-fie"
+        // "https://medium.com/@toddcookevt/android-room-storing-lists-of-objects-766cca57e3f9"
         List<Ingredient> ingredientList = recipe.getIngredients();
         Gson gson = new Gson();
         Type listType = new TypeToken<List<Ingredient>>() {}.getType();

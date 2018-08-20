@@ -73,13 +73,6 @@ public class RecipeRepository {
     }
 
     /**
-     * Returns a LiveData of the list of RecipeEntry directly from the database
-     */
-    public LiveData<List<RecipeEntry>> getAllRecipes() {
-        return mRecipeDao.getAllRecipes();
-    }
-
-    /**
      * Returns {@link LiveData} with the list of ShoppingEntries directly from the database
      */
     public LiveData<List<ShoppingListEntry>> getAllShoppingList() {
