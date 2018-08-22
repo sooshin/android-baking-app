@@ -31,6 +31,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.google.code.gson:gson:2.8.0'
+    // OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    // OkHttp interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 
     implementation 'com.android.support:design:27.1.1'
 
@@ -48,6 +52,20 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
 
     testImplementation 'junit:junit:4.12'
+    // Android Testing Support Library's runner and rules
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
+
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:3.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
+    androidTestImplementation 'com.android.support:support-annotations:27.1.1'
+    implementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
+
+    // Idling Registry
+    debugImplementation 'com.android.support.test.espresso.idling:idling-concurrent:3.0.2'
+    // OkHttp Idling Resource
+    debugImplementation ('com.jakewharton.espresso:okhttp3-idling-resource:1.0.0') {
+        exclude module: 'support-annotations'
+    }
 }
