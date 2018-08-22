@@ -62,8 +62,6 @@ dependencies {
     androidTestImplementation 'com.android.support:support-annotations:27.1.1'
     implementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
 
-    // Idling Registry
-    debugImplementation 'com.android.support.test.espresso.idling:idling-concurrent:3.0.2'
     // OkHttp Idling Resource
     androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
     androidTestImplementation 'com.squareup.okhttp3:okhttp:3.11.0'
