@@ -58,7 +58,7 @@ public final class Constant {
 
     /** Constants for position number */
     public static final int POSITION_ZERO = 0;
-    static final int POSITION_ONE = 1;
+    public static final int POSITION_ONE = 1;
     static final int POSITION_TWO = 2;
     static final int POSITION_THREE = 3;
     static final int NUM_POSITION_FOUR = 4;
@@ -75,4 +75,5 @@ public final class Constant {
 
     /** Constants used for MainActivityBasicTest */
     public static final String RECIPE_NAME_AT_ZERO = "Nutella Pie";
+    public static final String RECIPE_NAME_AT_ONE = "Brownies";
 }
