@@ -57,7 +57,7 @@ public final class Constant {
     public static final int GRID_SPAN_COUNT = 1;
 
     /** Constants for position number */
-    static final int POSITION_ZERO = 0;
+    public static final int POSITION_ZERO = 0;
     static final int POSITION_ONE = 1;
     static final int POSITION_TWO = 2;
     static final int POSITION_THREE = 3;
@@ -65,4 +65,14 @@ public final class Constant {
 
     /** Constant for setting padding (px) of the recipe image */
     public static final int RECIPE_IMAGE_PADDING = 140;
+
+    /** Used for building OkHttp client */
+    static final int CONNECT_TIMEOUT_TEN = 10;
+    static final int READ_TIMEOUT_TWENTY = 20;
+
+    /** The name used for OkHttp IdlingResource */
+    public static final String NAME_OKHTTP= "OkHttp";
+
+    /** Constants used for MainActivityBasicTest */
+    public static final String RECIPE_NAME_AT_ZERO = "Nutella Pie";
 }

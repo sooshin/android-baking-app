@@ -65,7 +65,6 @@ dependencies {
     // Idling Registry
     debugImplementation 'com.android.support.test.espresso.idling:idling-concurrent:3.0.2'
     // OkHttp Idling Resource
-    debugImplementation ('com.jakewharton.espresso:okhttp3-idling-resource:1.0.0') {
-        exclude module: 'support-annotations'
-    }
+    androidTestImplementation 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0'
+    androidTestImplementation 'com.squareup.okhttp3:okhttp:3.11.0'
 }
