@@ -6,7 +6,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/list_item_selector">
+        android:background="?android:attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/tv_step_id"
@@ -29,10 +29,10 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/margin_activity_small"
             android:layout_marginStart="@dimen/margin_activity_small"
-            android:textSize="16sp"
             android:textColor="@color/indigo_900_dark"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/iv_play_arrow"
+            app:layout_constraintEnd_toStartOf="@+id/iv_thumbnail"
             app:layout_constraintStart_toEndOf="@+id/tv_step_id"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Add heavy cream and vanilla." />
@@ -47,6 +47,20 @@
             android:tint="@color/colorPrimaryDark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_thumbnail"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- The thumbnail image of the step -->
+        <ImageView
+            android:id="@+id/iv_thumbnail"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="@dimen/margin_activity_small"
+            android:layout_marginTop="@dimen/margin_activity_small"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_play_arrow"
+            app:layout_constraintStart_toEndOf="@+id/tv_step_short_description"
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>

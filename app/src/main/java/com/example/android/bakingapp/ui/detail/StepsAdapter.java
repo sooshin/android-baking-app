@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.StepsListItemBinding;
 import com.example.android.bakingapp.model.Step;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -122,7 +123,8 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
 
         /**
          * This method will take a step object and position as input and use that step and position
-         * to display the step ID and the short description within a list item.
+         * to display the step ID and the short description within a list item. If the thumbnail URL
+         * exists, display the thumbnail image of the step.
          *
          * @param step The step object
          * @param position The position of the item within the adapter's data set.
@@ -135,6 +137,21 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
             mStepsItemBinding.tvStepId.setText(String.valueOf(stepId));
             // Set the short description
             mStepsItemBinding.tvStepShortDescription.setText(step.getShortDescription());
+
+            String thumbnailUrl = step.getThumbnailUrl();
+            if (thumbnailUrl.isEmpty()) {
+                // Hide ImageView thumbnail
+                mStepsItemBinding.ivThumbnail.setVisibility(View.GONE);
+            } else {
+                // If the thumbnail URL exists, make sure ImageView visible and
+                // use the Picasso library to upload the thumbnail
+                mStepsItemBinding.ivThumbnail.setVisibility(View.VISIBLE);
+                Picasso.with(itemView.getContext())
+                        .load(thumbnailUrl)
+                        .error(R.drawable.recipe_error_image)
+                        .placeholder(R.drawable.recipe_error_image)
+                        .into(mStepsItemBinding.ivThumbnail);
+            }
         }
 
         /**
