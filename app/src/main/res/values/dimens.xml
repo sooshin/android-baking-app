@@ -58,6 +58,8 @@
     <dimen name="width_thumbnail_image">100dp</dimen>
     <dimen name="height_thumbnail_image">70dp</dimen>
 
+    <dimen name="min_size_widget">40dp</dimen>
+
     <!--
 Refer to App Widget Documentation for margin information
 http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
