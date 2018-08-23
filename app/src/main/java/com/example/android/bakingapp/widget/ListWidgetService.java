@@ -13,6 +13,9 @@ import com.example.android.bakingapp.utilities.BakingUtils;
 
 import java.util.List;
 
+/**
+ * This class is responsible for connecting a remote adapter to be able to request remote views.
+ */
 public class ListWidgetService extends RemoteViewsService {
 
     @Override

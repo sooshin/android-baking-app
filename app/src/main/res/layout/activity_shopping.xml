@@ -6,6 +6,7 @@
         android:layout_height="match_parent"
         android:background="@color/color_background">
 
+        <!-- Display the shopping list -->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_shopping"
             android:layout_width="match_parent"

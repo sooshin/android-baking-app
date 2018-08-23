@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!-- The image of the recipe -->
             <ImageView
                 android:id="@+id/iv_image"
                 android:layout_width="0dp"
@@ -33,6 +34,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!-- The name of the recipe -->
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"

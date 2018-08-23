@@ -26,11 +26,17 @@ public interface RecipeDao {
 
     /**
      * Insert a {@link ShoppingListEntry} into shopping_list table
+     *
      * @param shoppingListEntry The shopping list entry the user wants to add into the shopping list
      */
     @Insert
     void insertIngredient(ShoppingListEntry shoppingListEntry);
 
+    /**
+     * Delete a {@link ShoppingListEntry} from shopping_list table
+     *
+     * @param shoppingListEntry The shopping list entry the user wants to delete from the shopping list
+     */
     @Delete
     void deleteIngredient(ShoppingListEntry shoppingListEntry);
 

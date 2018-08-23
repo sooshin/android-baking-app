@@ -22,6 +22,9 @@ import com.example.android.bakingapp.utilities.InjectorUtils;
 
 import java.util.List;
 
+/**
+ * This activity will display the shopping list that a user clicks to add to the shopping list.
+ */
 public class ShoppingActivity extends AppCompatActivity {
 
     /** Member variable for the RecipeDatabase */

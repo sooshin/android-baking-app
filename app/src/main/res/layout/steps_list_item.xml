@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground">
 
+        <!-- Step ID -->
         <TextView
             android:id="@+id/tv_step_id"
             android:layout_width="wrap_content"
@@ -22,6 +23,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="7" />
 
+        <!-- Short Description of the step -->
         <TextView
             android:id="@+id/tv_step_short_description"
             android:layout_width="0dp"
@@ -37,6 +39,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Add heavy cream and vanilla." />
 
+        <!-- Play button -->
         <ImageView
             android:id="@+id/iv_play_arrow"
             android:layout_width="wrap_content"
@@ -50,7 +53,7 @@
             app:layout_constraintStart_toEndOf="@+id/iv_thumbnail"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- The thumbnail image of the step -->
+        <!-- Hide the thumbnail image of the step -->
         <ImageView
             android:id="@+id/iv_thumbnail"
             android:layout_width="100dp"

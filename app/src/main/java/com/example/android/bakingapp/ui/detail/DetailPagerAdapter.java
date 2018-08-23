@@ -12,11 +12,16 @@ import com.example.android.bakingapp.utilities.Constant;
 import static com.example.android.bakingapp.utilities.Constant.INGREDIENTS;
 import static com.example.android.bakingapp.utilities.Constant.STEPS;
 
+/**
+ * The DetailPagerAdapter provides the appropriate {@link Fragment} for a view pager.
+ */
 public class DetailPagerAdapter extends FragmentPagerAdapter {
 
     /** Context of the app */
     private Context mContext;
+    /** The number of ingredients */
     private int mNumIngredients;
+    /** The number of steps */
     private int mNumSteps;
 
     /**
@@ -55,7 +60,7 @@ public class DetailPagerAdapter extends FragmentPagerAdapter {
     }
 
     /**
-     * Return a title string to describe the specified page.
+     * Return a title string with the number of ingredients or steps to describe the specified page.
      *
      * @param position The position of the title requested
      * @return A title of the requested page

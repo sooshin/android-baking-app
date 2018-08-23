@@ -9,6 +9,9 @@ import com.example.android.bakingapp.ui.detail.IndicesViewModelFactory;
 import com.example.android.bakingapp.ui.main.MainViewModelFactory;
 import com.example.android.bakingapp.ui.shopping.ShoppingViewModelFactory;
 
+/**
+ * Provides static methods to inject the various classes needed for BakingApp.
+ */
 public class InjectorUtils {
 
     public static RecipeRepository provideRepository(Context context) {

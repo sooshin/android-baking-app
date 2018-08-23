@@ -8,6 +8,13 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A {@link Recipe} object includes information related to recipe, for example, recipe ID, recipe
+ * name, ingredients, steps, servings, and image URL.
+ * This class implements Parcelable interface to allow {@link Recipe} object to be sent as a Parcel.
+ *
+ * Reference: @see "https://stackoverflow.com/questions/7181526/how-can-i-make-my-custom-objects-parcelable"
+ */
 public class Recipe implements Parcelable {
 
     @SerializedName("id")

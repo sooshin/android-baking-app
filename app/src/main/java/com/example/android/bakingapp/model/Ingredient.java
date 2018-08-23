@@ -5,6 +5,10 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * A {@link Ingredient} object includes information related to recipe ingredient.
+ * This class implements Parcelable interface to allow {@link Ingredient} object to be sent as a Parcel.
+ */
 public class Ingredient implements Parcelable {
 
     @SerializedName("quantity")

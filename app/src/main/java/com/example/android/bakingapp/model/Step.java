@@ -5,6 +5,11 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * A {@link Step} object includes information such as step ID, short description, description,
+ * video URL, thumbnail URL.
+ * This class implements Parcelable interface to allow {@link Step} object to be sent as a Parcel.
+ */
 public class Step implements Parcelable {
 
     @SerializedName("id")
