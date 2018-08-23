@@ -60,4 +60,10 @@
         <item name="android:textColor">@color/color_tab_text</item>
     </style>
 
+    <style name="ImageButtonStyle">
+        <item name="android:layout_width">@dimen/size_button</item>
+        <item name="android:layout_height">@dimen/size_button</item>
+        <item name="android:layout_margin">@dimen/margin_activity</item>
+        <item name="android:background">@drawable/step_circle</item>
+    </style>
 </resources>

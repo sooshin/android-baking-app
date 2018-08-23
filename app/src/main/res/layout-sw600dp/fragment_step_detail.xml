@@ -49,10 +49,7 @@
             <!-- Previous button -->
             <ImageButton
                 android:id="@+id/bt_previous"
-                android:layout_width="@dimen/size_button"
-                android:layout_height="@dimen/size_button"
-                android:layout_margin="@dimen/margin_button_tablet"
-                android:background="@drawable/step_circle_gradient"
+                style="@style/ImageButtonStyle"
                 android:contentDescription="@string/bt_previous_content_description"
                 android:src="@drawable/navigate_previous"
                 app:layout_constraintBottom_toBottomOf="@+id/frame_player"
@@ -64,10 +61,7 @@
             <!-- Next button -->
             <ImageButton
                 android:id="@+id/bt_next"
-                android:layout_width="@dimen/size_button"
-                android:layout_height="@dimen/size_button"
-                android:layout_margin="@dimen/margin_button_tablet"
-                android:background="@drawable/step_circle_gradient"
+                style="@style/ImageButtonStyle"
                 android:contentDescription="@string/bt_next_content_description"
                 android:src="@drawable/navigate_next"
                 app:layout_constraintBottom_toBottomOf="@+id/frame_player"

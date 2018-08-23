@@ -33,4 +33,11 @@
     <!-- Shopping Activity theme -->
     <style name="BaseTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
     </style>
+
+    <style name="ImageButtonStyle">
+        <item name="android:layout_width">@dimen/size_button</item>
+        <item name="android:layout_height">@dimen/size_button</item>
+        <item name="android:layout_margin">@dimen/margin_button_tablet</item>
+        <item name="android:background">@drawable/step_circle_gradient</item>
+    </style>
 </resources>
