@@ -17,6 +17,7 @@
         android:paddingRight="@dimen/margin_activity"
         android:paddingStart="@dimen/margin_activity"
         android:paddingTop="@dimen/margin_activity_small"
+        android:textColor="@color/white"
         android:textSize="18sp"
         tools:text="Cheesecake" />
 

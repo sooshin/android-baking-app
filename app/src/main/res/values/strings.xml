@@ -40,10 +40,12 @@
     <!-- Strings for widget -->
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
-    <string name="widget_empty_view_text">Choose your desired recipe to display ingredients!</string>
+    <string name="widget_empty_view_text">Click a recipe to display ingredients!</string>
 
     <!-- Key name for storing the list of ingredients in SharedPreferences -->
     <string name="pref_ingredient_list_key">pref_ingredient_list</string>
+    <!-- Key name for storing the recipe name in SharedPreferences -->
+    <string name="pref_recipe_name_key">pref_recipe_name</string>
 
     <!-- Snack bar message displayed when a user adds an ingredient to a shopping list -->
     <string name="snackbar_added">Added to your shopping list</string>

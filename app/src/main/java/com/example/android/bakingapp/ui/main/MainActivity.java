@@ -200,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
         // Save the string
         editor.putString(getString(R.string.pref_ingredient_list_key), ingredientString);
+        editor.putString(getString(R.string.pref_recipe_name_key), recipe.getName());
         editor.apply();
     }
 
