@@ -20,15 +20,12 @@ import com.example.android.bakingapp.GridAutofitLayoutManager;
 import com.example.android.bakingapp.MyApp;
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.databinding.ActivityMainBinding;
-import com.example.android.bakingapp.model.Ingredient;
 import com.example.android.bakingapp.model.Recipe;
 import com.example.android.bakingapp.ui.detail.DetailActivity;
+import com.example.android.bakingapp.utilities.BakingUtils;
 import com.example.android.bakingapp.utilities.InjectorUtils;
 import com.example.android.bakingapp.widget.RecipeWidgetProvider;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -189,18 +186,22 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         // Get the editor object
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        // Retrieve the ingredient list and convert the list to string
-        // Reference: @see "https://stackoverflow.com/questions/44580702/android-room-persistent-library
-        // -how-to-insert-class-that-has-a-list-object-fie"
-        // "https://medium.com/@toddcookevt/android-room-storing-lists-of-objects-766cca57e3f9"
-        List<Ingredient> ingredientList = recipe.getIngredients();
-        Gson gson = new Gson();
-        Type listType = new TypeToken<List<Ingredient>>() {}.getType();
-        String ingredientString = gson.toJson(ingredientList, listType);
+        // Get the ingredient list and convert the list to string
+        String ingredientString = BakingUtils.toIngredientString(recipe.getIngredients());
 
-        // Save the string
+        // Save the string used for displaying in the app widget
         editor.putString(getString(R.string.pref_ingredient_list_key), ingredientString);
         editor.putString(getString(R.string.pref_recipe_name_key), recipe.getName());
+
+        // Convert the list of the steps to String
+        String stepString = BakingUtils.toStepString(recipe.getSteps());
+
+        // Save the recipe data used for launching the DetailActivity
+        editor.putInt(getString(R.string.pref_recipe_id_key), recipe.getId());
+        editor.putString(getString(R.string.pref_step_list_key), stepString);
+        editor.putString(getString(R.string.pref_image_key), recipe.getImage());
+        editor.putInt(getString(R.string.pref_servings_key), recipe.getServings());
+
         editor.apply();
     }
 

@@ -4,6 +4,14 @@ import android.content.Context;
 import android.support.v4.content.ContextCompat;
 
 import com.example.android.bakingapp.R;
+import com.example.android.bakingapp.model.Ingredient;
+import com.example.android.bakingapp.model.Step;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.Collections;
+import java.util.List;
 
 import static com.example.android.bakingapp.utilities.Constant.NUM_POSITION_FOUR;
 import static com.example.android.bakingapp.utilities.Constant.POSITION_ONE;
@@ -99,6 +107,58 @@ public class BakingUtils {
                 break;
         }
         return imageResourceId;
+    }
+
+    /**
+     * Convert ingredient string to the list of ingredients
+     *
+     * Reference: @see "https://stackoverflow.com/questions/44580702/android-room-persistent-library
+     * -how-to-insert-class-that-has-a-list-object-fie"
+     * "https://medium.com/@toddcookevt/android-room-storing-lists-of-objects-766cca57e3f9"
+     */
+    public static List<Ingredient> toIngredientList(String ingredientString) {
+        if (ingredientString == null) {
+            return Collections.emptyList();
+        }
+        Gson gson = new Gson();
+        Type listType = new TypeToken<List<Ingredient>>() {}.getType();
+        return gson.fromJson(ingredientString, listType);
+    }
+
+    /**
+     * Convert the list of ingredients to the String.
+     */
+    public static String toIngredientString(List<Ingredient> ingredientList) {
+        if (ingredientList == null) {
+            return null;
+        }
+        Gson gson = new Gson();
+        Type listType = new TypeToken<List<Ingredient>>() {}.getType();
+        return gson.toJson(ingredientList, listType);
+    }
+
+    /**
+     * Convert the String to the list of steps.
+     */
+    public static List<Step> toStepList(String stepString) {
+        if (stepString == null) {
+            return Collections.emptyList();
+        }
+        Gson gson = new Gson();
+        Type stepListType = new TypeToken<List<Step>>() {}.getType();
+        return gson.fromJson(stepString, stepListType);
+    }
+
+    /**
+     * Convert the list of steps to the String.
+     */
+    public static String toStepString(List<Step> stepList) {
+        if (stepList == null) {
+            return null;
+        }
+        Gson gson = new Gson();
+        Type stepListType = new TypeToken<List<Step>>() {}.getType();
+        return gson.toJson(stepList, stepListType);
     }
 
 }

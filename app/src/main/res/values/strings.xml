@@ -46,6 +46,14 @@
     <string name="pref_ingredient_list_key">pref_ingredient_list</string>
     <!-- Key name for storing the recipe name in SharedPreferences -->
     <string name="pref_recipe_name_key">pref_recipe_name</string>
+    <!-- Key name for storing the recipe id in SharedPreferences -->
+    <string name="pref_recipe_id_key">pref_recipe_id</string>
+    <!-- Key name for storing the list of steps in SharedPreferences -->
+    <string name="pref_step_list_key">pref_step_list</string>
+    <!-- Key name for storing servings in SharedPreferences -->
+    <string name="pref_servings_key">pref_servings</string>
+    <!-- Key name for storing the image URL in SharedPreferences -->
+    <string name="pref_image_key">pref_image</string>
 
     <!-- Snack bar message displayed when a user adds an ingredient to a shopping list -->
     <string name="snackbar_added">Added to your shopping list</string>
