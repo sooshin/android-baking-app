@@ -139,7 +139,10 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
             mStepsItemBinding.tvStepShortDescription.setText(step.getShortDescription());
 
             String thumbnailUrl = step.getThumbnailUrl();
-            if (thumbnailUrl.isEmpty()) {
+            // Check if the thumbnail has a valid URL.
+            // (e.g. The Step 5 of Nutella Pie has an "mp4" in the thumbnail URL)
+            if (thumbnailUrl.isEmpty() || thumbnailUrl.contains(
+                    itemView.getContext().getString(R.string.mp4))) {
                 // Hide ImageView thumbnail
                 mStepsItemBinding.ivThumbnail.setVisibility(View.GONE);
             } else {
