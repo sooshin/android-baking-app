@@ -9,10 +9,8 @@ import android.widget.RemoteViewsService;
 
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.model.Ingredient;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.example.android.bakingapp.utilities.BakingUtils;
 
-import java.lang.reflect.Type;
 import java.util.List;
 
 public class ListWidgetService extends RemoteViewsService {
@@ -45,9 +43,7 @@ public class ListWidgetService extends RemoteViewsService {
             String ingredientString = sharedPreferences.getString(getString(R.string.pref_ingredient_list_key), "");
 
             // Convert ingredient string to the list of ingredients
-            Gson gson = new Gson();
-            Type listType = new TypeToken<List<Ingredient>>() {}.getType();
-            mIngredientList = gson.fromJson(ingredientString, listType);
+            mIngredientList = BakingUtils.toIngredientList(ingredientString);
         }
 
         @Override
