@@ -9,8 +9,8 @@
 
         <ImageView
             android:id="@+id/iv_add"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
+            android:layout_width="@dimen/size_add_image"
+            android:layout_height="@dimen/size_add_image"
             android:layout_margin="@dimen/margin_activity"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

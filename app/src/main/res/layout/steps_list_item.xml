@@ -56,8 +56,8 @@
         <!-- Hide the thumbnail image of the step -->
         <ImageView
             android:id="@+id/iv_thumbnail"
-            android:layout_width="100dp"
-            android:layout_height="70dp"
+            android:layout_width="@dimen/width_thumbnail_image"
+            android:layout_height="@dimen/height_thumbnail_image"
             android:layout_marginBottom="@dimen/margin_activity_small"
             android:layout_marginTop="@dimen/margin_activity_small"
             android:visibility="gone"

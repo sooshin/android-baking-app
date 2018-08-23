@@ -4,12 +4,15 @@
     <!-- Common margin value used through out the app -->
     <dimen name="margin_activity">16dp</dimen>
     <dimen name="margin_activity_small">8dp</dimen>
+    <dimen name="margin_activity_4">4dp</dimen>
 
     <!-- CardView-->
     <dimen name="card_corner_radius">4dp</dimen>
     <dimen name="card_elevation">0.7dp</dimen>
     <dimen name="card_max_elevation">1dp</dimen>
     <dimen name="card_content_padding_zero">0dp</dimen>
+    <dimen name="margin_card_2">2dp</dimen>
+    <dimen name="margin_card_5">5dp</dimen>
 
     <!-- A margin for TextView servings in activity_detail -->
     <dimen name="margin_servings">64dp</dimen>
@@ -28,6 +31,16 @@
 
     <!-- A margin for empty view -->
     <dimen name="padding_shopping_empty">32dp</dimen>
+
+    <!-- Size of default time bar -->
+    <dimen name="height_time_bar">26dp</dimen>
+
+    <!-- Size of image add -->
+    <dimen name="size_add_image">22dp</dimen>
+
+    <!-- Size of thumbnail -->
+    <dimen name="width_thumbnail_image">100dp</dimen>
+    <dimen name="height_thumbnail_image">70dp</dimen>
 
     <!--
 Refer to App Widget Documentation for margin information
