@@ -16,6 +16,12 @@ public class Ingredient implements Parcelable {
     @SerializedName("ingredient")
     private String mIngredient;
 
+    public Ingredient(double quantity, String measure, String ingredient) {
+        mQuantity = quantity;
+        mMeasure = measure;
+        mIngredient = ingredient;
+    }
+
     private Ingredient(Parcel in) {
         mQuantity = in.readDouble();
         mMeasure = in.readString();

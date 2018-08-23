@@ -59,7 +59,7 @@ public final class Constant {
     /** Constants for position number */
     public static final int POSITION_ZERO = 0;
     public static final int POSITION_ONE = 1;
-    static final int POSITION_TWO = 2;
+    public static final int POSITION_TWO = 2;
     static final int POSITION_THREE = 3;
     static final int NUM_POSITION_FOUR = 4;
 
