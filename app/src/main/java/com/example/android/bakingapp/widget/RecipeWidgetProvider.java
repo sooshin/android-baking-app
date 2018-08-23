@@ -20,7 +20,11 @@ import com.example.android.bakingapp.utilities.BakingUtils;
 
 import java.util.List;
 
+import static com.example.android.bakingapp.utilities.Constant.DEFAULT_INTEGER;
+import static com.example.android.bakingapp.utilities.Constant.DEFAULT_INTEGER_FOR_SERVINGS;
+import static com.example.android.bakingapp.utilities.Constant.DEFAULT_STRING;
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
+import static com.example.android.bakingapp.utilities.Constant.WIDGET_PENDING_INTENT_ID;
 
 /**
  * Implementation of App Widget functionality.
@@ -56,14 +60,20 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
     private static RemoteViews getTitleRemoteView(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         // Get the recipe name used for displaying in the app widget
-        String recipeName = sharedPreferences.getString(context.getString(R.string.pref_recipe_name_key), "");
+        String recipeName = sharedPreferences.getString(
+                context.getString(R.string.pref_recipe_name_key), DEFAULT_STRING);
 
         // Extract recipe data used for creating the recipe object
-        int recipeId = sharedPreferences.getInt(context.getString(R.string.pref_recipe_id_key), 1);
-        String ingredientString = sharedPreferences.getString(context.getString(R.string.pref_ingredient_list_key), "");
-        String stepString = sharedPreferences.getString(context.getString(R.string.pref_step_list_key), "");
-        int servings =  sharedPreferences.getInt(context.getString(R.string.pref_servings_key), 8);
-        String image = sharedPreferences.getString(context.getString(R.string.pref_image_key), "");
+        int recipeId = sharedPreferences.getInt(
+                context.getString(R.string.pref_recipe_id_key), DEFAULT_INTEGER);
+        String ingredientString = sharedPreferences.getString(
+                context.getString(R.string.pref_ingredient_list_key),  DEFAULT_STRING);
+        String stepString = sharedPreferences.getString(
+                context.getString(R.string.pref_step_list_key),  DEFAULT_STRING);
+        int servings =  sharedPreferences.getInt(
+                context.getString(R.string.pref_servings_key), DEFAULT_INTEGER_FOR_SERVINGS);
+        String image = sharedPreferences.getString(
+                context.getString(R.string.pref_image_key),  DEFAULT_STRING);
 
         // Create an Intent to launch MainActivity or DetailActivity when clicked
         Intent intent;
@@ -98,7 +108,7 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
         }
 
         // Widgets allow click handlers to only launch pending intents
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, WIDGET_PENDING_INTENT_ID,
                 intent, PendingIntent.FLAG_UPDATE_CURRENT);
         views.setOnClickPendingIntent(R.id.widget_recipe_name, pendingIntent);
 

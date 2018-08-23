@@ -76,4 +76,12 @@ public final class Constant {
     /** Constants used for MainActivityBasicTest */
     public static final String RECIPE_NAME_AT_ZERO = "Nutella Pie";
     public static final String RECIPE_NAME_AT_ONE = "Brownies";
+
+    /** The default value for the SharedPreferences */
+    public static final String DEFAULT_STRING = "";
+    public static final int DEFAULT_INTEGER = 1;
+    public static final int DEFAULT_INTEGER_FOR_SERVINGS = 8;
+
+    /** The pending intent ID is used for the widget to uniquely reference the pending intent */
+    public static final int WIDGET_PENDING_INTENT_ID = 0;
 }
