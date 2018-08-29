@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~  Copyright 2018 Soojeong Shin
   ~
   ~  Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,12 +33,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textAlignment="center"
+            android:fontFamily="@font/muli_regular"
             android:padding="@dimen/padding_shopping_empty"
-            android:textSize="18sp"
-            android:visibility="gone"
+            android:text="@string/empty_view_shopping"
+            android:textAlignment="center"
             android:textColor="@color/purple"
-            android:text="@string/empty_view_shopping" />
+            android:textSize="18sp"
+            android:visibility="gone" />
 
     </FrameLayout>
 </layout>

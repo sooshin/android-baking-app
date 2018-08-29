@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~  Copyright 2018 Soojeong Shin
   ~
   ~  Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,9 +28,9 @@
             android:id="@+id/tv_recipe_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/muli_extra_bold"
             android:textColor="@color/purple"
             android:textSize="18sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -44,8 +43,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_activity"
             android:layout_marginStart="@dimen/margin_activity"
+            android:fontFamily="@font/muli_semi_bold"
             android:textColor="@color/indigo_900_dark"
-            android:textSize="16sp"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_recipe_name"
             app:layout_constraintTop_toTopOf="parent"
@@ -56,10 +56,11 @@
             android:id="@+id/tv_measure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/muli_semi_bold"
             android:paddingLeft="@dimen/margin_activity_small"
             android:paddingRight="@dimen/margin_activity_small"
             android:textColor="@color/indigo_900_dark"
-            android:textSize="16sp"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_quantity"
             app:layout_constraintTop_toTopOf="parent"
@@ -72,8 +73,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_activity_small"
             android:layout_marginStart="@dimen/margin_activity_small"
+            android:fontFamily="@font/muli_regular"
             android:textColor="@color/indigo_900_dark"
-            android:textSize="16sp"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_measure"

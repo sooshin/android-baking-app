@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~  Copyright 2018 Soojeong Shin
   ~
   ~  Licensed under the Apache License, Version 2.0 (the "License");
@@ -61,6 +60,7 @@
                         android:layout_marginBottom="@dimen/margin_activity"
                         android:layout_marginEnd="@dimen/margin_activity_small"
                         android:layout_marginRight="@dimen/margin_activity_small"
+                        android:fontFamily="@font/muli_semi_bold"
                         android:text="@string/servings_label"
                         android:textColor="@android:color/white"
                         android:textSize="16sp"
@@ -74,6 +74,7 @@
                         android:layout_marginBottom="@dimen/margin_activity"
                         android:layout_marginEnd="@dimen/margin_servings"
                         android:layout_marginRight="@dimen/margin_servings"
+                        android:fontFamily="@font/muli_semi_bold"
                         android:textColor="@android:color/white"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
