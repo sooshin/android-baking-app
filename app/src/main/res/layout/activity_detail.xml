@@ -56,13 +56,15 @@
                             android:id="@+id/iv_detail"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="centerCrop" />
+                            android:scaleType="centerCrop"
+                            android:contentDescription="@string/detail_content_description"/>
 
                         <!-- ImageView for scrim gradient -->
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/scrim_gradient" />
+                            android:background="@drawable/scrim_gradient"
+                            android:contentDescription="@string/scrim_content_description"/>
 
                     </FrameLayout>
 

@@ -42,6 +42,7 @@
                 android:id="@+id/iv_image"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:contentDescription="@string/recipe_content_description"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@+id/tv_name"
                 app:layout_constraintDimensionRatio="H,1:1"

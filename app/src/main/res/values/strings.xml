@@ -41,6 +41,13 @@
     <string name="bt_next_content_description">Next button</string>
     <string name="widget_empty_content_description">The chef hat image displayed when the
         desired recipe is empty</string>
+    <string name="recipe_content_description">The recipe image</string>
+    <string name="add_content_description">The image button that allows the user to add an
+        ingredient to the shopping list</string>
+    <string name="bt_play_content_description">Play button</string>
+    <string name="thumbnail_content_description">The thumbnail of the step</string>
+    <string name="scrim_content_description">The scrim gradient to separate the text from the background</string>
+    <string name="detail_content_description">The recipe image</string>
 
     <!-- Strings for Notifications -->
     <string name="pause">pause</string>
