@@ -16,7 +16,7 @@
 
 package com.example.android.bakingapp.utilities;
 
-import android.support.constraint.BuildConfig;
+import com.example.android.bakingapp.BuildConfig;
 
 import java.util.concurrent.TimeUnit;
 
