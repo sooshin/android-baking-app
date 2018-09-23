@@ -54,3 +54,11 @@ made by [Roundicons](https://www.flaticon.com/authors/roundicons) from
 
 #### The Main layout design inspired by [Android Dashboard Layout Design](https://www.youtube.com/watch?v=yOZFId3uOrs) - a concept design which is an idea for the dashboard layout with different color combinations. 
 
+## Screenshots
+![baking_1_main](https://user-images.githubusercontent.com/33213229/45925949-c5b80980-bf58-11e8-8081-056dd6fca836.png)
+![baking_2_ingredients](https://user-images.githubusercontent.com/33213229/45925950-c8b2fa00-bf58-11e8-9c30-605ba436e430.png)
+![baking_3_steps](https://user-images.githubusercontent.com/33213229/45925951-cb155400-bf58-11e8-8063-2d650d4bd5ee.png)
+![baking_4_step_detail_6](https://user-images.githubusercontent.com/33213229/45925952-ccdf1780-bf58-11e8-9a5b-4cc9c652f975.png)
+![baking_5_step_detail_7](https://user-images.githubusercontent.com/33213229/45925953-cfda0800-bf58-11e8-9be8-99f1c0e1913f.png)
+![baking_6_landscape](https://user-images.githubusercontent.com/33213229/45925954-d1a3cb80-bf58-11e8-927b-7cc9b9b5a886.png)
+![baking_tablet](https://user-images.githubusercontent.com/33213229/45925777-f5661200-bf56-11e8-9a9d-313bf3fe1ef2.png)
