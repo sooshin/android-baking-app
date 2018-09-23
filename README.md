@@ -61,4 +61,4 @@ made by [Roundicons](https://www.flaticon.com/authors/roundicons) from
 ![baking_4_step_detail_6](https://user-images.githubusercontent.com/33213229/45925952-ccdf1780-bf58-11e8-9a5b-4cc9c652f975.png)
 ![baking_5_step_detail_7](https://user-images.githubusercontent.com/33213229/45925953-cfda0800-bf58-11e8-9be8-99f1c0e1913f.png)
 ![baking_6_landscape](https://user-images.githubusercontent.com/33213229/45925954-d1a3cb80-bf58-11e8-927b-7cc9b9b5a886.png)
-![baking_tablet](https://user-images.githubusercontent.com/33213229/45925777-f5661200-bf56-11e8-9a9d-313bf3fe1ef2.png)
+![baking_tablet](https://user-images.githubusercontent.com/33213229/45926062-a1a8f800-bf59-11e8-9c02-bb2178d2fec1.png)
