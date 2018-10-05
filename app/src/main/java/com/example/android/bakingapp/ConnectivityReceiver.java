@@ -48,7 +48,7 @@ public class ConnectivityReceiver extends BroadcastReceiver {
         ConnectivityManager connectivityManager =
                 (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        boolean isConnected = networkInfo != null && networkInfo.isConnectedOrConnecting();
+        boolean isConnected = networkInfo != null && networkInfo.isConnected();
 
         if (sReceiverListener != null) {
             sReceiverListener.onNetworkConnectionChanged(isConnected);
@@ -62,7 +62,7 @@ public class ConnectivityReceiver extends BroadcastReceiver {
 
         // Get details on the currently active default data network
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+        return networkInfo != null && networkInfo.isConnected();
     }
 
 }
