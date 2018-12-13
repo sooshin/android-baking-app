@@ -54,11 +54,17 @@ made by [Roundicons](https://www.flaticon.com/authors/roundicons) from
 
 #### The Main layout design inspired by [Android Dashboard Layout Design](https://www.youtube.com/watch?v=yOZFId3uOrs) - a concept design which is an idea for the dashboard layout with different color combinations. 
 
+## Video
+Click [here](https://youtu.be/k7Q8SvEuUmg) to see a video demonstrating the app.
+
 ## Screenshots
-![baking_1_main](https://user-images.githubusercontent.com/33213229/45925949-c5b80980-bf58-11e8-8081-056dd6fca836.png)
-![baking_2_ingredients](https://user-images.githubusercontent.com/33213229/45925950-c8b2fa00-bf58-11e8-9c30-605ba436e430.png)
-![baking_3_steps](https://user-images.githubusercontent.com/33213229/45925951-cb155400-bf58-11e8-8063-2d650d4bd5ee.png)
-![baking_4_step_detail_6](https://user-images.githubusercontent.com/33213229/45925952-ccdf1780-bf58-11e8-9a5b-4cc9c652f975.png)
-![baking_5_step_detail_7](https://user-images.githubusercontent.com/33213229/45925953-cfda0800-bf58-11e8-9be8-99f1c0e1913f.png)
-![baking_6_landscape](https://user-images.githubusercontent.com/33213229/45925954-d1a3cb80-bf58-11e8-927b-7cc9b9b5a886.png)
+![main](https://user-images.githubusercontent.com/33213229/49941483-fa1ede80-ff25-11e8-876a-d739a1c2ba32.png)&nbsp;&nbsp;&nbsp;
+![ingredients](https://user-images.githubusercontent.com/33213229/49941712-abbe0f80-ff26-11e8-938e-9abd4b3230a0.png)&nbsp;&nbsp;&nbsp;
+![steps](https://user-images.githubusercontent.com/33213229/49941743-c2646680-ff26-11e8-9363-04c2eb103f75.png)
+
+![step_6](https://user-images.githubusercontent.com/33213229/49941954-4cacca80-ff27-11e8-9090-679ee752d70d.png)&nbsp;&nbsp;&nbsp;
+![step_7](https://user-images.githubusercontent.com/33213229/49941957-4dddf780-ff27-11e8-9a37-af56c7c6d9e9.png)
+
+![land](https://user-images.githubusercontent.com/33213229/49941966-51717e80-ff27-11e8-808f-bda6714d29b8.png)
+
 ![baking_tablet](https://user-images.githubusercontent.com/33213229/45926062-a1a8f800-bf59-11e8-9c02-bb2178d2fec1.png)
