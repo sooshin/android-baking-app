@@ -54,6 +54,19 @@ made by [Roundicons](https://www.flaticon.com/authors/roundicons) from
 
 #### The Main layout design is inspired by [Android Dashboard Layout Design](https://www.youtube.com/watch?v=yOZFId3uOrs) which is a concept design an idea for the dashboard layout with different color combinations. 
 
+## Libraries
+- [Android Architecture Components](https://developer.android.com/topic/libraries/architecture/) 
+    * [Room](https://developer.android.com/topic/libraries/architecture/room)
+    * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
+    * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
+- [Android Data Binding](https://developer.android.com/topic/libraries/data-binding/)
+- [Retrofit](http://square.github.io/retrofit/) for REST api communication
+- [ExoPlayer](https://github.com/google/ExoPlayer) to play media locally and over the Internet
+- [Picasso](http://square.github.io/picasso/) for image loading
+- [Timber](https://github.com/JakeWharton/timber)
+- [OkHttp](http://square.github.io/okhttp/)
+
+
 ## Video
 I've created a video demonstrating the app. Here is the link: https://youtu.be/k7Q8SvEuUmg
 
@@ -68,3 +81,6 @@ I've created a video demonstrating the app. Here is the link: https://youtu.be/k
 ![land](https://user-images.githubusercontent.com/33213229/49941966-51717e80-ff27-11e8-808f-bda6714d29b8.png)
 
 ![baking_tablet](https://user-images.githubusercontent.com/33213229/45926062-a1a8f800-bf59-11e8-9c02-bb2178d2fec1.png)
+
+## License
+Apache, see the [LICENSE](LICENSE) file.
