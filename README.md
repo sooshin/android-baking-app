@@ -52,10 +52,10 @@ made by [Roundicons](https://www.flaticon.com/authors/roundicons) from
 [Photo](https://unsplash.com/photos/0JFveX0c778) by [Andy Chilton](https://unsplash.com/@andyc) on [Unsplash](https://unsplash.com/).
 [Photo](https://unsplash.com/photos/TAegVkFYIqo) by [Joseph Gonzalez](https://unsplash.com/@miracletwentyone) on [Unsplash](https://unsplash.com/).
 
-#### The Main layout design inspired by [Android Dashboard Layout Design](https://www.youtube.com/watch?v=yOZFId3uOrs) - a concept design which is an idea for the dashboard layout with different color combinations. 
+#### The Main layout design is inspired by [Android Dashboard Layout Design](https://www.youtube.com/watch?v=yOZFId3uOrs) which is a concept design an idea for the dashboard layout with different color combinations. 
 
 ## Video
-Click [here](https://youtu.be/k7Q8SvEuUmg) to see a video demonstrating the app.
+I've created a video demonstrating the app. Here is the link: https://youtu.be/k7Q8SvEuUmg
 
 ## Screenshots
 ![main](https://user-images.githubusercontent.com/33213229/49941483-fa1ede80-ff25-11e8-876a-d739a1c2ba32.png)&nbsp;&nbsp;&nbsp;
