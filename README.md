@@ -66,6 +66,9 @@ made by [Roundicons](https://www.flaticon.com/authors/roundicons) from
 - [Timber](https://github.com/JakeWharton/timber)
 - [OkHttp](http://square.github.io/okhttp/)
 
+## Video
+I've created a video demonstrating the app. Here is the link: https://youtu.be/k7Q8SvEuUmg
+
 ## Screenshots
 ![main](https://user-images.githubusercontent.com/33213229/49941483-fa1ede80-ff25-11e8-876a-d739a1c2ba32.png)&nbsp;&nbsp;&nbsp;
 ![ingredients](https://user-images.githubusercontent.com/33213229/49941712-abbe0f80-ff26-11e8-938e-9abd4b3230a0.png)&nbsp;&nbsp;&nbsp;
