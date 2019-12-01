@@ -17,7 +17,7 @@
 package com.example.android.bakingapp.utilities;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.android.bakingapp.R;
 import com.example.android.bakingapp.model.Ingredient;

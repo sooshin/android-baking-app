@@ -16,9 +16,9 @@
 
 package com.example.android.bakingapp.ui.main;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import com.example.android.bakingapp.data.RecipeRepository;
 

@@ -19,13 +19,13 @@ package com.example.android.bakingapp.ui.player;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.databinding.DataBindingUtil;
+import androidx.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.view.LayoutInflater;
@@ -639,7 +639,6 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
             showButtonWhenPausedEnded();
         }
         sMediaSession.setPlaybackState(mStateBuilder.build());
-        
     }
 
     @Override

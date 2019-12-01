@@ -16,8 +16,8 @@
 
 package com.example.android.bakingapp.ui.shopping;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.ViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.android.bakingapp.data.RecipeRepository;
 import com.example.android.bakingapp.data.ShoppingListEntry;

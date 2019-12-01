@@ -16,8 +16,8 @@
 
 package com.example.android.bakingapp.data;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.example.android.bakingapp.AppExecutors;
 import com.example.android.bakingapp.model.Recipe;

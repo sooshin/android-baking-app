@@ -19,7 +19,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.android.bakingapp.ui.detail.DetailActivity">
@@ -53,7 +53,7 @@
             app:layout_constraintTop_toBottomOf="@+id/master_list_ingredients_fragment" />
 
         <!-- Vertical guideline -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/vertical_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,5 +69,5 @@
             app:layout_constraintStart_toEndOf="@+id/vertical_guideline"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
