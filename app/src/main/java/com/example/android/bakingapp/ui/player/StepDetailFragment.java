@@ -17,11 +17,6 @@
 package com.example.android.bakingapp.ui.player;
 
 import android.annotation.SuppressLint;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.databinding.DataBindingUtil;
@@ -31,8 +26,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.media.session.MediaButtonReceiver;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.view.LayoutInflater;
@@ -65,9 +58,6 @@ import com.squareup.picasso.Picasso;
 
 import timber.log.Timber;
 
-import static com.example.android.bakingapp.utilities.Constant.BAKING_NOTIFICATION_CHANNEL_ID;
-import static com.example.android.bakingapp.utilities.Constant.BAKING_NOTIFICATION_ID;
-import static com.example.android.bakingapp.utilities.Constant.BAKING_PENDING_INTENT_ID;
 import static com.example.android.bakingapp.utilities.Constant.EXTRA_RECIPE;
 import static com.example.android.bakingapp.utilities.Constant.FAST_FORWARD_INCREMENT;
 import static com.example.android.bakingapp.utilities.Constant.PLAYER_PLAYBACK_SPEED;
@@ -116,7 +106,6 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
 
     private static MediaSessionCompat sMediaSession;
     private PlaybackStateCompat.Builder mStateBuilder;
-    private NotificationManager mNotificationManager;
 
     // Tag for a MediaSessionCompat
     private static final String TAG = StepDetailFragment.class.getSimpleName();
@@ -533,7 +522,6 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
      */
     private void releasePlayer() {
         if (mExoPlayer != null) {
-            mNotificationManager.cancelAll();
             updateCurrentPosition();
             mExoPlayer.release();
             mExoPlayer = null;
@@ -651,9 +639,7 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
             showButtonWhenPausedEnded();
         }
         sMediaSession.setPlaybackState(mStateBuilder.build());
-
-        // Shows Media Style notification
-        showNotification(mStateBuilder.build());
+        
     }
 
     @Override
@@ -687,85 +673,6 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
     }
 
     /**
-     * Shows Media Style notification, with actions that depend on the current MediaSession
-     * PlaybackState
-     *
-     * @param state The PlaybackState of the MediaSession
-     */
-    private void showNotification(PlaybackStateCompat state) {
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(getContext(), BAKING_NOTIFICATION_CHANNEL_ID);
-
-        int icon;
-        String play_pause;
-        if (state.getState() == PlaybackStateCompat.STATE_PLAYING) {
-            icon = R.drawable.exo_controls_pause;
-            play_pause = getString(R.string.pause);
-        } else {
-            icon = R.drawable.exo_controls_play;
-            play_pause = getString(R.string.play);
-        }
-
-        // Create play pause notification action
-        NotificationCompat.Action playPauseAction = new NotificationCompat.Action(icon, play_pause,
-                MediaButtonReceiver.buildMediaButtonPendingIntent(getContext(),
-                        PlaybackStateCompat.ACTION_PLAY_PAUSE));
-
-        // Create rewind notification action
-        NotificationCompat.Action rewindAction = new NotificationCompat.Action(
-                R.drawable.exo_controls_rewind, getString(R.string.rewind),
-                MediaButtonReceiver.buildMediaButtonPendingIntent(getContext(),
-                        PlaybackStateCompat.ACTION_REWIND));
-
-        // Create fast forward notification action
-        NotificationCompat.Action fastForwardAction = new NotificationCompat.Action(
-                R.drawable.exo_controls_fastforward, getString(R.string.fast_forward),
-                MediaButtonReceiver.buildMediaButtonPendingIntent(getContext(),
-                        PlaybackStateCompat.ACTION_FAST_FORWARD));
-
-        // Create a content Pending Intent that relaunches the PlayerActivity
-        PendingIntent contentPendingIntent = PendingIntent.getActivity(
-                getContext(),
-                BAKING_PENDING_INTENT_ID,
-                new Intent(getContext(), PlayerActivity.class),
-                PendingIntent.FLAG_UPDATE_CURRENT);
-
-        builder.setContentTitle(getString(R.string.notification_title))
-                .setContentText(getString(R.string.notification_text))
-                .setContentIntent(contentPendingIntent)
-                .setSmallIcon(R.drawable.chef_cooker_hat)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .addAction(rewindAction)
-                .addAction(playPauseAction)
-                .addAction(fastForwardAction)
-                .setStyle(new android.support.v4.media.app.NotificationCompat.MediaStyle()
-                        .setMediaSession(sMediaSession.getSessionToken())
-                        .setShowActionsInCompactView(0,1,2));
-
-        mNotificationManager = (NotificationManager) getContext()
-                .getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // Create a notification channel for Android O devices
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = new NotificationChannel(
-                    BAKING_NOTIFICATION_CHANNEL_ID,
-                    getContext().getString(R.string.baking_notification_channel_name),
-                    NotificationManager.IMPORTANCE_HIGH);
-
-            mNotificationManager.createNotificationChannel(notificationChannel);
-        }
-
-        // If the build version is greater than JELLY_BEAN and lower than OREO,
-        // set the notification's priority to PRIORITY_HIGH.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN &&
-                Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            builder.setPriority(NotificationCompat.PRIORITY_HIGH);
-        }
-        // Trigger the notification
-        mNotificationManager.notify(BAKING_NOTIFICATION_ID, builder.build());
-    }
-
-    /**
      * Media Session Callbacks, where all external clients control the player.
      */
     private class MySessionCallback extends MediaSessionCompat.Callback {
@@ -790,20 +697,6 @@ public class StepDetailFragment extends Fragment implements Player.EventListener
             long duration = mExoPlayer.getDuration();
             mExoPlayer.seekTo(Math.min(mExoPlayer.getCurrentPosition()
                     + FAST_FORWARD_INCREMENT, duration));
-        }
-    }
-
-    /**
-     * Broadcast Receiver registered to receive the MEDIA_BUTTON intent coming from clients.
-     */
-    public static class MediaReceiver extends BroadcastReceiver {
-
-        public MediaReceiver() {
-        }
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            MediaButtonReceiver.handleIntent(sMediaSession, intent);
         }
     }
 }

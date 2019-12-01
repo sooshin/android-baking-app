@@ -41,12 +41,6 @@
             android:name=".ui.shopping.ShoppingActivity"
             android:label="@string/shopping_list"
             android:theme="@style/ShoppingTheme"/>
-
-        <receiver android:name=".ui.player.StepDetailFragment$MediaReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.MEDIA_BUTTON" />
-            </intent-filter>
-        </receiver>
         <receiver
             android:name=".ConnectivityReceiver"
             android:enabled="true">
