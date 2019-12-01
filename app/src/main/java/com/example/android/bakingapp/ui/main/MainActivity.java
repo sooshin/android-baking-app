@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
     /** ViewModel for MainActivity */
     private MainActivityViewModel mMainViewModel;
+    private ConnectionStateMonitor mConnectionStateMonitor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
         // Check internet connection
         checkConnection();
 
+        mConnectionStateMonitor = new ConnectionStateMonitor();
         checkConnectionStateMonitor();
     }
 
@@ -254,8 +256,8 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
      * -action-deprecated#36447866"
      */
     private void checkConnectionStateMonitor() {
-        ConnectionStateMonitor connectionStateMonitor = new ConnectionStateMonitor();
-        connectionStateMonitor.enable(this);
+
+        mConnectionStateMonitor.enable(this);
     }
 
     /**
@@ -280,6 +282,12 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.Rec
 
         // Register connection status listener
         MyApp.getInstance().setConnectivityListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mConnectionStateMonitor.unregister(this);
     }
 
     /**

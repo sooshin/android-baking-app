@@ -50,6 +50,12 @@ public class ConnectionStateMonitor extends ConnectivityManager.NetworkCallback 
         connectivityManager.registerNetworkCallback(mNetworkRequest, this);
     }
 
+    public void unregister(Context context) {
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        connectivityManager.unregisterNetworkCallback(this);
+    }
+
     @Override
     public void onAvailable(Network network) {
         super.onAvailable(network);
